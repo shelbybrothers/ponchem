@@ -186,7 +186,8 @@ contract GasTest is Base {
         _line("");
 
         // ------------------------------------------------------------ rehearsal figures, when present
-        if (vm.exists("out/rehearsal/gas.json")) {
+        // deploy.sh writes gas.json first with deploy figures only; the registry block appears after register.sh
+        if (vm.exists("out/rehearsal/gas.json") && vm.keyExistsJson(vm.readFile("out/rehearsal/gas.json"), ".registry")) {
             string memory json = vm.readFile("out/rehearsal/gas.json");
             _line("## Rehearsal on anvil (contracts/register.sh, real receipts)");
             _line("");
