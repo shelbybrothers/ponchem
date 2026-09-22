@@ -1,10 +1,18 @@
 {
   "chainId": 4663,
   "contract": "PonchemLab",
-  "address": null,
-  "check": null,
-  "tables": null,
-  "deployBlock": 0,
-  "genesis": 0,
-  "status": "not deployed: contracts/deploy.sh writes this file after the broadcast is read back"
+  "address": "0xc80919259F290448377489c9dc152b341F288251",
+  "check": "0xA011a8477F6DdD755E6CA2F5029017a3D8fCC462",
+  "tables": "0xB2394c63A0854e5262F123a6e3Cbf0Ee1118666F",
+  "deployBlock": 69391464,
+  "genesis": 1790053441,
+  "tx": "0x6d10414e9f50c57a81ae55f91711ef06bca38478a3de08811710b7a98e5e5506",
+  "deployer": "0xb53cB636243AAD194628B88Cfcd770fFBE0cEDd8",
+  "owner": "0xb53cB636243AAD194628B88Cfcd770fFBE0cEDd8",
+  "treasury": "0xb53cB636243AAD194628B88Cfcd770fFBE0cEDd8",
+  "feeBps": 500,
+  "runFee": "100000000000000",
+  "runPrice": "100000000000000000000",
+  "epochLength": 604800,
+  "deployedAt": "2026-09-22T05:04:19Z"
 }

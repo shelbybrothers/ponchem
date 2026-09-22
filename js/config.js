@@ -64,9 +64,9 @@ export const MULTICALL3 = '0xcA11bde05977b3631167028862bE2a173976CA11';
  */
 // GENERATED:DEPLOY:BEGIN (contracts/deploy.sh rewrites this block)
 export const LAB = Object.freeze({
-  address: null,
-  deployBlock: 0,
-  genesis: 0,
+  address: '0xc80919259F290448377489c9dc152b341F288251',
+  deployBlock: 69391464,
+  genesis: 1790053441,
 });
 // GENERATED:DEPLOY:END
 
