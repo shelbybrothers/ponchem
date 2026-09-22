@@ -25,6 +25,9 @@ forge test
   (the registry, resumable), `script/lib/shell.sh` (helpers for the shell scripts).
 - `deploy.sh` and `register.sh`: what the owner runs. Both have a rehearsal mode on anvil (`LOCAL_BROADCAST=1`).
 - `deployments.json`: written by `deploy.sh`. `gas.md`: written by `forge test --match-contract GasTest`.
+- `out/rehearsal/`: the rehearsal's records (deployments.json, config.js, broadcast, gas.json, transcript.txt).
+  forge empties `out/` on a full recompile (a change of `foundry.toml`, or `forge build --force`), and these go
+  with it: copy what you want to keep. `gas.md` keeps the rehearsal figures once the gas test has folded them in.
 
 ## Data on chain
 

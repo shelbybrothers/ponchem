@@ -10,3 +10,5 @@ contracts/broadcast
 contracts/deployments.pending.json
 .env*
 .DS_Store
+__pycache__/
+.tmp/

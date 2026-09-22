@@ -154,9 +154,9 @@ contract FuzzTest is Base {
         vm.prank(alice);
         if (sent != fee) {
             vm.expectRevert(PonchemLab.WrongFee.selector);
-            lab.submitRun{value: sent}(t02, l02, syn02.pose);
+            lab.submitRun{value: sent}(t02, l02, syn02.pose, false, "");
         } else {
-            lab.submitRun{value: sent}(t02, l02, syn02.pose);
+            lab.submitRun{value: sent}(t02, l02, syn02.pose, false, "");
             assertEq(treasury.balance - tr, fee);
             assertEq(lab.runCount(), 1);
         }

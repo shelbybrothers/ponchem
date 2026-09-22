@@ -11,6 +11,11 @@ optimizer = true
 optimizer_runs = 10000
 via_ir = true
 evm_version = "cancun"
+# The default Yul sequence minus "i" (FullInliner): with it, the scorer's single-use Yul functions were flattened
+# into one body whose live variables exceeded the stack, so the stack-limit evader moved the visit loop into memory
+# (every read an MLOAD, r2 recomputed three times) and a run cost 4.1M gas instead of 2.9M. The hot loops of the
+# lab and of the check are all Yul, so nothing of note is left for the inliner. Sourcify records these settings.
+optimizer_details = { yul = true, yulDetails = { stackAllocation = true, optimizerSteps = "dhfoDgvulfnTUtnf[xa[r]EscLMcCTUtTOntnfDIulLculVcul [j]Tpeulxa[rul]xa[r]cL gvf CTUca[r]LSsTFOtfDnca[r]Iulc] jmul[jul] VcTOcul jmul:fDnTOcmu" } }
 # read-write inside the project (deploy records, gas.md, out/rehearsal), read-only on the shared data:
 # the engine test vectors, the frozen tables, and the registry with its pocket and topology bytes
 fs_permissions = [{ access = "read-write", path = "./" }, { access = "read", path = "../data" }]

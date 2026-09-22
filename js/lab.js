@@ -145,6 +145,8 @@ export const LAB_FRAGMENTS = Object.freeze([
   'error BadPose(uint8 reason)',
   'error WrongFee()',
   'error PaymentRefused()',
+  'error PaymentDisabled()',
+  'error TokenRequired()',
   'error NotEnded()',
   'error NoRuns()',
   'error NotAuthor()',
@@ -153,6 +155,7 @@ export const LAB_FRAGMENTS = Object.freeze([
   'error SelfReview()',
   'error MethodTooLong()',
   'error AnalysisTooLong()',
+  'error ProviderTooLong()',
   'error NoTarget()',
   'error NoLigand()',
   'error NoRun()',
@@ -467,7 +470,8 @@ const ZERO_ADDR = /^0x0{40}$/i;
 export const ERROR_SENTENCES = Object.freeze({
   BadPose: GEOMETRY_FAIL,
   WrongFee: 'The run fee changed. Reload the lab and try again.',
-  PaymentRefused: 'That payment option is switched off right now. Reload the lab and try again.',
+  PaymentRefused: 'The $PONCHEM payment did not go through. Check the balance and the allowance, then try again.',
+  PaymentDisabled: 'That payment option is switched off right now. Reload the lab and try again.',
   NotEnded: 'The epoch has not ended yet.',
   NoRuns: 'Nothing to settle: no run was recorded this epoch.',
   NotAuthor: 'Only the wallet that recorded this docking test can attach an analysis.',
@@ -476,6 +480,7 @@ export const ERROR_SENTENCES = Object.freeze({
   SelfReview: 'You cannot review your own docking test.',
   MethodTooLong: METHOD_TOO_LONG,
   AnalysisTooLong: ANALYSIS_TOO_LONG,
+  ProviderTooLong: 'The provider name is too long for the contract (32 bytes at most).',
   NoTarget: 'Unknown target id.',
   NoLigand: 'Unknown ligand id.',
   NoRun: 'Unknown run id.',
@@ -508,14 +513,19 @@ export function sentenceFor(decoded, context = {}) {
     case 'WrongFee':
       return has(c, 'runFee') ? `The run fee is ${fmtEth(c.runFee)} plus gas. Reload the lab and try again.` : ERROR_SENTENCES.WrongFee;
     case 'PaymentRefused':
+      // the v2 contract: the token's transferFrom returned false, reverted, or answered with something else
+      if (!decoded.args.length) return ERROR_SENTENCES.PaymentRefused;
+    // falls through: the one-argument spelling names the switched-off option
+    case 'PaymentDisabled':
     case 'EthRefused':
     case 'TokenRefused':
     case 'TokenNotSet': {
-      const viaToken = decoded.name === 'TokenRefused' || decoded.name === 'TokenNotSet' || (decoded.name === 'PaymentRefused' && (decoded.args.length ? Number(decoded.args[0]) === 1 : !!c.payWithToken));
-      if (decoded.name === 'EthRefused' || (decoded.name === 'PaymentRefused' && has(c, 'payWithToken') && !c.payWithToken)) return 'Paying in ETH is switched off right now. Pay in $PONCHEM.';
-      if (viaToken && (decoded.name === 'TokenNotSet' || (tokenKnown && !tokenSet))) return 'The $PONCHEM option opens after the launch. Pay in ETH.';
+      const off = decoded.name === 'PaymentRefused' ? 'PaymentDisabled' : decoded.name;
+      const viaToken = off === 'TokenRefused' || off === 'TokenNotSet' || (off === 'PaymentDisabled' && (decoded.args.length ? Number(decoded.args[0]) === 1 : !!c.payWithToken));
+      if (off === 'EthRefused' || (off === 'PaymentDisabled' && has(c, 'payWithToken') && !c.payWithToken)) return 'Paying in ETH is switched off right now. Pay in $PONCHEM.';
+      if (viaToken && (off === 'TokenNotSet' || (tokenKnown && !tokenSet))) return 'The $PONCHEM option opens after the launch. Pay in ETH.';
       if (viaToken) return 'Paying in $PONCHEM is switched off right now. Pay in ETH.';
-      return ERROR_SENTENCES.PaymentRefused;
+      return ERROR_SENTENCES.PaymentDisabled;
     }
     case 'NotEnded': {
       const end = has(c, 'epochEnd') ? Number(c.epochEnd) : (decoded.args.length ? Number(decoded.args[0]) : null);
@@ -526,6 +536,7 @@ export function sentenceFor(decoded, context = {}) {
       return ERROR_SENTENCES.NotEnded;
     }
     case 'TokenRequired':
+      if (!decoded.args.length && !has(c, 'minHold')) return 'The $PONCHEM option opens after the launch. Pay in ETH.';
       return has(c, 'minHold') ? `Recording needs at least ${tokenText(c.minHold)} in the connected wallet.` : (decoded.args.length > 1 ? `Recording needs at least ${tokenText(decoded.args[1])} in the connected wallet.` : ERROR_SENTENCES.TokenRequired);
     case 'TransferFailed':
     case 'SafeERC20FailedOperation':

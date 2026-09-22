@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.28;
 
+import {Vm} from "forge-std/Vm.sol";
 import {Base} from "./Base.t.sol";
 import {PonchemLab} from "../src/PonchemLab.sol";
 import {PonchemCheck} from "../src/PonchemCheck.sol";
@@ -23,7 +24,7 @@ contract LabTest is Base {
         assertEq(lab.currentEpoch(), 0);
         assertEq(lab.epochStart(3), T0 + 3 * EPOCH);
         assertTrue(lab.ethAllowed());
-        assertTrue(lab.tokenAllowed());
+        assertFalse(lab.tokenAllowed(), "the token option opens with setToken");
         assertEq(lab.token(), address(0));
         assertEq(address(lab.check()), address(check));
         assertEq(lab.targetCount(), 0);
@@ -236,20 +237,22 @@ contract LabTest is Base {
         emit PonchemLab.RunScored(1, alice, t, l, int32(-6446), 0, v.pose);
         vm.expectEmit(true, true, false, true);
         emit PonchemLab.Paid(1, alice, 0, RUN_FEE);
-        (uint256 id, int32 score) = lab.submitRun{value: RUN_FEE}(t, l, v.pose);
+        (uint256 id, int32 score) = lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, "");
         assertEq(id, 1);
         assertEq(score, int32(-6446));
         assertEq(lab.runCount(), 1);
         assertEq(treasury.balance - before, RUN_FEE, "the fee went to the treasury");
         assertEq(address(lab).balance, 0, "nothing stays in the lab");
-        (address wallet, uint16 tt, uint16 ll, int32 s, uint32 epoch, uint64 time, bytes32 poseHash) = lab.run(1);
+        (address wallet, uint16 tt, uint16 ll, int32 s, uint32 epoch, uint64 time, bytes32 poseHash, bytes32 methodHash) = lab.run(1);
         assertEq(wallet, alice);
+        assertEq(methodHash, bytes32(0), "an empty method leaves the hash zero");
         assertEq(tt, t);
         assertEq(ll, l);
         assertEq(s, int32(-6446));
         assertEq(epoch, 0);
         assertEq(time, T0);
         assertEq(poseHash, keccak256(_canonical(v.pose)));
+        assertEq(methodHash, bytes32(0), "no method given");
         (uint64 runs, int32 best, uint256 prizes,,,) = lab.stats(alice);
         assertEq(runs, 1);
         assertEq(best, int32(-6446));
@@ -268,35 +271,35 @@ contract LabTest is Base {
         (Vector memory v, uint16 t, uint16 l) = _real02();
         vm.prank(alice);
         vm.expectRevert(PonchemLab.WrongFee.selector);
-        lab.submitRun{value: RUN_FEE - 1}(t, l, v.pose);
+        lab.submitRun{value: RUN_FEE - 1}(t, l, v.pose, false, "");
         vm.prank(alice);
         vm.expectRevert(PonchemLab.WrongFee.selector);
-        lab.submitRun(t, l, v.pose);
+        lab.submitRun(t, l, v.pose, false, "");
         vm.prank(alice);
         vm.expectRevert(PonchemLab.NoTarget.selector);
-        lab.submitRun{value: RUN_FEE}(0, l, v.pose);
+        lab.submitRun{value: RUN_FEE}(0, l, v.pose, false, "");
         vm.prank(alice);
         vm.expectRevert(PonchemLab.NoTarget.selector);
-        lab.submitRun{value: RUN_FEE}(t + 1, l, v.pose);
+        lab.submitRun{value: RUN_FEE}(t + 1, l, v.pose, false, "");
         vm.prank(alice);
         vm.expectRevert(PonchemLab.NoLigand.selector);
-        lab.submitRun{value: RUN_FEE}(t, 0, v.pose);
+        lab.submitRun{value: RUN_FEE}(t, 0, v.pose, false, "");
         vm.prank(alice);
         vm.expectRevert(PonchemLab.NoLigand.selector);
-        lab.submitRun{value: RUN_FEE}(t, l + 1, v.pose);
+        lab.submitRun{value: RUN_FEE}(t, l + 1, v.pose, false, "");
         // the geometry proof, through submitRun and quote alike
         Vector memory r = _vector("rej_04_clash.json");
         (uint16 rt, uint16 rl) = _register(r);
         vm.prank(alice);
         _expectBadPose(5);
-        lab.submitRun{value: RUN_FEE}(rt, rl, r.pose);
+        lab.submitRun{value: RUN_FEE}(rt, rl, r.pose, false, "");
         _expectBadPose(5);
         lab.quote(rt, rl, r.pose);
         // a pose word that is not an int16 is an ABI violation: plain revert
         int16[] memory pose = v.pose;
         vm.prank(alice);
         vm.expectRevert();
-        (bool ok,) = address(lab).call{value: RUN_FEE}(abi.encodeWithSignature("submitRun(uint16,uint16,int16[])", t, l, _dirty(pose)));
+        (bool ok,) = address(lab).call{value: RUN_FEE}(abi.encodeWithSignature("submitRun(uint16,uint16,int16[],bool,string)", t, l, _dirty(pose), false, ""));
         ok;
     }
 
@@ -325,7 +328,7 @@ contract LabTest is Base {
         (uint256 id2,) = _submit(bob, t, l, v.pose);
         assertEq(lab.bestOfEpoch(t, 1), id2);
         assertEq(lab.bestOfEpoch(t, 0), lab.bestOf(t) == id ? id : 1);
-        (,,,, uint32 epoch,,) = lab.run(id2);
+        (,,,, uint32 epoch,,,) = lab.run(id2);
         assertEq(epoch, 1);
     }
 
@@ -456,7 +459,7 @@ contract LabTest is Base {
         Refuser r = new Refuser();
         vm.deal(address(r), 1 ether);
         _fund(carol, t, 1 ether);
-        r.call(address(lab), abi.encodeWithSignature("submitRun(uint16,uint16,int16[])", t, l, v.pose), RUN_FEE);
+        r.call(address(lab), abi.encodeWithSignature("submitRun(uint16,uint16,int16[],bool,string)", t, l, v.pose, false, ""), RUN_FEE);
         _warpEpochs(1);
         vm.expectEmit(true, false, false, true);
         emit PonchemLab.Owed(address(r), 0.95 ether);
@@ -501,7 +504,7 @@ contract LabTest is Base {
         (Vector memory v, uint16 t, uint16 l) = _real02();
         vm.prank(alice);
         vm.expectRevert(PonchemLab.TokenRequired.selector);
-        lab.submitRun(t, l, v.pose, true);
+        lab.submitRun(t, l, v.pose, true, "");
         MockToken tok = new MockToken();
         vm.prank(owner);
         lab.setToken(address(tok));
@@ -509,16 +512,16 @@ contract LabTest is Base {
         tok.mint(alice, 1000e18);
         vm.prank(alice);
         vm.expectRevert(PonchemLab.WrongFee.selector);
-        lab.submitRun{value: 1}(t, l, v.pose, true);
+        lab.submitRun{value: 1}(t, l, v.pose, true, "");
         vm.prank(alice);
-        vm.expectRevert(PonchemLab.TokenPaymentFailed.selector);
-        lab.submitRun(t, l, v.pose, true); // no allowance
+        vm.expectRevert(PonchemLab.PaymentRefused.selector);
+        lab.submitRun(t, l, v.pose, true, ""); // no allowance
         vm.prank(alice);
         tok.approve(address(lab), 1000e18);
         vm.prank(alice);
         vm.expectEmit(true, true, false, true);
         emit PonchemLab.Paid(1, alice, 1, RUN_PRICE);
-        (uint256 id, int32 score) = lab.submitRun(t, l, v.pose, true);
+        (uint256 id, int32 score) = lab.submitRun(t, l, v.pose, true, "");
         assertEq(id, 1);
         assertEq(score, int32(-6446));
         assertEq(tok.balanceOf(treasury), RUN_PRICE);
@@ -526,29 +529,29 @@ contract LabTest is Base {
         // a token that returns nothing is accepted; false, a revert or a short answer are not
         tok.setMode(1);
         vm.prank(alice);
-        lab.submitRun(t, l, v.pose, true);
+        lab.submitRun(t, l, v.pose, true, "");
         assertEq(tok.balanceOf(treasury), 2 * RUN_PRICE);
         tok.setMode(2);
         vm.prank(alice);
-        vm.expectRevert(PonchemLab.TokenPaymentFailed.selector);
-        lab.submitRun(t, l, v.pose, true);
+        vm.expectRevert(PonchemLab.PaymentRefused.selector);
+        lab.submitRun(t, l, v.pose, true, "");
         tok.setMode(3);
         vm.prank(alice);
-        vm.expectRevert(PonchemLab.TokenPaymentFailed.selector);
-        lab.submitRun(t, l, v.pose, true);
+        vm.expectRevert(PonchemLab.PaymentRefused.selector);
+        lab.submitRun(t, l, v.pose, true, "");
         tok.setMode(4);
         vm.prank(alice);
-        vm.expectRevert(PonchemLab.TokenPaymentFailed.selector);
-        lab.submitRun(t, l, v.pose, true);
+        vm.expectRevert(PonchemLab.PaymentRefused.selector);
+        lab.submitRun(t, l, v.pose, true, "");
         // an address without code is not a token
         vm.prank(owner);
         lab.setToken(stranger);
         vm.prank(alice);
-        vm.expectRevert(PonchemLab.TokenPaymentFailed.selector);
-        lab.submitRun(t, l, v.pose, true);
-        // the ETH path still works with a token set, and the four-argument form with false is the ETH path
+        vm.expectRevert(PonchemLab.PaymentRefused.selector);
+        lab.submitRun(t, l, v.pose, true, "");
+        // the ETH path still works with a token set (payWithToken false)
         vm.prank(alice);
-        (id,) = lab.submitRun{value: RUN_FEE}(t, l, v.pose, false);
+        (id,) = lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, "");
         assertEq(id, 3);
         assertEq(lab.runCount(), 3);
     }
@@ -558,16 +561,16 @@ contract LabTest is Base {
         vm.prank(owner);
         lab.setPaymentOptions(false, true);
         vm.prank(alice);
-        vm.expectRevert(PonchemLab.PaymentNotAllowed.selector);
-        lab.submitRun{value: RUN_FEE}(t, l, v.pose);
+        vm.expectRevert(PonchemLab.PaymentDisabled.selector);
+        lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, "");
         MockToken tok = new MockToken();
         vm.prank(owner);
         lab.setToken(address(tok));
         vm.prank(owner);
         lab.setPaymentOptions(true, false);
         vm.prank(alice);
-        vm.expectRevert(PonchemLab.PaymentNotAllowed.selector);
-        lab.submitRun(t, l, v.pose, true);
+        vm.expectRevert(PonchemLab.PaymentDisabled.selector);
+        lab.submitRun(t, l, v.pose, true, "");
         vm.prank(owner);
         vm.expectEmit(false, false, false, true);
         emit PonchemLab.PricesSet(0.0002 ether, 50e18);
@@ -576,14 +579,14 @@ contract LabTest is Base {
         assertEq(lab.runPrice(), 50e18);
         vm.prank(alice);
         vm.expectRevert(PonchemLab.WrongFee.selector);
-        lab.submitRun{value: RUN_FEE}(t, l, v.pose);
+        lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, "");
         vm.prank(alice);
-        lab.submitRun{value: 0.0002 ether}(t, l, v.pose);
+        lab.submitRun{value: 0.0002 ether}(t, l, v.pose, false, "");
         // a free lab: runFee 0 and no value
         vm.prank(owner);
         lab.setPrices(0, 0);
         vm.prank(alice);
-        lab.submitRun(t, l, v.pose);
+        lab.submitRun(t, l, v.pose, false, "");
         assertEq(lab.runCount(), 2);
         vm.prank(stranger);
         vm.expectRevert(PonchemLab.NotOwner.selector);
@@ -602,7 +605,7 @@ contract LabTest is Base {
         (Vector memory v, uint16 t, uint16 l) = _real02();
         (uint256 id,) = _submit(alice, t, l, v.pose);
         vm.prank(alice);
-        vm.expectRevert(PonchemLab.OwnRun.selector);
+        vm.expectRevert(PonchemLab.SelfReview.selector);
         lab.reviewRun(id, 5, "mine");
         vm.prank(bob);
         vm.expectRevert(PonchemLab.NoRun.selector);
@@ -656,6 +659,68 @@ contract LabTest is Base {
         assertEq(given, 1);
         (uint8 none,) = lab.reviewOf(id, stranger);
         assertEq(none, 0);
+    }
+
+
+    // ---------------------------------------------------------------- methods and analysis (SPEC.md 9.7, 9.8)
+
+    function test_methodJsonIsLoggedAndHashed() public {
+        (Vector memory v, uint16 t, uint16 l) = _real02();
+        string memory method = '{"name":"Standard","version":1,"budget":{"steps":12000},"seed":7}';
+        vm.prank(alice);
+        vm.expectEmit(true, false, false, true);
+        emit PonchemLab.Method(1, method);
+        (uint256 id,) = lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, method);
+        (,,,,,,, bytes32 methodHash) = lab.run(id);
+        assertEq(methodHash, keccak256(bytes(method)));
+        // an empty method: no Method event, zero hash
+        vm.prank(bob);
+        vm.recordLogs();
+        (uint256 id2,) = lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, "");
+        (,,,,,,, bytes32 none) = lab.run(id2);
+        assertEq(none, bytes32(0));
+        Vm.Log[] memory logs = vm.getRecordedLogs();
+        for (uint256 i = 0; i < logs.length; i++) {
+            assertTrue(logs[i].topics[0] != PonchemLab.Method.selector, "no Method event for an empty method");
+        }
+        // too long
+        vm.prank(alice);
+        vm.expectRevert(PonchemLab.MethodTooLong.selector);
+        lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, _text(1025));
+        vm.prank(alice);
+        lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, _text(1024));
+        assertEq(lab.runCount(), 3);
+    }
+
+    function test_attachAnalysis() public {
+        (Vector memory v, uint16 t, uint16 l) = _real02();
+        (uint256 id,) = _submit(alice, t, l, v.pose);
+        vm.prank(bob);
+        vm.expectRevert(PonchemLab.NotAuthor.selector);
+        lab.attachAnalysis(id, "claude", "text");
+        vm.prank(alice);
+        vm.expectRevert(PonchemLab.NoRun.selector);
+        lab.attachAnalysis(0, "claude", "text");
+        vm.prank(alice);
+        vm.expectRevert(PonchemLab.NoRun.selector);
+        lab.attachAnalysis(id + 1, "claude", "text");
+        vm.prank(alice);
+        vm.expectRevert(PonchemLab.ProviderTooLong.selector);
+        lab.attachAnalysis(id, _text(33), "text");
+        vm.prank(alice);
+        vm.expectRevert(PonchemLab.AnalysisTooLong.selector);
+        lab.attachAnalysis(id, "claude", _text(2049));
+        string memory text = "The pose sits in the ATP site. A rigid receptor estimate; unverified recall of literature.";
+        vm.prank(alice);
+        vm.expectEmit(true, false, false, true);
+        emit PonchemLab.Analysis(id, "claude-fable-5-1", text);
+        lab.attachAnalysis(id, "claude-fable-5-1", text);
+        assertEq(lab.analysisHash(id), keccak256(bytes(text)));
+        // replaced by a later one
+        vm.prank(alice);
+        lab.attachAnalysis(id, "gpt", _text(2048));
+        assertEq(lab.analysisHash(id), keccak256(bytes(_text(2048))));
+        assertEq(lab.analysisHash(id + 1), bytes32(0));
     }
 
     // ---------------------------------------------------------------- ownership and setters

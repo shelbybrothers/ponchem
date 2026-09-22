@@ -101,21 +101,45 @@ contract PonchemCheck is PonchemConstants {
         uint256 offs = 28 + 7 * uint256(n);
         if (p.length != offs + 2 * (ncells + 1)) revert BadPocket();
         if (_u16(p, offs) != 0 || _u16(p, offs + 2 * ncells) != n) revert BadPocket();
-        uint256 k = 0;
-        for (uint256 c = 0; c < ncells; c++) {
-            uint256 end = _u16(p, offs + 2 * (c + 1));
-            if (end < k) revert BadPocket();
-            for (; k < end; k++) {
-                uint256 rec = 28 + 7 * k;
-                if (uint8(p[rec + 6]) > 15) revert BadPocket();
-                int256 ax = _i16(p, rec) + int256(uint256(hx)) + 800;
-                int256 ay = _i16(p, rec + 2) + int256(uint256(hy)) + 800;
-                int256 az = _i16(p, rec + 4) + int256(uint256(hz)) + 800;
-                if (ax < 0 || ay < 0 || az < 0) revert BadPocket();
-                uint256 cell = (uint256(ax / 800) * ny + uint256(ay / 800)) * nz + uint256(az / 800);
-                if (cell != c) revert BadPocket();
+        // every atom: a type code below 16, and the cell computed from its coordinates equal to the cell whose
+        // range holds it (the scan trusts the offsets). In Yul: the sizes are checked above, so no per-access
+        // bounds checks or checked arithmetic are needed, which is what makes a 2000-atom pocket affordable.
+        bool ok;
+        assembly ("memory-safe") {
+            ok := 1
+            let base := add(p, 32)
+            let offsPtr := add(base, offs)
+            let rec := add(base, 28)
+            let k := 0
+            for { let c := 0 } lt(c, ncells) { c := add(c, 1) } {
+                let end := shr(240, mload(add(offsPtr, shl(1, add(c, 1)))))
+                if lt(end, k) {
+                    ok := 0
+                    break
+                }
+                for {} lt(k, end) { k := add(k, 1) } {
+                    let w := mload(rec)
+                    if gt(byte(6, w), 15) {
+                        ok := 0
+                        break
+                    }
+                    let ax := add(add(signextend(1, shr(240, w)), hx), 800)
+                    let ay := add(add(signextend(1, and(shr(224, w), 0xffff)), hy), 800)
+                    let az := add(add(signextend(1, and(shr(208, w), 0xffff)), hz), 800)
+                    if or(or(slt(ax, 0), slt(ay, 0)), slt(az, 0)) {
+                        ok := 0
+                        break
+                    }
+                    if iszero(eq(add(mul(add(mul(div(ax, 800), ny), div(ay, 800)), nz), div(az, 800)), c)) {
+                        ok := 0
+                        break
+                    }
+                    rec := add(rec, 7)
+                }
+                if iszero(ok) { break }
             }
         }
+        if (!ok) revert BadPocket();
     }
 
     /// @dev Structural check of a topology blob against SPEC-ENGINE.md section 4.6: header, sizes, type codes,
@@ -168,26 +192,36 @@ contract PonchemCheck is PonchemConstants {
         uint256 offs = 28 + 7 * n;
         uint256 tail = p.length - offs;
         scan = new bytes(28 + 9 * n + tail);
-        for (uint256 i = 0; i < 28; i++) {
-            scan[i] = p[i];
-        }
-        for (uint256 k = 0; k < n; k++) {
-            uint256 rec = 28 + 7 * k;
-            uint256 x = _u16(p, rec) ^ 0x8000;
-            uint256 y = _u16(p, rec + 2) ^ 0x8000;
-            uint256 z = _u16(p, rec + 4) ^ 0x8000;
-            uint8 t = uint8(p[rec + 6]);
-            uint256 tw = (_radius(t) << 8) | _flags(t);
-            uint256 r = x | (y << 18) | (z << 36) | (tw << 54);
-            uint256 at = 28 + 9 * k;
-            for (uint256 b = 0; b < 9; b++) {
-                scan[at + b] = bytes1(uint8(r >> (64 - 8 * b)));
+        assembly ("memory-safe") {
+            let src := add(p, 32)
+            let dst := add(scan, 32)
+            mstore(dst, mload(src)) // the 28-byte header (the next 4 bytes are rewritten by the first record)
+            let rec := add(src, 28)
+            let at := add(dst, 28)
+            for { let k := 0 } lt(k, n) { k := add(k, 1) } {
+                let w := mload(rec)
+                let t := byte(6, w)
+                let r :=
+                    or(
+                        or(xor(shr(240, w), 0x8000), shl(18, xor(and(shr(224, w), 0xffff), 0x8000))),
+                        or(
+                            shl(36, xor(and(shr(208, w), 0xffff), 0x8000)),
+                            shl(
+                                54,
+                                or(
+                                    shl(8, byte(t, 0xBEBEB4B4B4B4AAAAAAC8D296B4C8DC7800000000000000000000000000000000)),
+                                    byte(t, 0x0100000204060402060000010101010200000000000000000000000000000000)
+                                )
+                            )
+                        )
+                    )
+                // one 32-byte store per record: the 9 bytes of R and 23 zero bytes that the next record, or the
+                // offset table copied below (at least 56 bytes), overwrites
+                mstore(at, shl(184, r))
+                rec := add(rec, 7)
+                at := add(at, 9)
             }
-        }
-        uint256 dst = 28 + 9 * n;
-        for (uint256 i = 0; i < tail; i++) {
-            scan[dst + i] = p[offs + i];
+            mcopy(at, add(src, offs), tail)
         }
     }
-
 }

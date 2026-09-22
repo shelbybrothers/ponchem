@@ -1,157 +1,149 @@
-# Pages builder notes (css/site.css, the nine pages, js/pages/*)
+# Pages builder notes (css/site.css, the pages, js/pages/*)
 
-status: built and gated (2026-09-22); the class-name section was written first so the lab builder could reuse it
+status: v2 built and gated (2026-09-22, SPEC.md section 9: test pages, dashboard, direct links, docs); v1 notes kept below
 
 ## Files I own
 
-`index.html targets.html target.html ligands.html ligand.html leaderboard.html report.html wallet.html docs.html 404.html`,
-`css/site.css`, `js/pages/{common,home,targets,target,ligands,ligand,leaderboard,report,wallet,docs}.js`, `partials/*`,
-`og.png`, `sitemap.xml`, `tools/verify.mjs` (extended), `tools/pages-test.mjs`, this file.
+`index.html targets.html target.html ligands.html ligand.html leaderboard.html report.html wallet.html docs.html 404.html
+run.html dashboard.html`, `css/site.css`, `js/pages/{common,home,targets,target,ligands,ligand,leaderboard,report,wallet,
+dashboard,run,docs,xp}.js`, `partials/*`, `og.png`, `sitemap.xml`, `tools/verify.mjs` (extended), `tools/pages-test.mjs`,
+the `/wallet` redirect entry in `vercel.json`, the `dashboard` menu item in `js/shell.js` and its expectation in
+`tools/wallet-test.mjs`, this file. `js/pages/lab.js` and `js/lab-ui/*` are the lab builder's.
 
-`js/pages/common.js` is one extra module beyond the task list: the helpers every page module shares (safe dynamic
-imports of the other builders' modules, the catalog fallback, energy bands, tables, empty states, icons). Nobody
-else writes into `js/pages/`.
+`js/pages/common.js` is the helpers every page module shares (safe dynamic imports of the other builders' modules,
+the catalog fallback, energy bands, tables, empty states, icons, and since v2 the stars, reviews, run-by-id, X intent,
+test Markdown, analysis route and gamification adapters). `js/pages/xp.js` is the reference implementation of the
+XP, level and badge rules of SPEC 9.5; `common.js gamify()` prefers `js/gamify.js` when it exports the shipped shape.
 
-## Tokens (all on `:root` in css/site.css, the block from SPEC-DESIGN.md section 10, verbatim)
+## v2 (SPEC 9) in short
 
-Colours `--paper --paper-2 --white --dark --dark-2 --ink --ink-2 --ink-3 --line --line-strong --edge --muted-on-dark
---line-on-dark --receptor --receptor-tint --receptor-on-dark --ligand --ligand-tint --ligand-on-dark --good --good-tint
---good-on-dark --warn --warn-tint --warn-on-dark --bad --bad-tint --bad-on-dark`.
-Fonts `--font-display --font-text --font-mono`. Type `--t-hero --t-h1 --t-h2 --t-h3 --t-h4 --t-lede --t-body --t-small
---t-caption --t-eyebrow --t-mono --t-mono-id --t-stat --t-dg`. Spacing `--s-1 .. --s-13`, `--gutter --container --measure
---section-y`. Radius `--r-1 --r-2 --r-3 --r-4 --r-pill`. Shadows `--shadow-1 --shadow-2 --shadow-3`. Motion `--ease`.
-Nav height `--nav-h` (56 under 768, 64 from 768). Viewer colours as CSS custom properties too: `--v-receptor #9DB7CC`,
-`--v-pocket-c #8A93A3`, `--v-ligand-c` = `--ligand`, `--v-ref-c` = `--receptor`.
+- `/run?id=N` (run.html, js/pages/run.js): header (`Docking test #N`, ligand into target, wallet, time, tx), the chain's
+  score with pKd, Kd, LE, the browser check (engine `scoreInt` on the event pose: `Chain and browser agree` or the two
+  numbers, the four geometry rows, the five weighted terms), the pose on the receptor (`mountStructure` with `pose` and
+  `box`, through `js/viewer.js showPose` or the own 3Dmol path), provenance with the 9.4 links, the method block
+  (pretty JSON as text, `Use this method` -> `/lab?method=<base64url>` only when `validateMethod` passes), AI analysis
+  (GET /api/analyze providers with `not connected`, POST, `Attach analysis on chain` for the author via
+  `buildAttachAnalysis` + `sendTx`, the attached one from the run), reviews (average, count, list newest first, notes as
+  text) and `Write a review` (stars picker, 280 counter, `buildReview` + `sendTx`), `Post on X`, `Copy link`, `Download
+  report` (Markdown built in the browser). Not found: `Docking test not found` with the chain note (the not-live sentence
+  when there is no contract). Head tags are set per test (title, description, canonical, og:url).
+- `/dashboard` (dashboard.html, js/pages/dashboard.js): no-wallet card listing what the dashboard shows + Connect;
+  connected: address + Copy, level and title, XP with the progress bar to the next level, the ten badges (earned lit),
+  four stats, then the sections My docking tests (Test, Target, Ligand, dG, Band, Reviews, Post on X / Report), Best
+  scores, Reviews received, Reviews written, Prizes and withdraw (Claim -> buildWithdraw), Sponsorships, Payment
+  (prices from labStatus: runFee, runPrice, tokenOpen; the blank token controls). Data: `walletStats` + `ledger()`
+  (through `gamifyData()`), profile through `gamify().profileOf`.
+- `/wallet` is a forwarding page (meta refresh 3 s + link); `vercel.json` redirects it permanently to `/dashboard`.
+  The wallet menu's `my runs` item became `dashboard` -> `/dashboard` (js/shell.js, asserted by tools/wallet-test.mjs).
+  The footer column says `Dashboard`. sitemap lists `/dashboard`.
+- Leaderboard: view `Wallets` shows Rank, Wallet, Level, XP, Tests, dG from `gamify().rank(ledger)`; view `Most reviewed`
+  lists tests by review count; every run table has a `Test` column (`#N` -> /run) and a `Reviews` column when the
+  ledger has reviews; the phone cards link `test #N`.
+- Report: the top-ten tables gain `Reviews` and `Test`, the names carry `RCSB 4WKQ` / `RCSB AQ4` / `PubChem 5280343`;
+  the best pair cards get the same links and `Test #N`; the browser-built Markdown gains the two columns.
+- Landing: value prop 3 `Every docking test is paid, scored and reviewed`, steps 03 `Test` and 04 `Review and settle`,
+  the token card explains 100 $PONCHEM or 0.0001 ETH and the `after the $PONCHEM launch` state, the stat strip has
+  five cells (`Docking tests`, `Reviews`); the minHold line is gone.
+- Docs: sections Payment (#payment), Docking methods (#methods, the schema table rendered from
+  `js/engine/method.js METHOD_SCHEMA` and the presets from `METHOD_PRESETS`, static fallback in the HTML), Reviews
+  (#reviews), Levels and badges (#levels, XP table, levels, the ten badge tiles from gamify), AI analysis (#ai-analysis),
+  Post on X (#post-on-x); glossary adds Docking test, Method, Test price, Review, XP; API lists GET and POST /api/analyze.
+- 9.4 links everywhere: `rcsbStructureLink(pdb)` -> `RCSB 4WKQ`, `rcsbLigandLink(ccd)` -> `RCSB AQ4`,
+  `pubchemLink(cid)` -> `PubChem 5280343`, `ligandSourceLink(l)` picks the CCD page else PubChem. Cards, the target
+  page (reference ligand row too), the ligand page, the test page, the report tables. All open in a new tab with
+  `rel="noopener noreferrer"`.
 
-## Class names (prefix `pc-`; the lab page may use every one of them)
+## The data layer v2 as consumed (js/chain.js, js/lab.js, js/gamify.js as shipped 2026-09-22)
 
-Layout: `.pc-skip` (skip link) · `.pc-main` · `.pc-container` (1200) · `.pc-container--wide` (1440, the lab) ·
-`.pc-container--prose` (760) · `.pc-section` · `.pc-section--tight` · `.pc-section-head` (eyebrow + h2 + optional link) ·
-`.pc-band--dark` · `.pc-band--white` · `.grid-paper` (hero, 404, report cover only) · `.pc-grid` with `--cols: N` ·
-`.pc-cards` (auto-fill 260 grid) · `.pc-cards--scroll` (phone: horizontal snap row) · `.pc-two` (two columns from 1024) ·
-`.pc-row` (flex wrap gap 12) · `.pc-stack` (grid gap 12) · `.pc-visually-hidden`.
+```
+runById(id) -> Run (full: pose, method (JSON text | null), payment { method 'eth'|'token', code, amount }, reviews { count, starSum, average },
+                     reviewList: Review[] newest first, analysis { provider, text, block, tx } | null) | null
+reviewsOf(id) -> Review[]   analysesOf(id) -> Analysis[] (block order)   ledger() -> { runs asc (no pose), settled, funded, reviews, analyses }
+profileOf(address) / walletRanking()  (chain.js over gamify.js)          walletStats(a) gains reviewsGiven, reviewsReceived, starsReceived, won, wonEpochs
+labStatus() gains runPrice, ethAllowed, tokenAllowed, tokenOpen
+js/lab.js: buildReview(runId, stars, note), buildAttachAnalysis(runId, provider, text), buildSubmitRun(t, l, pose, { payWithToken, methodJson, runFee })
+js/gamify.js: computeProfile(address, ledger) -> { address, xp, level (index), title, next { title, min, remaining }, progress, badges [{ id, name, rule, earned }], counts }
+              rankWallets(ledger) -> [{ rank, address, xp, title, tests, best, ... }]   LEVELS { index, name, min }   BADGES { id, name, rule, path }   XP_RULES { id, xp, sentence }
+api/analyze.js: GET { ok, providers: [{ id, label, model, connected }] }   POST { runId, provider } -> { ok, provider, model, text, generatedAt }
+```
 
-Type: `.pc-eyebrow` · `.pc-h1` · `.pc-h2` · `.pc-h3` · `.pc-h4` · `.pc-lede` · `.pc-mono` · `.pc-id` (mono 700 15 px) ·
-`.pc-muted` (ink-3) · `.pc-small` · `.pc-caption` · `.pc-unit` (unit after a number) · `.pc-link` (prose link) ·
-`.pc-link--out` (outbound arrow after the text).
+`common.js` normalises all of it: `runById` (falls back to the run list), `reviewsOf(id, run)` (uses `run.reviewList`),
+`analysisOf(id, run)`, `methodOf(run)`, `gamifyData()` (the ledger, else allRuns + settledAll), `gamify()` (one Profile shape:
+`{ wallet, xp, level: { name, min, next, progress, toNext }, tests, best, badges: [id] }`; `js/pages/xp.js` when the
+shared module is absent; the two agree on the SPEC 9.5 rules, checked on a hand ledger). The Payment shape difference
+(`code` 0/1 or `method` string) is handled in run.js `paidRow`.
 
-Buttons: `.pc-btn` + `.pc-btn--primary | --receptor | --outline | --ghost | --warn | --danger`, sizes `.pc-btn--lg` (52)
-`.pc-btn--sm` (36), `.pc-btn--block`, `.pc-btn--icon` (44 square, needs aria-label). `[aria-busy="true"]` shows the arc
-spinner. Disabled: the `disabled` attribute or `aria-disabled="true"`.
+## Gates (v2)
 
-Inputs: `.pc-field` (label + control + help) · `.pc-label` · `.pc-input` · `.pc-select` · `.pc-help` · `.pc-error` ·
-`.pc-search` (input with the magnifier) · `.pc-seg` (segmented control) > `.pc-seg-btn[aria-pressed]` · `.pc-pills`
-(scrolling pill row) > `.pc-pill[aria-pressed]` · `.pc-chip` + `.pc-chip--receptor | --ligand | --good | --warn | --bad`
-· `.pc-badge` + `.pc-badge--strong | --moderate | --weak | --none | --recorded | --pending | --settled`.
+- `node tools/shell.mjs --check` pass (13 pages).
+- `node tools/verify.mjs --files` pass: `run` and `dashboard` in SPEC_PAGES; the words gate also refuses `sample` and
+  `placeholder` (input `placeholder=""` attributes are not visible text and are dropped first); regex literals in js and
+  mjs are dropped before the dashes and emoji gates (api/_llm.mjs strips dashes and emoji from model output with them);
+  the content gate carries the v2 strings of every page; the browser X-link gate reads `BRAND.x`
+  (https://x.com/PonchemAI) and the logo gate accepts the PNG mark the partials use.
+- `node tools/verify.mjs http://127.0.0.1:6131` (CHROME_PORT=9540): every route including `/run?id=1`, `/dashboard`,
+  `/wallet` at 360/390/430/768/1024/1280/1440.
+- `node tools/pages-test.mjs --base http://127.0.0.1:6131` (CHROME_PORT=9540): 395 checks; `/run?id=1` shows the
+  not-found state with the not-live reason, `/run` without an id shows `Unknown docking test id.`, `/dashboard` shows the
+  no-wallet state with one h1, `/wallet` forwards to `/dashboard`, `/docs` has the ten anchors, ten badge tiles, six
+  levels, 14 schema rows and 7 presets, the target and ligand pages carry links that name their destination.
+- Not exercised without a deployed contract: the found state of `/run` (score, browser check, pose viewer, reviews
+  form, analysis picker), the connected dashboard, the Wallets and Most reviewed views with data. They are written
+  against the shipped module signatures above. `node tools/pages-test.mjs --rpc URL --contract 0x..` drives the pages
+  against a local chain when one exists.
 
-Cards: `.pc-card` (white, line border, r-3) · `.pc-card--link` (hover) · `.pc-card--pad` · `.pc-card-media`
-(4:3 image tile) · `.pc-card-media--ligand` (ligand tint) · `.pc-card-badge` (mono id on the image) ·
-`.pc-card-chip` (top right) · `.pc-card-body` · `.pc-card-title` · `.pc-card-caption` · `.pc-card-stats` >
-`.pc-ministat` (label + value) · `.pc-card-foot`. List row variant: `.pc-listrow` (64 px, thumb, name, caption, chevron),
-`.pc-listrow[aria-selected="true"]`, `.pc-listrow--ligand`.
+## Tokens, class names, viewer and data contracts (v1, unchanged)
 
-Tables: `.pc-table-frame` (white frame, scrolls inside under 768 with a fade) > `table.pc-table` · `.pc-td-num` (right,
-mono) · `.pc-td-id` (mono 700) · `.pc-rank` (top three in ligand colour) · `.pc-dg` + `.pc-dg--strong | --moderate |
---weak | --none` (banded colour with the 4 px dot) · `.pc-bar` (inline 60 px energy bar) · `tr.pc-tr-you` + `.pc-you`
-chip · `.pc-table--stack` (under 640 every row becomes a card; each `td` carries `data-label`).
+Tokens (all on `:root` in css/site.css, the block from SPEC-DESIGN.md section 10, verbatim): colours `--paper --paper-2
+--white --dark --dark-2 --ink --ink-2 --ink-3 --line --line-strong --edge --muted-on-dark --line-on-dark --receptor
+--receptor-tint --receptor-on-dark --ligand --ligand-tint --ligand-on-dark --good --good-tint --good-on-dark --warn
+--warn-tint --warn-on-dark --bad --bad-tint --bad-on-dark`; fonts `--font-display --font-text --font-mono`; type
+`--t-hero .. --t-dg`; spacing `--s-1 .. --s-13`, `--gutter --container --measure --section-y`; radius `--r-1 .. --r-pill`;
+shadows `--shadow-1..3`; motion `--ease`; `--nav-h`; viewer colours `--v-receptor --v-pocket-c --v-ligand-c --v-ref-c`.
 
-Data: `.pc-ladder` (dl of label:value rows) · `.pc-stats` (stat strip) > `.pc-stat` > `.pc-stat-num` `.pc-stat-unit`
-`.pc-stat-label` · `.pc-skel` (pulsing skeleton block) · `.pc-empty` (mark, h4, line, action) · `.pc-alert` +
-`.pc-alert--warn | --bad | --good | --info` · `.pc-netband` (wrong network band under the nav) · `.pc-tabs` >
-`.pc-tab[aria-selected]` + `.pc-tabpanel[hidden]` · `.pc-progress` (6 px bar, `role="progressbar"`) · `.pc-code` (code
-block) · `.pc-dl` (glossary definition list) · `.pc-toc` (sticky contents) · `.pc-tooltip` (dark tooltip).
+Class names (prefix `pc-`; the lab may use every one): layout `.pc-skip .pc-main .pc-container(--wide|--prose)
+.pc-section(--tight) .pc-section-head .pc-band--dark|--white|--paper2 .grid-paper .pc-grid .pc-cards(--scroll) .pc-two
+.pc-row .pc-stack .pc-visually-hidden`; type `.pc-eyebrow .pc-h1..h4 .pc-lede .pc-mono .pc-id .pc-muted .pc-small
+.pc-caption .pc-unit .pc-link(--out)`; buttons `.pc-btn` + `--primary --receptor --outline --ghost --warn --danger --lg
+--sm --block --icon`, `[aria-busy]`; inputs `.pc-field .pc-label .pc-input .pc-select .pc-help .pc-error .pc-search
+.pc-seg .pc-pills .pc-pill .pc-chip(--receptor|--ligand|--good|--warn|--bad|--mono) .pc-badge(--strong|--moderate|--weak|
+--none|--recorded|--pending|--settled)`; cards `.pc-card(--link|--pad|--paper2) .pc-card-media(--ligand) .pc-card-badge
+.pc-card-chip .pc-card-body .pc-card-title .pc-card-caption .pc-card-stats .pc-ministat .pc-card-foot .pc-listrow`;
+tables `.pc-table-frame .pc-table(--stack|--compact) .pc-td-num .pc-td-id .pc-td-mono .pc-td-name .pc-td-links .pc-rank
+.pc-dg(--strong|--moderate|--weak|--none|--plain) .pc-bar .pc-tr-you .pc-you`; data `.pc-ladder .pc-stats(--5) .pc-stat
+.pc-skel .pc-empty .pc-alert(--warn|--bad|--good|--info) .pc-netband .pc-tabs .pc-tab .pc-tabpanel .pc-progress .pc-code
+.pc-dl .pc-toc .pc-tooltip`; viewer `.pc-viewer-card .pc-viewer .pc-viewer-img .pc-viewer-caption .pc-viewer-strip
+.pc-viewer-legend .pc-viewer-toolbar`; v2 `.pc-run-head .pc-run-meta .pc-run-grid .pc-score .pc-score-num .pc-rows
+.pc-run-sections .pc-run-section .pc-agree(--ok|--bad) .pc-geo .pc-geo-row[data-ok] .pc-method .pc-analysis(--attached)
+.pc-providers .pc-provider[data-connected] .pc-stars .pc-star[data-lit] .pc-stars-picker .pc-star-btn .pc-review-cell
+.pc-review-summary .pc-review-list .pc-review .pc-review-head .pc-review-note .pc-review-form .pc-review-gate .pc-textarea
+.pc-counter .pc-connect-card--wide .pc-dash-list .pc-profile .pc-level-card .pc-level-name .pc-level-xp .pc-xp-bar
+.pc-wallet-stats--4 .pc-badges(--docs) .pc-badge-tile[data-earned] .pc-badge-icon .pc-badge-name .pc-badge-rule
+.pc-dash-nav .pc-dash-sections .pc-dash-section .pc-payment .pc-empty--page .pc-run-link`.
 
-Viewer (shared with the lab): `.pc-viewer-card` (white, r-4, border) · `.pc-viewer` (the canvas host, `position:
-relative`, aspect from `--aspect`, default 1) · `.pc-viewer-img` (the RCSB entry image shown while loading or as the
-fallback, 60 percent opacity) · `.pc-viewer-caption` (mono 13 px overlay bottom left) · `.pc-viewer-strip` (44 px row
-under the canvas: id, title, buttons) · `.pc-viewer-legend` (two squares) · `.pc-viewer-toolbar` (44 px icon buttons).
+The viewer contract: `mountStructure(host, { pdbId, refCcd, chain, image, transparent, spin, frameAll, pose: { sdfText,
+poseAbs }, box: { center, half } })` uses `js/viewer.js createViewer / showStructure({ highlightPocket }) / showPose` when
+it exists, else the own 3Dmol path (`sdfWithPoseLocal` swaps the SDF coordinates), else the RCSB image; `mountLigand` as
+before. The catalog contract (`js/catalog.js loadCatalog()` with registry ids, else the files) and the chain reads (v1
+`labStatus / runs / bests / pools / walletStats / report / onBlock`, v2 above) are all behind `chain(name, ...)` with
+`{ ok, value, reason }`, so an absent function degrades to the copy deck state.
 
-Shell (from the plumbing, styled here): `.pc-nav .pc-nav-inner .pc-logo .pc-logo-mark .pc-wordmark .pc-nav-toggle
-.pc-nav-links .pc-nav-link .pc-buy .pc-soon .pc-ca .pc-wallet .pc-wallet-button .pc-wallet-menu .pc-menu-label
-.pc-menu-addr .pc-menu-note .pc-menu-item .pc-menu-icon .pc-warn-text .pc-toasts .pc-toast[data-kind] .pc-footer ...`.
-js/shell.js paints the wallet button and the menu items in lower case (`connect wallet`, `my runs`); the CSS
-capitalises their first letter with `::first-letter`, so the visible strings match the copy deck.
+## What runs on each page (v1 pages, unchanged unless noted)
 
-## The viewer contract (js/viewer.js as the lab builder shipped it)
-
-`js/pages/common.js` `mountStructure(host, { pdbId, refCcd, chain, image, transparent, spin, frameAll })` and
-`mountLigand(host, { ligand, sdfText, spin })` use, in this order:
-
-1. `js/viewer.js`: `createViewer(slot, { style: 'hero' | 'card' })` then `showStructure(pdbText, { id, chain, ligandCcd })`
-   or `showLigand(sdfText)`, then `spin(true)`; `dispose()` on teardown. The hero passes `frameAll` (whole structure
-   framed with `viewer.zoomTo()`) and recolours the reference ligand orange (SPEC-DESIGN 5.2) with `setReference(false)`
-   plus a stick style on `{ resn, hetflag }`; the target page keeps the pocket framing and the blue ghost.
-   lib/3Dmol-min.js is injected lazily by `ensure3Dmol()` (a `<script src>` element, allowed by script-src 'self'),
-   so the landing page does not pay 538 KB unless it really renders a structure.
-2. If js/viewer.js is absent or throws: common.js's own small 3Dmol path (cartoon #9DB7CC, ligand sticks in the
-   ligand accent, spin paused on hover, hidden tab and reduced motion).
-3. If WebGL or the structure file is unavailable: the RCSB entry image (targets) with the copy deck's fallback
-   caption, or the CCD depiction / formula tile (ligands).
-
-## The data contract (as shipped by the data layer builder, SPEC.md 8.4)
-
-`js/catalog.js loadCatalog()` (ids follow data/registry.json once the lab is live, else catalog order),
-`js/chain.js labStatus() / runs() / bests() / pools() / walletStats() / report() / onBlock()`, `js/lab.js buildFund /
-buildSettle / buildWithdraw / registerRevertExplainer`, `js/engine/score.js W_G1..W_HB` (the five weights, micro-kcal
-BigInt; printed as kcal/mol on / and /docs; a local constant equal to SPEC-ENGINE 3.5 is the fallback).
-
-Every import is dynamic with a catch (`common.js chain(name, ...)` returns `{ ok, value, reason }`): an absent module
-or a thrown read leaves the page on its static content and the copy deck's state. `chainNote(result)` shows the
-module's own sentence (`The lab opens when the contract is live.` from js/lab.js NOT_LIVE, or `Could not reach
-Robinhood Chain. Reads will retry.`); the stat strip adds `(chain unreachable)` only for a failed read.
-While js/catalog.js is absent, common.js reads data/catalog/*.json itself (same Catalog shape).
-
-## What runs on each page
-
-- `/` home.js: hero structure (deterministic per day among X-ray targets with a reference ligand and resolution
-  <= 3.0 A, `Next structure` cycles; caption template from the deck), stat strip (catalog counts + labStatus), five
-  weights, featured targets (best of the current epoch from bests().byTargetEpoch, else the first six), token card
-  (blank state, minHold line when labStatus.token and minHold are set), section reveal on first intersection.
-- `/targets` targets.js: search (key, gene, protein, PDB id, title, reference ligand, cancers), cancer pills with
-  counts, class pills, sort Best dG / Pool / Runs / Name, pages of 24 with Load more, `?cancer=` preselects a group.
-- `/target?id=` target.js: id or key; provenance ladder (Organism and Released rows appear only when the catalog
-  carries them; Pocket row from the registry box, atoms and hash), actions, pool card (countdown, best this epoch,
-  Sponsor form -> buildFund + sendTx, Settle -> buildSettle when the previous epoch holds a run and the pool is
-  funded or the current epoch has ended with a run), tabs Leaderboard (best per ligand and wallet) / 3D (mounted on
-  first open) / Runs / About, refresh on every block.
-- `/ligands` ligands.js, `/ligand?id=` ligand.js: same pattern; the 3D view is the ligand's SDF; Best targets is
-  the best run per target.
-- `/leaderboard` leaderboard.js: By target / By cancer group (pills) / By ligand / Wallets / Pools (Sponsor per row,
-  Settle when possible), cards under 640 px with `Show table`, `Download CSV`, epoch countdown, `#view` in the URL.
-- `/report` report.js: chain.report() rendered per cancer group (best pair 2-up, top ten table, counts footnote),
-  sticky contents at 1280 / `Jump to` select below, Print (print CSS in site.css), `Download Markdown` links
-  /api/report.md and builds the Markdown in the browser when that route is not served (the dev server only routes
-  names without a dot; vercel.json needs the rewrite the API author describes in api/report.js).
-- `/wallet` wallet.js: disconnected card (Connect wallet opens the shell's wallet menu), connected: address + Copy
-  address, stats from walletStats, tabs Runs / Prizes (Claim -> buildWithdraw + sendTx) / Sponsorships.
-- `/docs` docs.js: network parameters from CHAIN, live fees line from labStatus, weights, contents highlighting.
-  404.html loads docs.js too (it only boots the shell there).
-
-## Gates
-
-- `node tools/shell.mjs --check` pass (11 pages).
-- `node tools/verify.mjs --files` pass: added the `content` gate (per page key headings and strings of the copy deck in
-  the static HTML) and `/api/<name>[.ext]` link resolution against `api/<name>.js`.
-- `node tools/verify.mjs http://127.0.0.1:6131` pass at 360/390/430/768/1024/1280/1440 (77 page loads): added one
-  visible h1 per page, the page's key heading rendered, the nav collapsed under 900 px, and a tolerance (noted, not
-  failed) for a 404 of a file another builder has not shipped yet while it is absent on disk (manifest icons,
-  js modules, data/registry.json).
-- `node tools/pages-test.mjs` pass (300 checks): each page and target?id=1, ligand?id=1 at 390 and 1280, ready
-  states, copy deck strings, tap targets, screenshots in .tmp/shots/. `--rpc URL --contract 0x..` drives the pages
-  against a local chain through the localhost overrides of js/rpc.js (not run: no anvil deployment was available
-  to this builder; the not-live state is what was exercised).
+- `/` home.js: hero structure, five-cell stat strip (reviews from `ledger().reviews`), weights, featured targets, the
+  token card with the price line when live.
+- `/targets`, `/ligands`: search, pills, sort, paging; cards with `RCSB 4WKQ` / `RCSB AQ4` / `PubChem CID` links.
+- `/target?id=`: provenance ladder (reference ligand row links `RCSB <ccd>`), `View on RCSB` + `RCSB <pdb>` + Mol*,
+  pool card, tabs Leaderboard / 3D / Runs / About (the tables link every run to `/run`).
+- `/ligand?id=`: `RCSB <ccd>` / `PubChem <cid>` links, 3D of the SDF, best targets and runs (linked to `/run`).
+- `/leaderboard`, `/report`, `/docs`, `/dashboard`, `/run`, `/wallet`: see v2 above. 404.html loads docs.js (shell only).
 
 ## Depends on other builders
 
-- js/viewer.js (lab builder): the shared 3D views; the pages fall back to their own 3Dmol path or the RCSB image.
-- js/catalog.js, js/chain.js, js/lab.js, api/* (data layer): every chain number; without them the pages show the
-  not-live and empty states from the copy deck.
-- js/engine/score.js (engine builder): the printed weights; a local constant otherwise.
-- partials/head.html links the manifest; its PNG icons under img/brand/ are the plumbing author's (Chrome fetches
-  icon-192.png on every load; a 404 there is tolerated by the gates only while the file is absent).
-- vercel.json (plumbing): needs `{ "source": "/api/report.md", "destination": "/api/report" }` for the Download
-  Markdown link to be served by the API in production; the page builds the file in the browser until then.
-## Page status
-
-All ten pages built and gated (see Gates). Open items: the chain-live path (sponsor, settle, claim toasts, live
-tables) was written against the shipped module signatures but not exercised against a deployed contract.
+- js/viewer.js (lab builder): `showPose` for the pose on the receptor; the pages fall back to their own 3Dmol path.
+- js/catalog.js, js/chain.js, js/lab.js, js/gamify.js, api/* (data layer): every chain number, the ledger, the profile
+  rules, the analysis route. Without them the pages show the not-live and empty states from the copy deck.
+- js/engine/index.js (`scoreInt`, `loadPocket`, `loadTopology`, `ensureTables`) for the browser check; js/engine/method.js
+  (`validateMethod`, `METHOD_SCHEMA`, `METHOD_PRESETS`) for the method block and the docs table.
+- partials/head.html links the manifest; its PNG icons under img/brand/ are the plumbing author's.
+- vercel.json (plumbing): the `/api/report.md` rewrite and now the `/wallet` -> `/dashboard` redirect (mine).

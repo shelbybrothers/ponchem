@@ -247,7 +247,7 @@ if (!state) {
     const v = readVector(file);
     const t = await targetFor(v);
     const l = await ligandFor(v);
-    const rc = await send(from, lab, encodeCall(F('submitRun'), [t, l, v.pose_flat]), runFee);
+    const rc = await send(from, lab, encodeCall(F('submitRun'), [t, l, v.pose_flat, false, '']), runFee);
     const id = runs.length + 1;
     runs.push({ id, target: t, ligand: l, wallet: from, expected: v.expect_score_milli, tx: rc.transactionHash });
     console.log(`  run ${id}: ${v.name} by ${from.slice(0, 10)} (expected ${v.expect_score_milli} milli)`);

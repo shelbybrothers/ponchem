@@ -29,6 +29,7 @@ const CHROME_PORT = Number(process.env.CHROME_PORT || 9540);
 const RPC = flag('rpc', null);
 const CONTRACT = flag('contract', null);
 const withChain = !!(RPC && CONTRACT);
+const ONLY = flag('only', null); // --only H runs only the stubbed live-chain scenario
 const SHOTS = path.join(ROOT, '.tmp', 'shots');
 fs.mkdirSync(SHOTS, { recursive: true });
 
@@ -149,7 +150,7 @@ console.log(`Ponchem pages test\n  base   ${base}\n  chain  ${withChain ? `${RPC
 
 const chrome = await launchChrome({ port: CHROME_PORT });
 try {
-  for (const p of PAGES) {
+  for (const p of (ONLY ? [] : PAGES)) {
     for (const w of [390, 1280]) {
       const tag = `${p.route} @${w}`;
       const page = await openPage({ port: CHROME_PORT, width: w, height: w < 700 ? 844 : 900 });
@@ -199,6 +200,251 @@ try {
       const file = path.join(SHOTS, `${p.route.replace(/[^a-z0-9]+/gi, '_').replace(/^_|_$/g, '') || 'home'}-${w}.png`);
       await page.screenshot(file, { fullPage: true });
       await page.close();
+    }
+  }
+  // -------------------------------------------------------------------------------------------------------
+  // H. the found state of /run, the connected dashboard and the wallet views with a STUBBED live chain
+  // (js/chain.js is served from a stub kept only in this file, through DevTools request interception; the engine, the
+  // data files, js/gamify.js and js/lab.js are the real ones). The pose is docked here in Node with the real engine,
+  // so the browser check has a real integer score to agree with. Nothing is written to disk and nothing is sent.
+  if (!withChain) {
+    console.log('\nH. the docking test page, the dashboard and the wallet views with a stubbed live chain');
+    const A1 = '0x1111111111111111111111111111111111111111';
+    const A2 = '0x2222222222222222222222222222222222222222';
+    const A3 = '0x3333333333333333333333333333333333333333';
+    const SIM = fs.readFileSync(path.join(ROOT, 'tools/sim-wallet.js'), 'utf8');
+    const { pathToFileURL } = await import('node:url');
+    const E = await import(pathToFileURL(path.join(ROOT, 'js/engine/index.js')).href);
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/registry.json'), 'utf8'));
+    const T = reg.targets.find((x) => x.key === 'EGFR') || reg.targets[0];
+    const T2 = reg.targets.find((x) => x.id !== T.id);
+    const L = reg.ligands.find((x) => x.key === 'QUERCETIN') || reg.ligands[0];
+    const pocket = E.loadPocket(new Uint8Array(fs.readFileSync(path.join(ROOT, T.pocket))));
+    const topology = E.loadTopology(new Uint8Array(fs.readFileSync(path.join(ROOT, L.topology))));
+    const ligand = E.parseSdf(fs.readFileSync(path.join(ROOT, L.file), 'utf8'));
+    await E.ensureTables({ bytes: new Uint8Array(fs.readFileSync(path.join(ROOT, 'data/tables/tables.bin'))) });
+    const docked = await E.dock({ pocket, topology, ligand, seed: 11, steps: 200 });
+    check('H: a pose docked in Node passes the geometry proof', !!(docked.checks && docked.checks.ok), JSON.stringify(docked.checks));
+    const SCORE = Number(docked.scoreMilli);
+    const POSE = Array.from(docked.poseCenti);
+    let methodJson = '{"name":"Standard","version":1,"budget":{"ms":30000},"chains":8,"temperature":1.2,"moves":{"translate":1,"rotate":20,"torsion":60},"local":{"steps":30},"placement":"box","flexible":true,"candidates":4,"lattice":true}';
+    try { const M = await import(pathToFileURL(path.join(ROOT, 'js/engine/method.js')).href); const std = (M.METHOD_PRESETS || []).find((p) => p.name === 'Standard'); if (std) methodJson = JSON.stringify(std); } catch { /* the hand JSON */ }
+    const ANALYSIS = 'Quercetin sits deep in the ATP site of the EGFR kinase domain in this pose. The hydrogen bond term carries most of the estimate, which is typical for a flavonol against a hinge region. Limits: the receptor is rigid, no water, no entropy beyond the rotor penalty. Next steps: rescore with a second function, then a biochemical kinase assay. Literature recall, unverified: quercetin is reported as a weak EGFR inhibitor in cell assays.';
+    const NOTE_HTML = 'Solid pose. <b>bold</b> should show as text, not markup.';
+    const RUNS = [
+      { id: 1, wallet: A1, targetId: T.id, ligandId: L.id, scoreMilli: SCORE, epoch: 3, time: 1758540000, block: 120, logIndex: 0, tx: '0x' + '11'.repeat(32), pose: POSE, methodHash: '0x' + 'ab'.repeat(32), payment: { method: 'eth', code: 0, amount: '100000000000000' }, reviews: { count: 2, starSum: 9, average: 4.5 }, analysisAttached: true, method: methodJson, analysis: { runId: 1, provider: 'gpt', text: ANALYSIS, block: 130, tx: '0x' + '33'.repeat(32) } },
+      { id: 2, wallet: A2, targetId: T.id, ligandId: L.id, scoreMilli: SCORE + 1500, epoch: 3, time: 1758541000, block: 125, logIndex: 0, tx: '0x' + '22'.repeat(32), pose: POSE, methodHash: null, payment: { method: 'eth', code: 0, amount: '100000000000000' }, reviews: { count: 1, starSum: 3, average: 3 }, analysisAttached: false, method: null, analysis: null },
+      { id: 3, wallet: A1, targetId: T2.id, ligandId: L.id, scoreMilli: -4200, epoch: 3, time: 1758542000, block: 128, logIndex: 0, tx: '0x' + '44'.repeat(32), pose: null, methodHash: null, payment: { method: 'eth', code: 0, amount: '100000000000000' }, reviews: { count: 0, starSum: 0, average: null }, analysisAttached: false, method: null, analysis: null },
+    ];
+    const REVIEWS = [
+      { runId: 1, reviewer: A2, stars: 5, note: NOTE_HTML, block: 126, logIndex: 1, tx: '0x' + '55'.repeat(32) },
+      { runId: 1, reviewer: A3, stars: 4, note: 'Good fit.\nThe hinge contact looks right.', block: 127, logIndex: 0, tx: '0x' + '66'.repeat(32) },
+      { runId: 2, reviewer: A1, stars: 3, note: '', block: 129, logIndex: 0, tx: '0x' + '77'.repeat(32) },
+    ];
+    const SETTLED = [{ targetId: T.id, epoch: 2, winner: A1, runId: 1, amount: '2000000000000000', block: 119, logIndex: 0, tx: '0x' + '88'.repeat(32) }];
+    const FUNDED = [{ targetId: T.id, from: A2, amount: '5000000000000000', pool: '5000000000000000', block: 100, logIndex: 0, tx: '0x' + '99'.repeat(32) }];
+    const STUB_CHAIN = `
+export const NOT_LIVE = 'The lab opens when the contract is live.';
+export const UNREACHABLE = 'Could not reach Robinhood Chain. Reads will retry.';
+const REVIEWS = ${JSON.stringify(REVIEWS)};
+const RUNS = ${JSON.stringify(RUNS)}.map((r) => ({ ...r, pose: r.pose ? Int16Array.from(r.pose) : null, payment: r.payment ? { ...r.payment, amount: BigInt(r.payment.amount) } : null, reviewList: REVIEWS.filter((v) => v.runId === r.id).sort((a, b) => b.block - a.block) }));
+const SETTLED = ${JSON.stringify(SETTLED)}.map((s) => ({ ...s, amount: BigInt(s.amount) }));
+const FUNDED = ${JSON.stringify(FUNDED)}.map((f) => ({ ...f, amount: BigInt(f.amount), pool: BigInt(f.pool) }));
+const now = () => Math.floor(Date.now() / 1000);
+export async function labStatus() { return { live: true, reason: null, epoch: 3, epochStart: now() - 1000, epochEnd: now() + 600000, epochLength: 604800, genesis: now() - 2000000, runFee: 100000000000000n, runPrice: 100000000000000000000n, feeBps: 500, token: null, ethAllowed: true, tokenAllowed: false, tokenOpen: false, minHold: 0n, runCount: 3, targetCount: 100, ligandCount: 152, poolTotal: 5000000000000000n, head: 130, generatedAt: new Date().toISOString() }; }
+export async function runById(id) { const r = RUNS.find((x) => x.id === Number(id)); return r ? { ...r } : null; }
+const select = ({ target, ligand, wallet, limit = 100, offset = 0, order = 'desc' } = {}) => { let rows = RUNS.filter((r) => (target === undefined || target === null || r.targetId === Number(target)) && (ligand === undefined || ligand === null || r.ligandId === Number(ligand)) && (!wallet || r.wallet.toLowerCase() === String(wallet).toLowerCase())); rows = rows.slice().sort((a, b) => (order === 'asc' ? a.id - b.id : b.id - a.id)); return { runs: rows.slice(offset, offset + limit), total: rows.length, head: 130, live: true, source: 'stub' }; };
+export async function runsPage(q) { return select(q); }
+export async function runs(q) { return select(q).runs; }
+export async function allRuns() { return { runs: RUNS.slice().sort((a, b) => a.id - b.id), total: RUNS.length, head: 130, partial: false, live: true }; }
+export async function ledger() { return { head: 130, live: true, runs: RUNS.map(({ pose, reviewList, analysis, method, ...rest }) => ({ ...rest, pose: null })).sort((a, b) => a.id - b.id), settled: SETTLED, funded: FUNDED, reviews: REVIEWS.slice(), analyses: [{ runId: 1, provider: 'gpt', block: 130, tx: RUNS[0].analysis.tx, logIndex: 0 }] }; }
+export async function reviewsOf(id) { return REVIEWS.filter((v) => v.runId === Number(id)); }
+export async function analysesOf(id) { const r = RUNS.find((x) => x.id === Number(id)); return r && r.analysis ? [r.analysis] : []; }
+export async function settledAll() { return SETTLED; }
+export async function walletStats(a) { const mine = RUNS.filter((r) => r.wallet.toLowerCase() === String(a).toLowerCase()); const won = SETTLED.filter((s) => s.winner.toLowerCase() === String(a).toLowerCase()); return { runs: mine.length, best: mine.length ? Math.min(...mine.map((r) => r.scoreMilli)) : null, prizes: won.reduce((n, s) => n + s.amount, 0n), owed: won.length ? 2000000000000000n : 0n, sponsored: FUNDED.filter((f) => f.from.toLowerCase() === String(a).toLowerCase()).map((f) => ({ targetId: f.targetId, amount: f.amount, count: 1, last: f.block })), reviewsGiven: REVIEWS.filter((v) => v.reviewer.toLowerCase() === String(a).toLowerCase()).length, reviewsReceived: REVIEWS.filter((v) => (RUNS.find((r) => r.id === v.runId) || {}).wallet === a).length, starsReceived: 9, reviewAverage: 4.5, won, wonEpochs: won.length, live: true }; }
+export async function bests() { const byTarget = new Map(); const byPair = new Map(); const byLigand = new Map(); const byTargetEpoch = new Map(); for (const r of RUNS.slice().sort((a, b) => a.id - b.id)) { const b = (m, k) => { const c = m.get(k); if (!c || r.scoreMilli < c.scoreMilli) m.set(k, r); }; b(byTarget, r.targetId); b(byPair, r.targetId + ':' + r.ligandId); b(byLigand, r.ligandId); b(byTargetEpoch, r.targetId + ':' + r.epoch); } return { byTarget, byPair, byLigand, byTargetEpoch, partial: false }; }
+export async function pools() { return new Map([[${T.id}, 5000000000000000n]]); }
+export function onBlock() { return () => {}; }
+export function invalidate() {}
+`;
+    const STUB_PROVIDERS = JSON.stringify({ ok: true, providers: [{ id: 'claude-fable', label: 'Claude Fable 5.1', model: 'claude-fable-5-1', connected: false }, { id: 'gpt', label: 'GPT', model: 'gpt-5', connected: true }, { id: 'kimi', label: 'Kimi', model: 'kimi-k2', connected: false }, { id: 'jev', label: 'Jev AI', model: 'jev', connected: false }] });
+    const STUBS = [{ test: /\/js\/chain\.js(\?|$)/, body: STUB_CHAIN }, { test: /\/api\/analyze(\?|$)/, body: STUB_PROVIDERS, type: 'application/json; charset=utf-8' }];
+    async function intercept(page, table) {
+      await page.send('Fetch.enable', { patterns: [{ urlPattern: '*', requestStage: 'Request' }] });
+      page.on('Fetch.requestPaused', async (p) => {
+        const hit = table.find((t) => t.test.test(p.request.url));
+        try {
+          if (!hit) { await page.send('Fetch.continueRequest', { requestId: p.requestId }); return; }
+          await page.send('Fetch.fulfillRequest', { requestId: p.requestId, responseCode: 200, responseHeaders: [{ name: 'content-type', value: hit.type || 'text/javascript; charset=utf-8' }, { name: 'cache-control', value: 'no-store' }], body: Buffer.from(hit.body).toString('base64') });
+        } catch { /* the page went away */ }
+      });
+    }
+    // a page with the stubbed chain; wallet: an address the simulated MetaMask is already connected with on Robinhood Chain
+    async function openStubbed(route, { width = 1280, wallet = null } = {}) {
+      const page = await openPage({ port: CHROME_PORT, width, height: width < 700 ? 844 : 900 });
+      await page.emulate({ width, height: width < 700 ? 844 : 900, dpr: 1 });
+      await intercept(page, STUBS);
+      await page.goto(`${base}/robots.txt`, { settle: 50 });
+      await page.eval(() => { try { localStorage.clear(); sessionStorage.clear(); } catch { /* fine */ } });
+      if (wallet) {
+        await page.eval((a) => { sessionStorage.setItem('sim.io.metamask.allowed', 'true'); sessionStorage.setItem('sim.io.metamask.chain', '"0x1237"'); sessionStorage.setItem('sim.io.metamask.known', '["0x1237"]'); sessionStorage.setItem('sim.io.metamask.account', JSON.stringify(a)); localStorage.setItem('ponchem.wallet', 'io.metamask'); }, wallet);
+        await page.send('Page.addScriptToEvaluateOnNewDocument', { source: `window.__walletSim = ${JSON.stringify({ account: wallet, startChain: '0x1237' })};\n${SIM}` });
+      }
+      await page.goto(base + route, { settle: 700 });
+      const t = {
+        page,
+        eval: (fn, ...a) => page.eval(fn, ...a),
+        text: (sel) => page.eval((s) => { const n = document.querySelector(s); return n ? n.innerText.replace(/\s+/g, ' ').trim() : null; }, sel),
+        count: (sel) => page.eval((s) => document.querySelectorAll(s).length, sel),
+        until: async (fn, what, ms = 30000) => { const t0 = Date.now(); for (;;) { let v = false; try { v = await fn(); } catch { v = false; } if (v) return; if (Date.now() - t0 > ms) throw new Error(`timed out waiting for ${what}`); await sleep(150); } },
+        errors: () => page.errors.filter((e) => !(e.kind === 'log.network' && /404/.test(e.text) && tolerated(e.url || (e.text.match(/https?:\S+/) || [''])[0]))).map((e) => ({ ...e, text: `${e.text} ${e.url || ''}` })),
+        shot: (name) => page.screenshot(path.join(SHOTS, name), { fullPage: true }),
+        close: () => page.close(),
+      };
+      return t;
+    }
+    const tryCheck = async (name, fn) => { try { const r = await fn(); check(name, r === true || (r && r.ok), r && r.detail ? r.detail : typeof r === 'string' ? r : ''); } catch (e) { check(name, false, String((e && e.message) || e)); } };
+
+    // H1. /run?id=1 without a wallet: the found state, the browser check agrees, links, method, reviews, analysis, actions
+    {
+      const t = await openStubbed('/run?id=1');
+      await tryCheck('H1: the test page reaches the found state (h1, title, canonical)', async () => {
+        await t.until(async () => (await t.text('[data-h1]')) === 'Docking test #1', 'the h1');
+        const got = await t.eval(() => ({ title: document.title, canon: document.querySelector('link[rel="canonical"]').getAttribute('href'), og: document.querySelector('meta[property="og:url"]').getAttribute('content'), pair: document.querySelector('[data-pair]').textContent.trim() }));
+        return { ok: got.title === 'Ponchem · Docking test #1' && got.canon === 'https://ponchem.ai/run?id=1' && got.og === got.canon && /Quercetin into EGFR \(4WKQ\)/.test(got.pair), detail: JSON.stringify(got) };
+      });
+      await tryCheck('H1: the chain score with its band, pKd, Kd, LE and the payment', async () => {
+        const s = await t.text('[data-score]');
+        const dg = (SCORE / 1000).toFixed(3);
+        return { ok: s.includes(dg) && /kcal\/mol/.test(s) && /Estimated pKd/.test(s) && /Estimated Kd/.test(s) && /Ligand efficiency/.test(s) && /Paid with 0\.0001 ETH/.test(s) && /Heavy atoms 22/.test(s), detail: s.slice(0, 200) };
+      });
+      await tryCheck('H1: the browser re-scores the event pose and agrees with the chain (real engine, real pocket and topology bytes)', async () => {
+        await t.until(async () => !!(await t.eval(() => document.querySelector('[data-agree]'))), 'the browser check', 40000);
+        const got = await t.eval(() => ({ agree: document.querySelector('[data-agree]').dataset.agree, text: document.querySelector('[data-agree]').textContent.trim(), geo: [...document.querySelectorAll('.pc-geo-row')].map((r) => r.dataset.ok), terms: document.querySelectorAll('#check .pc-terms tbody tr').length, score: [...document.querySelectorAll('#check .pc-terms tr')].map((r) => r.textContent).find((x) => /browser score/.test(x)) || '' }));
+        return { ok: got.agree === 'yes' && got.text === 'Chain and browser agree' && got.geo.length === 4 && got.geo.every((g) => g === 'yes') && got.terms === 8 && got.score.includes((SCORE / 1000).toFixed(3)), detail: JSON.stringify(got) };
+      });
+      await tryCheck('H1: the pose is drawn on the receptor (3D canvas or the RCSB image fallback)', async () => {
+        await t.until(async () => !!(await t.eval(() => document.querySelector('[data-viewer] canvas') || document.querySelector('[data-viewer] .pc-viewer-img--solo'))), 'the viewer', 40000);
+        const got = await t.eval(() => ({ canvas: !!document.querySelector('[data-viewer] canvas'), pose: (document.querySelector('[data-viewer] .pc-viewer-host') || {}).dataset ? (document.querySelector('[data-viewer] .pc-viewer-host').dataset.pose || '') : '', image: !!document.querySelector('[data-viewer] .pc-viewer-img--solo'), title: document.querySelector('[data-viewer-title]').textContent }));
+        return { ok: (got.canvas || got.image) && /4WKQ/.test(got.title), detail: JSON.stringify(got) };
+      });
+      await tryCheck('H1: provenance links name their destination (RCSB 4WKQ, the reference ligand, PubChem or RCSB for the compound)', async () => {
+        const links = await t.eval(() => [...document.querySelectorAll('#provenance a[target="_blank"]')].map((a) => `${a.textContent.trim()}|${a.getAttribute('rel')}`));
+        return { ok: links.some((l) => l.startsWith('RCSB 4WKQ|')) && links.some((l) => /^RCSB IRE\|/.test(l)) && links.some((l) => /^(RCSB QUE|PubChem 5280343)\|/.test(l)) && links.every((l) => /noopener/.test(l)), detail: links.join(' ') };
+      });
+      await tryCheck('H1: the method block shows the JSON as text and offers Use this method', async () => {
+        const got = await t.eval(() => ({ pre: (document.querySelector('#method pre') || {}).textContent || '', link: (document.querySelector('#method a.pc-btn') || {}).getAttribute ? document.querySelector('#method a.pc-btn').getAttribute('href') : null, text: (document.querySelector('#method a.pc-btn') || {}).textContent || '' }));
+        return { ok: /"name": "Standard"/.test(got.pre) && typeof got.link === 'string' && got.link.startsWith('/lab?method=') && got.text === 'Use this method', detail: JSON.stringify(got).slice(0, 200) };
+      });
+      await tryCheck('H1: the reviews list (newest first, stars, notes as text) and the average', async () => {
+        const got = await t.eval(() => ({ summary: document.querySelector('[data-review-summary]').textContent.replace(/\s+/g, ' ').trim(), n: document.querySelectorAll('[data-reviews] .pc-review').length, first: document.querySelector('[data-reviews] .pc-review .pc-review-note') ? document.querySelector('[data-reviews] .pc-review .pc-review-note').textContent : '', bold: document.querySelectorAll('[data-reviews] b').length, lit: document.querySelectorAll('[data-reviews] .pc-review:nth-child(2) .pc-star[data-lit]').length, gate: (document.querySelector('[data-review-form]') || {}).textContent || '' }));
+        return { ok: /4\.5 of 5/.test(got.summary) && /from 2 reviews/.test(got.summary) && got.n === 2 && /hinge contact/.test(got.first) && got.bold === 0 && got.lit === 5 && /Connect a wallet to write a review/.test(got.gate), detail: JSON.stringify(got).slice(0, 300) };
+      });
+      await tryCheck('H1: the attached analysis shows as text with its provider, and the picker lists the four providers with three not connected', async () => {
+        const got = await t.eval(() => ({ attached: !!document.querySelector('.pc-analysis--attached'), text: (document.querySelector('.pc-analysis--attached .pc-text-block') || {}).textContent || '', providers: [...document.querySelectorAll('.pc-provider')].map((p) => `${p.dataset.connected}:${p.querySelector('.pc-provider-name').textContent}`), notConnected: document.querySelectorAll('.pc-provider .pc-chip').length, analyze: document.querySelector('#analysis .pc-btn--primary') ? document.querySelector('#analysis .pc-btn--primary').disabled : null, attachBtn: [...document.querySelectorAll('#analysis button')].some((b) => /Attach/.test(b.textContent)) }));
+        return { ok: got.attached && /ATP site/.test(got.text) && got.providers.length === 4 && got.providers.includes('1:GPT') && got.notConnected === 3 && got.analyze === false && got.attachBtn === false, detail: JSON.stringify(got).slice(0, 300) };
+      });
+      await tryCheck('H1: Post on X carries the SPEC text, the analysis excerpt and the page URL; Copy link and Download report work', async () => {
+        const got = await t.eval(async () => {
+          const href = document.querySelector('[data-x]').getAttribute('href');
+          const u = new URL(href);
+          let clip = null;
+          navigator.clipboard.writeText = async (s) => { clip = s; };
+          document.querySelector('[data-copy]').click();
+          await new Promise((r) => setTimeout(r, 300));
+          document.querySelector('[data-download]').click();
+          await new Promise((r) => setTimeout(r, 300));
+          return { origin: u.origin + u.pathname, text: u.searchParams.get('text'), url: u.searchParams.get('url'), clip, toasts: [...document.querySelectorAll('.pc-toast')].map((x) => x.textContent.trim()) };
+        });
+        const dg = (SCORE / 1000).toFixed(3);
+        return { ok: got.origin === 'https://x.com/intent/post' && got.text.startsWith(`Docking test #1 on Ponchem: Quercetin into EGFR (4WKQ). dG ${dg} kcal/mol, pKd `) && /scored on Robinhood Chain\. gpt: Quercetin sits deep/.test(got.text) && !/[–—]/.test(got.text) && got.url === 'https://ponchem.ai/run?id=1' && got.clip === `${base}/run?id=1` && got.toasts.includes('Link copied') && got.toasts.includes('Report downloaded'), detail: JSON.stringify(got).slice(0, 400) };
+      });
+      await tryCheck('H1: no console errors and no failed requests on the found state', async () => { const errs = t.errors(); return { ok: !errs.length, detail: errs.map((e) => `${e.kind} ${e.text.slice(0, 120)}`).join(' | ') }; });
+      await t.shot('run_id_1-live-1280.png');
+      await t.close();
+    }
+    // H2. /run?id=1 at 390: no overflow in the found state
+    {
+      const t = await openStubbed('/run?id=1', { width: 390 });
+      await tryCheck('H2: the found state fits a phone (no horizontal overflow, one h1)', async () => {
+        await t.until(async () => (await t.text('[data-h1]')) === 'Docking test #1', 'the h1');
+        await t.until(async () => !!(await t.eval(() => document.querySelector('[data-agree]'))), 'the browser check', 40000);
+        await t.page.scrollThrough({ pause: 40, end: 200 });
+        const got = await t.eval(() => ({ overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, h1s: [...document.querySelectorAll('h1')].filter((h) => !h.closest('[hidden]')).length }));
+        return { ok: got.overflow <= 0 && got.h1s === 1, detail: JSON.stringify(got) };
+      });
+      await t.shot('run_id_1-live-390.png');
+      await t.close();
+    }
+    // H3. /run?id=1 with a connected wallet that is not the author: the review form; as the author: the refusal
+    {
+      const t = await openStubbed('/run?id=1', { wallet: A3 });
+      await tryCheck('H3: a connected wallet that is not the author gets Write a review (stars picker, 280 counter)', async () => {
+        await t.until(async () => !!(await t.eval(() => document.querySelector('.pc-review-form'))), 'the review form', 20000);
+        await t.eval(() => { const ta = document.querySelector('.pc-review-form textarea'); ta.value = 'x'.repeat(300).slice(0, ta.maxLength); ta.dispatchEvent(new Event('input', { bubbles: true })); document.querySelectorAll('.pc-star-btn')[3].click(); });
+        const got = await t.eval(() => ({ stars: document.querySelectorAll('.pc-star-btn').length, checked: [...document.querySelectorAll('.pc-star-btn')].map((b) => b.getAttribute('aria-checked')).join(''), counter: document.querySelector('.pc-counter').textContent, heading: document.querySelector('.pc-review-form h3').textContent, button: document.querySelector('.pc-review-form button[type="submit"]').textContent, wallet: document.querySelector('[data-wallet-button]').textContent.trim() }));
+        return { ok: got.stars === 5 && got.checked === 'falsefalsefalsetruefalse' && got.counter === '280/280' && got.heading === 'Write a review' && got.button === 'Send review' && /0x3333/.test(got.wallet), detail: JSON.stringify(got) };
+      });
+      await t.close();
+      const u = await openStubbed('/run?id=1', { wallet: A1 });
+      await tryCheck('H3: the author cannot review the own test', async () => {
+        await u.until(async () => /cannot review your own/.test((await u.text('[data-review-form]')) || ''), 'the refusal', 20000);
+        return true;
+      });
+      await u.close();
+    }
+    // H4. the dashboard connected as A1: profile, badges, tests, best, reviews, prizes, sponsorships, payment
+    {
+      const t = await openStubbed('/dashboard', { wallet: A1 });
+      await tryCheck('H4: the connected dashboard shows the profile from js/gamify.js (level, XP, badges)', async () => {
+        await t.until(async () => (await t.count('[data-panel="tests"] tbody tr')) === 2, 'the tests table', 20000);
+        const got = await t.eval(() => ({ h1: document.querySelector('[data-connected] h1').textContent, level: document.querySelector('[data-level-name]').textContent, xp: document.querySelector('[data-xp]').textContent, next: document.querySelector('[data-xp-next]').textContent, bar: document.querySelector('[data-xp-bar]').getAttribute('aria-valuenow'), badges: document.querySelectorAll('[data-badges] .pc-badge-tile').length, earned: [...document.querySelectorAll('[data-badges] .pc-badge-tile[data-earned] .pc-badge-name')].map((n) => n.textContent), stats: [...document.querySelectorAll('.pc-wallet-stats .pc-stat-num')].map((n) => n.textContent.trim()), hidden: document.querySelector('[data-disconnected]').hidden }));
+        // A1: 2 tests (20) + 2 targets (10) + 2 bests at recording (30) + 1 review written (3) + 2 good reviews received (10) + 1 epoch won (25) = 98 XP, Assistant
+        return { ok: got.h1 === 'Dashboard' && got.level === 'Assistant' && got.xp === '98' && /52 XP to Researcher/.test(got.next) && Number(got.bar) > 0 && got.badges === 10 && got.earned.includes('First test') && got.earned.includes('Strong binder') && got.earned.includes('Epoch winner') && got.earned.includes('Best on a target') && got.stats[0] === '2' && got.stats[2] === '2' && got.hidden === true, detail: JSON.stringify(got).slice(0, 400) };
+      });
+      await tryCheck('H4: my docking tests, best scores, reviews received and written, prizes, sponsorships, payment', async () => {
+        const got = await t.eval(() => ({
+          tests: [...document.querySelectorAll('[data-panel="tests"] tbody tr')].map((r) => r.textContent.replace(/\s+/g, ' ').trim()),
+          testLinks: [...document.querySelectorAll('[data-panel="tests"] a')].map((a) => a.getAttribute('href')),
+          best: document.querySelectorAll('[data-panel="best"] tbody tr').length,
+          received: document.querySelectorAll('[data-panel="reviews-received"] .pc-review').length,
+          receivedBold: document.querySelectorAll('[data-panel="reviews-received"] b').length,
+          written: document.querySelectorAll('[data-panel="reviews-written"] .pc-review').length,
+          prizes: document.querySelector('[data-panel="prizes"]').textContent.replace(/\s+/g, ' ').trim(),
+          claim: !![...document.querySelectorAll('[data-panel="prizes"] button')].find((b) => b.textContent.trim() === 'Claim'),
+          sponsorships: document.querySelector('[data-panel="sponsorships"]').textContent.replace(/\s+/g, ' ').trim(),
+          payment: document.querySelector('[data-payment-line]').textContent + ' ' + document.querySelector('[data-payment-token]').textContent,
+          buy: document.querySelector('#payment [data-shell="buy"]').textContent.replace(/\s+/g, ' ').trim(),
+        }));
+        return { ok: got.tests.length === 2 && /#3/.test(got.tests[0]) && /#1/.test(got.tests[1]) && got.testLinks.some((h) => h.startsWith('https://x.com/intent/post')) && got.testLinks.includes('/run?id=1') && got.best === 2 && got.received === 2 && got.receivedBold === 0 && got.written === 1 && /Prizes to claim · 0\.002 ETH/.test(got.prizes) && got.claim && /No sponsorships yet/.test(got.sponsorships) && /100 \$PONCHEM or 0\.0001 ETH/.test(got.payment) && /after the \$PONCHEM launch/.test(got.payment) && got.buy === 'Buy $PONCHEM · soon', detail: JSON.stringify(got).slice(0, 500) };
+      });
+      await tryCheck('H4: no console errors and no failed requests on the connected dashboard', async () => { const errs = t.errors(); return { ok: !errs.length, detail: errs.map((e) => `${e.kind} ${e.text.slice(0, 120)}`).join(' | ') }; });
+      await t.shot('dashboard-live-1280.png');
+      await t.close();
+    }
+    // H5. the leaderboard's Wallets and Most reviewed views, the report's Test and Reviews columns
+    {
+      const t = await openStubbed('/leaderboard#wallets');
+      await tryCheck('H5: the Wallets view ranks by XP with level, XP, tests and dG', async () => {
+        await t.until(async () => (await t.count('[data-board] tbody tr')) >= 3, 'the wallets table', 20000);
+        const rows = await t.eval(() => [...document.querySelectorAll('[data-board] tbody tr')].map((r) => r.textContent.replace(/\s+/g, ' ').trim()));
+        const head = await t.eval(() => [...document.querySelectorAll('[data-board] thead th')].map((h) => h.textContent.trim()).join(','));
+        return { ok: head === 'Rank,Wallet,Level,XP,Tests,dG (kcal/mol)' && /0x11.*Assistant.*98.*2/.test(rows[0]) && /0x22.*Observer/.test(rows[1]), detail: `${head} | ${rows.join(' | ')}` };
+      });
+      await tryCheck('H5: the Most reviewed view lists test #1 first with two reviews', async () => {
+        await t.eval(() => document.querySelector('[data-view="reviewed"]').click());
+        await t.until(async () => /Most reviewed tests/.test((await t.text('[data-board]')) || ''), 'the most reviewed list', 10000);
+        const rows = await t.eval(() => [...document.querySelectorAll('[data-board] tbody tr')].map((r) => r.textContent.replace(/\s+/g, ' ').trim()));
+        const link = await t.eval(() => (document.querySelector('[data-board] tbody a') || {}).getAttribute ? document.querySelector('[data-board] tbody a').getAttribute('href') : null);
+        return { ok: rows.length === 2 && /#1/.test(rows[0]) && /Quercetin into EGFR/.test(rows[0]) && /\b2$/.test(rows[0]) && link === '/run?id=1', detail: rows.join(' | ') };
+      });
+      await tryCheck('H5: the By target view links every row to its test page and carries the Reviews column', async () => {
+        await t.eval(() => document.querySelector('[data-view="target"]').click());
+        await t.until(async () => (await t.count('[data-board] .pc-lb-table tbody tr')) >= 1, 'the target board', 10000);
+        const got = await t.eval(() => ({ head: [...document.querySelectorAll('[data-board] .pc-lb-table thead th')].map((h) => h.textContent.trim()), links: [...document.querySelectorAll('[data-board] .pc-lb-table a.pc-run-link')].map((a) => a.getAttribute('href')) }));
+        return { ok: got.head.includes('Reviews') && got.head.includes('Test') && got.links.includes('/run?id=1'), detail: JSON.stringify(got) };
+      });
+      await t.close();
     }
   }
 } finally {

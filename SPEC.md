@@ -400,3 +400,15 @@ Repo docs (for developers): README.md (what, layout, run, test, ship, deploy in 
 docs/DEVELOPING.md (dev server, gates, the local chain, the rehearsal, ports), docs/API.md (the same endpoint
 reference as the site page), contracts/README.md (contract surface, storage, events, deploy and register scripts,
 gas table). Markdown files follow the copy rules too except that em dashes in quoted API responses are not copy.
+
+### 9.10 Late requests (owner, 2026-09-22 11:30)
+- Pose search must animate: the engine posts the current best pose (poseAbs) in onProgress at most every 250 ms; the lab
+  shows it live in the viewer (ligand moves in the pocket) and the progress bar fills smoothly; the status line keeps
+  the best score. When the tab is hidden the search continues; the viewer catches up on return.
+- Footer line under the credit on every page: `Preliminary project from` + link `https://www.rcsb.org/` (rel noopener).
+- Researcher name: `setName(string name)` on the contract (<= 32 bytes, printable ASCII, empty clears), `nameOf(address)`,
+  event `Named(address indexed wallet, string name)`. Dashboard: a name field with Save (one transaction). Shown as
+  `docked by <name> (0x1234…abcd)` (or the short address alone when unnamed) on the test page, the X post text
+  (`Docking test #N by <name> on Ponchem: ...`), the leaderboard wallets tab and best tables, and the report rows.
+- Budget: the owner has limited credit left; from here integration is done by the orchestrator with at most one or two
+  small agents; no adversarial fleet.

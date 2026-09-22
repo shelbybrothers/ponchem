@@ -140,7 +140,7 @@ abstract contract Base is Test {
     function _submit(address who, uint16 t, uint16 l, int16[] memory pose) internal returns (uint256 id, int32 score) {
         uint256 fee = lab.runFee(); // read first: a call between prank and submitRun would consume the prank
         vm.prank(who);
-        (id, score) = lab.submitRun{value: fee}(t, l, pose);
+        (id, score) = lab.submitRun{value: fee}(t, l, pose, false, "");
     }
 
     function _fund(address who, uint16 t, uint256 amount) internal {

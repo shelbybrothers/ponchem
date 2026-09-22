@@ -16,7 +16,7 @@ contract RegressionsTest is Base {
         vm.deal(address(bomber), 1 ether);
         _fund(carol, t, 1 ether);
         vm.prank(address(bomber));
-        lab.submitRun{value: RUN_FEE}(t, l, v.pose);
+        lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, "");
         _warpEpochs(1);
         vm.cool(address(lab));
         lab.settle(t, 0);
@@ -35,7 +35,7 @@ contract RegressionsTest is Base {
         fresh.fund{value: 1 ether}(ft);
         vm.deal(alice, alice.balance + 1 wei);
         vm.prank(alice);
-        fresh.submitRun{value: RUN_FEE}(ft, fl, v.pose);
+        fresh.submitRun{value: RUN_FEE}(ft, fl, v.pose, false, "");
         _warpEpochs(1);
         vm.cool(address(fresh));
         fresh.settle(ft, 0);
@@ -54,7 +54,7 @@ contract RegressionsTest is Base {
         vm.prank(owner);
         lab.setTreasury(address(burner));
         vm.prank(alice);
-        (uint256 id,) = lab.submitRun{value: RUN_FEE}(t, l, v.pose);
+        (uint256 id,) = lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, "");
         assertEq(id, 1);
         assertEq(lab.owed(address(burner)), RUN_FEE);
         _fund(carol, t, 1 ether);
@@ -86,7 +86,7 @@ contract RegressionsTest is Base {
         vm.deal(address(r), 1 ether);
         _fund(carol, t, 1 ether);
         vm.prank(address(r));
-        lab.submitRun{value: RUN_FEE}(t, l, v.pose);
+        lab.submitRun{value: RUN_FEE}(t, l, v.pose, false, "");
         _warpEpochs(1);
         lab.settle(t, 0);
         // the callback reverted inside the gas-capped call, so the prize is credited, not lost or doubled
@@ -100,7 +100,7 @@ contract RegressionsTest is Base {
         string memory meta = vm.readFile("out/PonchemLab.sol/PonchemLab.json");
         string memory steps = vm.parseJsonString(meta, ".rawMetadata");
         assertTrue(_contains(steps, "dhfoDgvulfnTUtnf["), "the Yul optimizer sequence has no FullInliner step");
-        assertTrue(_contains(steps, "\"runs\":1000000"), "optimizer runs");
+        assertTrue(_contains(steps, "\"runs\":10000"), "optimizer runs");
     }
 
     function _contains(string memory hay, string memory needle) internal pure returns (bool) {

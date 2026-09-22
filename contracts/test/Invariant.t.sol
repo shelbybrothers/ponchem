@@ -62,7 +62,7 @@ contract Handler is Test {
         address who = _wallet(seed >> 8);
         uint256 fee = lab.runFee();
         vm.prank(who);
-        try lab.submitRun{value: fee}(targets[k], ligands[k], moved) returns (uint256 id, int32 score) {
+        try lab.submitRun{value: fee}(targets[k], ligands[k], moved, false, "") returns (uint256 id, int32 score) {
             submitted += 1;
             assertEq(id, lab.runCount());
             if (!hasBest[targets[k]] || score < bestScore[targets[k]]) {
@@ -153,7 +153,7 @@ contract InvariantTest is Base {
                 assertFalse(handler.hasBest(t));
                 continue;
             }
-            (,,, int32 score,,,) = lab.run(best);
+            (,,, int32 score,,,,) = lab.run(best);
             assertEq(score, handler.bestScore(t), "bestOf holds the lowest score seen");
         }
     }

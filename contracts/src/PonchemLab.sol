@@ -19,7 +19,9 @@ import {PonchemCheck} from "./PonchemCheck.sol";
 ///         Vina-style scorer of SPEC-ENGINE.md against the registered pocket. The run is stored with the wallet,
 ///         the score and the hash of the pose; the event carries the whole pose so the site rebuilds every run
 ///         from logs. A test is paid to the treasury, in ETH (runFee) or in the lab token (runPrice), the payer's
-///         choice. Anyone can review a run they did not record: one to five stars and a note.
+///         choice. The search method that found the pose travels as JSON in the Method event (its hash in the
+///         run). Anyone can review a run they did not record: one to five stars and a note. The author can
+///         attach an AI analysis (provider and text in the Analysis event, the hash in storage).
 ///
 ///         Prize pools: anyone can fund a target's pool for the current epoch. Epochs are `epochLength` long from
 ///         `genesis`. Once an epoch has ended anyone can settle it: the wallet that holds the epoch's best (lowest)
@@ -37,6 +39,9 @@ contract PonchemLab is PonchemEngine {
     uint256 public constant MAX_NAME = 96;
     uint256 public constant MAX_KEY = 32;
     uint256 public constant MAX_NOTE = 280;
+    uint256 public constant MAX_METHOD = 1024;
+    uint256 public constant MAX_ANALYSIS = 2048;
+    uint256 public constant MAX_PROVIDER = 32;
     uint256 private constant BPS = 10_000;
     /// @dev enough for a smart wallet's receive hook, too little to grief a settle
     uint256 private constant PAY_GAS = 100_000;
@@ -63,7 +68,8 @@ contract PonchemLab is PonchemEngine {
         uint8 nrot;
     }
 
-    /// @dev two storage slots: wallet, ids, score and time share the first, the pose hash is the second
+    /// @dev three storage slots: wallet, ids, score and time share the first, the pose hash is the second, the
+    ///      method hash (keccak256 of the method JSON, zero when the method was empty) the third
     struct Run {
         address wallet;
         uint16 targetId;
@@ -71,6 +77,7 @@ contract PonchemLab is PonchemEngine {
         int32 scoreMilli;
         uint32 time;
         bytes32 poseHash;
+        bytes32 methodHash;
     }
 
     struct Stats {
@@ -124,6 +131,8 @@ contract PonchemLab is PonchemEngine {
     mapping(address => Stats) private _stats;
     mapping(uint256 => ReviewStats) private _reviewStats;
     mapping(uint256 => mapping(address => Review)) private _reviews;
+    /// @notice keccak256 of the analysis text attached to a run (zero = none); the text lives in the event
+    mapping(uint256 => bytes32) public analysisHash;
 
     /// @notice run id holding the lowest score on a target (0 = none)
     mapping(uint16 => uint256) public bestOf;
@@ -161,7 +170,9 @@ contract PonchemLab is PonchemEngine {
         int16[] pose
     );
     event Paid(uint256 indexed runId, address indexed wallet, uint8 method, uint256 amount);
+    event Method(uint256 indexed runId, string json);
     event Reviewed(uint256 indexed runId, address indexed reviewer, uint8 stars, string note);
+    event Analysis(uint256 indexed runId, string provider, string text);
     event Funded(uint16 indexed targetId, address indexed from, uint256 amount, uint256 pool);
     event Settled(uint16 indexed targetId, uint32 indexed epoch, address winner, uint256 runId, uint256 amount);
     event Rolled(uint16 indexed targetId, uint32 indexed epoch, uint256 pool);
@@ -193,14 +204,18 @@ contract PonchemLab is PonchemEngine {
     error NoLigand();
     error NoRun();
     error WrongFee();
-    error PaymentNotAllowed();
+    error PaymentDisabled();
     error TokenRequired();
-    error TokenPaymentFailed();
+    error PaymentRefused();
+    error MethodTooLong();
     error BadPose(uint8 reason);
     error ScoreOverflow();
-    error OwnRun();
+    error SelfReview();
     error BadStars();
     error NoteTooLong();
+    error NotAuthor();
+    error AnalysisTooLong();
+    error ProviderTooLong();
     error NoValue();
     error NotEnded();
     error AlreadySettled();
@@ -249,59 +264,44 @@ contract PonchemLab is PonchemEngine {
         runFee = runFee_;
         runPrice = runPrice_;
         ethAllowed = true;
-        tokenAllowed = true;
+        tokenAllowed = false;
         genesis = uint64(block.timestamp);
         epochLength = epochLength_;
         emit OwnershipTransferred(address(0), owner_);
         emit TreasurySet(treasury_);
         emit FeeBpsSet(feeBps_);
         emit PricesSet(runFee_, runPrice_);
-        emit PaymentOptionsSet(true, true);
+        emit PaymentOptionsSet(true, false);
     }
 
     // ------------------------------------------------------------------ the science
 
-    /// @notice Record a docking test paid in ETH: msg.value must equal runFee. The pose is the position of every
-    ///         heavy atom of the ligand, in topology order, as int16 centi-angstrom relative to the target's box
-    ///         centre.
+    /// @notice Record a docking test. The pose is the position of every heavy atom of the ligand, in topology
+    ///         order, as int16 centi-angstrom relative to the target's box centre. Paid to the treasury in ETH
+    ///         (payWithToken false, msg.value == runFee) or in the lab token (payWithToken true, msg.value == 0,
+    ///         runPrice taken with transferFrom). `method` is the search method JSON (compact, at most 1024
+    ///         bytes, may be empty): it goes into the Method event, its keccak256 into the run.
     /// @return runId the 1-based id of the run
     /// @return scoreMilli the estimated binding free energy in milli-kcal/mol (negative is good)
-    function submitRun(uint16 targetId, uint16 ligandId, int16[] calldata pose)
+    function submitRun(uint16 targetId, uint16 ligandId, int16[] calldata pose, bool payWithToken, string calldata method)
         external
         payable
         nonReentrant
-        returns (uint256 runId, int32 scoreMilli)
-    {
-        return _submit(targetId, ligandId, pose, false);
-    }
-
-    /// @notice Record a docking test, paid in ETH (payWithToken false, msg.value == runFee) or in the lab token
-    ///         (payWithToken true, msg.value == 0, runPrice taken with transferFrom). Either way the payment goes
-    ///         to the treasury.
-    function submitRun(uint16 targetId, uint16 ligandId, int16[] calldata pose, bool payWithToken)
-        external
-        payable
-        nonReentrant
-        returns (uint256 runId, int32 scoreMilli)
-    {
-        return _submit(targetId, ligandId, pose, payWithToken);
-    }
-
-    function _submit(uint16 targetId, uint16 ligandId, int16[] calldata pose, bool payWithToken)
-        private
         returns (uint256 runId, int32 scoreMilli)
     {
         uint256 amount;
         if (payWithToken) {
             if (msg.value != 0) revert WrongFee();
-            if (!tokenAllowed) revert PaymentNotAllowed();
             if (token == address(0)) revert TokenRequired();
+            if (!tokenAllowed) revert PaymentDisabled();
             amount = runPrice;
         } else {
-            if (!ethAllowed) revert PaymentNotAllowed();
+            if (!ethAllowed) revert PaymentDisabled();
             if (msg.value != runFee) revert WrongFee();
             amount = msg.value;
         }
+        uint256 methodLength = bytes(method).length;
+        if (methodLength > MAX_METHOD) revert MethodTooLong();
         // the pose hash is the keccak256 of the canonical 6N pose bytes (SPEC-ENGINE.md 4.7)
         bytes32 poseHash;
         (scoreMilli, poseHash) = _score(targetId, ligandId, pose);
@@ -313,7 +313,8 @@ contract PonchemLab is PonchemEngine {
             ligandId: ligandId,
             scoreMilli: scoreMilli,
             time: uint32(block.timestamp),
-            poseHash: poseHash
+            poseHash: poseHash,
+            methodHash: methodLength == 0 ? bytes32(0) : keccak256(bytes(method))
         });
         if (_lower(bestOf[targetId], scoreMilli)) bestOf[targetId] = runId;
         if (_lower(bestOfEpoch[targetId][epoch], scoreMilli)) bestOfEpoch[targetId][epoch] = runId;
@@ -322,6 +323,7 @@ contract PonchemLab is PonchemEngine {
         if (s.runs == 0 || scoreMilli < s.best) s.best = scoreMilli;
         s.runs += 1;
         emit RunScored(runId, msg.sender, targetId, ligandId, scoreMilli, epoch, pose);
+        if (methodLength != 0) emit Method(runId, method);
         emit Paid(runId, msg.sender, payWithToken ? PAY_TOKEN : PAY_ETH, amount);
         // the payment last: nothing after it depends on the receiver
         if (payWithToken) {
@@ -357,7 +359,7 @@ contract PonchemLab is PonchemEngine {
         if (stars == 0 || stars > 5) revert BadStars();
         if (bytes(note).length > MAX_NOTE) revert NoteTooLong();
         address author = _runs[runId].wallet;
-        if (author == msg.sender) revert OwnRun();
+        if (author == msg.sender) revert SelfReview();
         Review storage r = _reviews[runId][msg.sender];
         ReviewStats storage rs = _reviewStats[runId];
         Stats storage a = _stats[author];
@@ -384,6 +386,20 @@ contract PonchemLab is PonchemEngine {
     function reviewOf(uint256 runId, address wallet) external view returns (uint8 stars, uint64 time) {
         Review storage r = _reviews[runId][wallet];
         return (r.stars, r.time);
+    }
+
+    // ------------------------------------------------------------------- analysis
+
+    /// @notice Attach an AI analysis to your own docking test: the provider name (at most 32 bytes) and the text
+    ///         (at most 2048 bytes) live in the event; storage keeps the text's keccak256. A later call replaces
+    ///         the earlier one.
+    function attachAnalysis(uint256 runId, string calldata provider, string calldata text) external {
+        if (runId == 0 || runId > runCount) revert NoRun();
+        if (_runs[runId].wallet != msg.sender) revert NotAuthor();
+        if (bytes(provider).length > MAX_PROVIDER) revert ProviderTooLong();
+        if (bytes(text).length > MAX_ANALYSIS) revert AnalysisTooLong();
+        analysisHash[runId] = keccak256(bytes(text));
+        emit Analysis(runId, provider, text);
     }
 
     // -------------------------------------------------------------------- money
@@ -489,12 +505,21 @@ contract PonchemLab is PonchemEngine {
     function run(uint256 id)
         external
         view
-        returns (address wallet, uint16 targetId, uint16 ligandId, int32 scoreMilli, uint32 epoch, uint64 time, bytes32 poseHash)
+        returns (
+            address wallet,
+            uint16 targetId,
+            uint16 ligandId,
+            int32 scoreMilli,
+            uint32 epoch,
+            uint64 time,
+            bytes32 poseHash,
+            bytes32 methodHash
+        )
     {
         if (id == 0 || id > runCount) revert NoRun();
         Run storage r = _runs[id];
         epoch = uint32((uint256(r.time) - genesis) / epochLength);
-        return (r.wallet, r.targetId, r.ligandId, r.scoreMilli, epoch, r.time, r.poseHash);
+        return (r.wallet, r.targetId, r.ligandId, r.scoreMilli, epoch, r.time, r.poseHash, r.methodHash);
     }
 
     /// @notice What the best wallet of the current epoch would take before the lab fee if nothing more came in:
@@ -596,10 +621,16 @@ contract PonchemLab is PonchemEngine {
         emit PaymentOptionsSet(ethAllowed_, tokenAllowed_);
     }
 
-    /// @notice The lab token that pays for docking tests; address(0) leaves only the ETH option.
+    /// @notice The lab token that pays for docking tests. A non-zero address opens the token option; address(0)
+    ///         closes it and leaves only the ETH option.
     function setToken(address token_) external onlyOwner {
         token = token_;
         emit TokenSet(token_);
+        bool allowed = token_ != address(0);
+        if (tokenAllowed != allowed) {
+            tokenAllowed = allowed;
+            emit PaymentOptionsSet(ethAllowed, allowed);
+        }
     }
 
     function setFeeBps(uint16 feeBps_) external onlyOwner {
@@ -661,8 +692,8 @@ contract PonchemLab is PonchemEngine {
             size := returndatasize()
             word := mload(m)
         }
-        if (!ok || t.code.length == 0) revert TokenPaymentFailed();
-        if (size != 0 && (size < 32 || word != 1)) revert TokenPaymentFailed();
+        if (!ok || t.code.length == 0) revert PaymentRefused();
+        if (size != 0 && (size < 32 || word != 1)) revert PaymentRefused();
     }
 
     /// @dev Send with a gas allowance and no return data copied. A wallet that refuses is credited instead.
