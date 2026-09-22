@@ -3,7 +3,7 @@
 import {
   boot, catalog, chain, el, F, STR, EMPTY, milliOf, lookup, empty, table, runsTable, dgCell, bandBadge, targetHref, ligandHref, W, openWalletMenu,
   copyText, toast, withdraw, onRefresh, runTime, isLive, chainNote, gamify, gamifyData, reviewStatsByRun, reviewsCell, stars, walletCell,
-  runLink, testPostLink, textBlock, outLink, EXPLORER, badgeTile, TOKEN,
+  runLink, testPostLink, textBlock, outLink, EXPLORER, badgeTile, TOKEN, saveName,
 } from './common.js';
 
 boot({ onWallet: () => paint() });
@@ -66,6 +66,7 @@ async function paint() {
   painting = true;
   try {
     $('[data-address]').textContent = account;
+    paintNameField(account);
     const G = await gamify();
     const note = $('[data-chain-note]');
     note.hidden = true;
@@ -117,7 +118,7 @@ async function paint() {
           { label: 'dG (kcal/mol)', num: true, render: (r) => dgCell(milliOf(r)) },
           { label: 'Band', render: (r) => bandBadge(milliOf(r)) || F.EMPTY },
           { label: 'Reviews', render: (r) => reviewsCell(statsByRun.get(Number(r.id))) },
-          { label: 'Actions', wide: true, render: (r) => { const t = lookup(cat.targetById, Number(r.targetId)); const l = lookup(cat.ligandById, Number(r.ligandId)); return el('span', { class: 'pc-row pc-row--tight' }, [outLink(testPostLink(r, t, l), 'Post on X', 'pc-btn pc-btn--ghost pc-btn--sm'), el('a', { class: 'pc-btn pc-btn--outline pc-btn--sm', href: `/run?id=${encodeURIComponent(r.id)}` }, 'Report')]); } },
+          { label: 'Actions', wide: true, render: (r) => { const t = lookup(cat.targetById, Number(r.targetId)); const l = lookup(cat.ligandById, Number(r.ligandId)); return el('span', { class: 'pc-row pc-row--tight' }, [outLink(testPostLink(r, t, l, null, myName || null), 'Post on X', 'pc-btn pc-btn--ghost pc-btn--sm'), el('a', { class: 'pc-btn pc-btn--outline pc-btn--sm', href: `/run?id=${encodeURIComponent(r.id)}` }, 'Report')]); } },
         ],
         rows: mine.slice(0, 100),
       }));
@@ -189,3 +190,30 @@ catalog().then(async (c) => {
   await paint();
   onRefresh(paint);
 }).catch(() => { const n = $('[data-chain-note]'); n.textContent = STR.catalogFailed; n.hidden = false; });
+
+
+// researcher name (SPEC 9.10): read once per account, saved with one transaction
+let nameFor = null;
+let myName = '';
+async function paintNameField(account) {
+  const input = document.querySelector('[data-name-input]');
+  if (!input || nameFor === account) return;
+  nameFor = account;
+  try {
+    const L = await import('../lab.js');
+    const names = await L.namesOf([account]);
+    myName = names.get(account.toLowerCase()) || '';
+    if (document.activeElement !== input) input.value = myName;
+  } catch { /* lab not live yet */ }
+}
+const nameForm = document.querySelector('[data-name-form]');
+if (nameForm) nameForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const input = nameForm.querySelector('[data-name-input]');
+  const btn = nameForm.querySelector('[data-name-save]');
+  btn.disabled = true;
+  try {
+    const r = await saveName(input.value);
+    if (r && r.status === 'success') myName = input.value.trim();
+  } finally { btn.disabled = false; }
+});

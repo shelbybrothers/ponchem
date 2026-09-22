@@ -133,6 +133,8 @@ contract PonchemLab is PonchemEngine {
     mapping(uint256 => mapping(address => Review)) private _reviews;
     /// @notice keccak256 of the analysis text attached to a run (zero = none); the text lives in the event
     mapping(uint256 => bytes32) public analysisHash;
+    /// @notice The researcher name a wallet chose (at most 32 bytes of printable ASCII; empty means none).
+    mapping(address => string) public nameOf;
 
     /// @notice run id holding the lowest score on a target (0 = none)
     mapping(uint16 => uint256) public bestOf;
@@ -173,6 +175,7 @@ contract PonchemLab is PonchemEngine {
     event Method(uint256 indexed runId, string json);
     event Reviewed(uint256 indexed runId, address indexed reviewer, uint8 stars, string note);
     event Analysis(uint256 indexed runId, string provider, string text);
+    event Named(address indexed wallet, string name);
     event Funded(uint16 indexed targetId, address indexed from, uint256 amount, uint256 pool);
     event Settled(uint16 indexed targetId, uint32 indexed epoch, address winner, uint256 runId, uint256 amount);
     event Rolled(uint16 indexed targetId, uint32 indexed epoch, uint256 pool);
@@ -216,6 +219,7 @@ contract PonchemLab is PonchemEngine {
     error NotAuthor();
     error AnalysisTooLong();
     error ProviderTooLong();
+    error BadResearcherName();
     error NoValue();
     error NotEnded();
     error AlreadySettled();
@@ -400,6 +404,25 @@ contract PonchemLab is PonchemEngine {
         if (bytes(text).length > MAX_ANALYSIS) revert AnalysisTooLong();
         analysisHash[runId] = keccak256(bytes(text));
         emit Analysis(runId, provider, text);
+    }
+
+    // -------------------------------------------------------------------- names
+
+    uint256 public constant MAX_RESEARCHER_NAME = 32;
+
+    /// @notice Set the researcher name shown next to your docking tests: at most 32 bytes, printable ASCII
+    ///         (0x20 to 0x7e), no leading or trailing space. An empty string clears it.
+    function setName(string calldata name) external {
+        bytes calldata b = bytes(name);
+        uint256 n = b.length;
+        if (n > MAX_RESEARCHER_NAME) revert BadResearcherName();
+        if (n > 0 && (b[0] == 0x20 || b[n - 1] == 0x20)) revert BadResearcherName();
+        for (uint256 i; i < n; ++i) {
+            bytes1 c = b[i];
+            if (c < 0x20 || c > 0x7e) revert BadResearcherName();
+        }
+        nameOf[msg.sender] = name;
+        emit Named(msg.sender, name);
     }
 
     // -------------------------------------------------------------------- money

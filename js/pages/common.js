@@ -124,6 +124,7 @@ function paintNetBand() {
 
 export function boot({ onWallet } = {}) {
   initShell();
+  watchNames();
   initWalletButton({ onChange: (s) => { paintNetBand(); if (onWallet) onWallet(s); } });
   paintNetBand();
   const nav = document.querySelector('nav.pc-nav');
@@ -584,7 +585,35 @@ export function me() { return W.account(); }
 export const isMe = (a) => !!a && !!W.account() && String(a).toLowerCase() === W.account().toLowerCase();
 export function walletCell(a) {
   const s = F.shortAddr(a);
-  return el('span', { class: 'pc-td-mono' }, [s === F.EMPTY ? shellShort(a) : s, isMe(a) ? el('span', { class: 'pc-you' }, 'you') : null]);
+  const short = s === F.EMPTY ? shellShort(a) : s;
+  // data-wallet: hydrateNames() puts the researcher name in front of the address once it is read from chain
+  return el('span', { class: 'pc-td-mono', 'data-wallet': a || null, 'data-short': short }, [el('span', { 'data-wallet-text': '' }, short), isMe(a) ? el('span', { class: 'pc-you' }, 'you') : null]);
+}
+
+/** Researcher names for every [data-wallet] on the page, now and as tables render later (one batched read). */
+let nameTimer = null;
+export function hydrateNames() {
+  clearTimeout(nameTimer);
+  nameTimer = setTimeout(async () => {
+    const cells = [...document.querySelectorAll('[data-wallet]:not([data-named])')];
+    if (!cells.length) return;
+    let labMod;
+    try { labMod = await import('../lab.js'); } catch { return; }
+    let names;
+    try { names = await labMod.namesOf(cells.map((c) => c.dataset.wallet)); } catch { return; }
+    for (const c of cells) {
+      c.setAttribute('data-named', '');
+      const n = names.get(String(c.dataset.wallet).toLowerCase());
+      const t = c.querySelector('[data-wallet-text]');
+      if (n && t) { t.textContent = `${n} (${c.dataset.short})`; c.title = c.dataset.wallet; }
+    }
+  }, 150);
+}
+function watchNames() {
+  if (typeof MutationObserver === 'undefined') return;
+  new MutationObserver((muts) => { if (muts.some((m) => m.addedNodes.length)) hydrateNames(); })
+    .observe(document.body, { childList: true, subtree: true });
+  hydrateNames();
 }
 
 export function tabs(root, { onChange } = {}) {
@@ -856,6 +885,29 @@ export async function settle(targetId, epoch) {
   }
 }
 
+/** setName flow for the dashboard: one transaction, then the page's wallet cells pick the new name up. */
+export async function saveName(name) {
+  if (!W.account()) { openWalletMenu(); return null; }
+  const L = await lab();
+  if (!L || typeof L.buildSetName !== 'function') { toast(STR.notLive, { kind: 'error' }); return null; }
+  try {
+    const built = L.buildSetName(name);
+    const { hash, wait } = await W.sendTx(built);
+    toast(STR.txSent);
+    const r = await wait();
+    if (r.status === 'success') {
+      L.forgetName(W.account());
+      for (const c of document.querySelectorAll('[data-wallet][data-named]')) c.removeAttribute('data-named');
+      hydrateNames();
+      toast([String(name).trim() ? 'Researcher name saved ' : 'Researcher name cleared ', txLink(hash)], { kind: 'success', ms: 8000 });
+    } else toast(r.error || STR.txFailed, { kind: 'error', ms: 10000 });
+    return r;
+  } catch (e) {
+    toast(walletMessage(e, 'The name could not be saved.'), { kind: 'error', ms: 8000 });
+    return null;
+  }
+}
+
 export async function withdraw() {
   if (!W.account()) { openWalletMenu(); return null; }
   const L = await lab();
@@ -1092,13 +1144,14 @@ export function cleanModelText(s) {
 }
 const providerLabel = (a) => (a && (a.model || a.provider) ? `${a.provider || ''}${a.provider && a.model ? ' ' : ''}${a.model || ''}`.trim() : 'AI analysis');
 /** The X post text of a docking test (SPEC 9.3 and 9.8). t, l: catalog entries; analysis: the attached one or null. */
-export function testPostText(run, t, l, analysis = null) {
+export function testPostText(run, t, l, analysis = null, researcher = null) {
   const m = milliOf(run);
-  let s = `Docking test #${run.id} on Ponchem: ${l ? l.name : `ligand ${run.ligandId}`} into ${t ? t.gene || t.key : `target ${run.targetId}`}${t ? ` (${t.pdbId})` : ''}. dG ${dgText(m)} kcal/mol, pKd ${pkdText(m)}, scored on Robinhood Chain.`;
+  const by = researcher ? ` by ${researcher}` : '';
+  let s = `Docking test #${run.id}${by} on Ponchem: ${l ? l.name : `ligand ${run.ligandId}`} into ${t ? t.gene || t.key : `target ${run.targetId}`}${t ? ` (${t.pdbId})` : ''}. dG ${dgText(m)} kcal/mol, pKd ${pkdText(m)}, scored on Robinhood Chain.`;
   if (analysis && analysis.text) s += ` ${providerLabel(analysis)}: ${cleanModelText(analysis.text).slice(0, 500)}`;
   return s;
 }
-export const testPostLink = (run, t, l, analysis = null) => xIntent(testPostText(run, t, l, analysis), runUrl(run.id));
+export const testPostLink = (run, t, l, analysis = null, researcher = null) => xIntent(testPostText(run, t, l, analysis, researcher), runUrl(run.id));
 
 /** The Markdown report of a docking test, built in the browser (SPEC 9.3). */
 export function testMarkdown({ run, t, l, browser = null, reviews = [], method = '', analysis = null }) {

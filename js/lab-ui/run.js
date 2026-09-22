@@ -129,7 +129,7 @@ export function createRunner({ engine, catalog }) {
           onProgress: (p) => {
             if (run.cancelled) return;
             if (p && p.stage && p.stage !== lastStage && STAGES[p.stage] && onStage) { lastStage = p.stage; onStage(STAGES[p.stage]); }
-            if (onProgress) onProgress(p);
+            if (onProgress) onProgress(p && p.poseAbs ? { ...p, sdf: inputs.sdf } : p);
           },
         });
       } catch (e) {
@@ -197,9 +197,28 @@ export function createRunner({ engine, catalog }) {
     }
   }
 
+  /**
+   * A stored result (js/lab-ui/jobs.js) back as a full run object, without searching again: the pose is re-scored
+   * with the integer scorer, so the number shown is recomputed, never taken from storage.
+   */
+  async function restore({ target, ligand, saved }) {
+    const inputs = await prepare(target, ligand);
+    const poseCenti = Int16Array.from(saved.poseCenti);
+    const score = engine.scoreInt(inputs.pocket, inputs.topology, poseCenti);
+    const poseAbs = toAbs(inputs.pocket, poseCenti);
+    const seed = (saved.seed >>> 0) || 0;
+    const result = { poseCenti, poseAbs, scoreMilli: score.ok ? score.scoreMilli : null, checks: { ok: score.ok, reason: score.reason },
+      steps: saved.steps || null, elapsedMs: saved.elapsedMs || null, seed, method: saved.method || null, methodCompact: saved.methodJson || '', terms: score.terms };
+    const out = { key: `${target.id}:${ligand.id}`, target, ligand, inputs, result, score, poseAbs, depthKey: saved.depthKey || null,
+      seed, method: saved.method || null, methodJson: saved.methodJson || '', chain: null, cancelled: false, restoredFrom: saved.id };
+    out.view = viewOf({ target, ligand, inputs, result, score, depthKey: out.depthKey, seed, methodName: saved.methodName || null });
+    return out;
+  }
+
   return {
     prepare,
     dock,
+    restore,
     queue,
     cancel,
     running: () => !!active || !!queueActive,

@@ -89,7 +89,7 @@ function paintHeader() {
   );
   const when = runTime(run);
   $('[data-meta]').replaceChildren(
-    el('span', { class: 'pc-run-meta-item' }, [icon('wallet', 16), walletCell(run.wallet)]),
+    el('span', { class: 'pc-run-meta-item' }, [icon('wallet', 16), 'Docked by ', walletCell(run.wallet)]),
     when ? el('span', { class: 'pc-run-meta-item', title: new Date(when).toISOString() }, `${F.date(new Date(when))} · ${F.ago(when)}`) : null,
     run.epoch !== undefined && run.epoch !== null ? el('span', { class: 'pc-run-meta-item' }, `epoch ${F.num(run.epoch)}`) : null,
     run.tx ? el('span', { class: 'pc-run-meta-item' }, outLink(EXPLORER.tx(run.tx), 'View transaction')) : null,
@@ -103,7 +103,14 @@ function paintHeader() {
 
 function paintActions() {
   const { run, t, l, analysis } = state;
-  $('[data-x]').href = testPostLink(run, t, l, analysis);
+  $('[data-x]').href = testPostLink(run, t, l, analysis, state.researcher || null);
+  if (state.researcher === undefined && run.wallet) {
+    state.researcher = null;
+    import('../lab.js').then((m) => m.namesOf([run.wallet]).then((names) => {
+      const n = names.get(String(run.wallet).toLowerCase());
+      if (n) { state.researcher = n; $('[data-x]').href = testPostLink(run, t, l, state.analysis, n); }
+    })).catch(() => null);
+  }
   $('[data-viewer-title]').textContent = t ? `${t.pdbId} · ${targetName(t)}` : '';
   $('[data-viewer-link]').replaceChildren(t ? rcsbStructureLink(t.pdbId, 'pc-link pc-link--out pc-small') : '');
 }

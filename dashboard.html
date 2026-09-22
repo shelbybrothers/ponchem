@@ -84,6 +84,14 @@
                 <span data-address></span>
                 <button type="button" class="pc-btn pc-btn--ghost pc-btn--sm" data-copy>Copy address</button>
               </div>
+              <form class="pc-name-form" data-name-form>
+                <label class="pc-eyebrow" for="pc-researcher-name">Researcher name</label>
+                <div class="pc-row pc-row--tight">
+                  <input class="pc-input" id="pc-researcher-name" name="name" maxlength="32" autocomplete="nickname" placeholder="Shown with your docking tests" data-name-input />
+                  <button type="submit" class="pc-btn pc-btn--sm" data-name-save>Save name</button>
+                </div>
+                <p class="pc-caption">Stored on Robinhood Chain with your wallet. It appears on your test pages, on X posts, on the leaderboard and in the report. Up to 32 plain characters; save it empty to clear it.</p>
+              </form>
             </div>
             <div class="pc-card pc-card--pad pc-level-card" data-level-card>
               <div class="pc-level-top">
@@ -201,6 +209,7 @@
           <div class="pc-footer-bottom">
             <div class="pc-footer-line">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
             <div class="pc-footer-credit">Structures from the RCSB Protein Data Bank</div>
+            <div class="pc-footer-credit">Preliminary project from <a href="https://www.rcsb.org/" target="_blank" rel="noopener noreferrer">https://www.rcsb.org/</a></div>
           </div>
         </div>
       </footer>

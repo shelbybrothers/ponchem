@@ -84,7 +84,7 @@ function spawn() {
     const m = ev.data || {};
     if (m.type === 'ready') { clearTimeout(timer); resolveReady(true); return; }
     if (!job || m.id !== job.id) return;
-    if (m.type === 'progress') { if (job.onProgress) job.onProgress({ stage: m.stage, done: m.done, best: m.best, evaluations: m.evaluations, steps: m.steps }); }
+    if (m.type === 'progress') { if (job.onProgress) job.onProgress({ stage: m.stage, done: m.done, best: m.best, evaluations: m.evaluations, steps: m.steps, poseAbs: m.poseAbs || null }); }
     else if (m.type === 'result') { const j = job; job = null; j.resolve(m.result); }
     else if (m.type === 'error') { const j = job; job = null; j.reject(m.cancelled ? new CancelledError() : new Error(m.message)); }
   });

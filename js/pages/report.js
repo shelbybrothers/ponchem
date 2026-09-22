@@ -3,6 +3,7 @@ import {
   boot, catalog, chain, el, F, STR, EMPTY, CANCERS, cancerKey, cancerName, milliOf, lookup, empty, table, dgCell, pkdText, leText,
   targetHref, ligandHref, rcsbImage, ligandMedia, fileExists, download, toast, utcStamp, targetName, onRefresh, chainNote,
   rcsbStructureLink, ligandSourceLink, runLink, runHref, allReviews, reviewStatsByRun, reviewsCell,
+  walletCell,
 } from './common.js';
 
 boot();
@@ -52,6 +53,7 @@ function groupSection(g) {
         { label: 'Rank', cls: 'pc-rank', render: (r, i) => el('span', { class: `pc-rank${i < 3 ? ' pc-rank--top' : ''}` }, String(i + 1)) },
         { label: 'Target', name: true, render: (r) => { const x = lookup(cat.targetById, Number(r.targetId)); return x ? el('span', { class: 'pc-td-links' }, [el('a', { href: targetHref(x) }, [el('span', { class: 'pc-td-id' }, x.pdbId), ' ', x.gene || x.key]), rcsbStructureLink(x.pdbId, 'pc-link pc-link--out pc-small')]) : String(r.targetId); } },
         { label: 'Ligand', name: true, render: (r) => { const x = lookup(cat.ligandById, Number(r.ligandId)); return x ? el('span', { class: 'pc-td-links' }, [el('a', { href: ligandHref(x) }, x.name), ligandSourceLink(x, 'pc-link pc-link--out pc-small')]) : String(r.ligandId); } },
+        { label: 'Docked by', render: (r) => (r.wallet ? walletCell(r.wallet) : F.EMPTY) },
         { label: 'dG (kcal/mol)', num: true, render: (r) => dgCell(milliOf(r)) },
         { label: 'pKd', num: true, render: (r) => pkdText(milliOf(r)) },
         { label: 'LE', num: true, render: (r) => { const x = lookup(cat.ligandById, Number(r.ligandId)); return leText(milliOf(r), x && x.heavyAtoms); } },

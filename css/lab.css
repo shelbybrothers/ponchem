@@ -148,6 +148,20 @@ a.lab-row-link:hover, a.lab-row-link:focus-visible { background: var(--white, #F
 .lab-progress { display: flex; flex-direction: column; gap: 6px; }
 .lab-progress-track { height: 6px; background: var(--paper-2, #EDEAE1); border-radius: 3px; overflow: hidden; }
 .lab-progress-fill { height: 100%; width: 0; background: var(--ligand, #B5480C); border-radius: 3px; transition: width 200ms linear; }
+.lab-progress[data-running] .lab-progress-track { position: relative; }
+.lab-progress[data-running] .lab-progress-fill {
+  background-image: linear-gradient(110deg, transparent 0 35%, rgba(255, 255, 255, 0.45) 50%, transparent 65% 100%);
+  background-color: var(--ligand, #B5480C);
+  background-size: 220% 100%;
+  animation: lab-progress-sheen 1.2s linear infinite;
+}
+.lab-progress[data-running] .lab-progress-track::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 18%; left: -18%;
+  background: linear-gradient(90deg, transparent, rgba(181, 72, 12, 0.18), transparent);
+  animation: lab-progress-scan 1.6s ease-in-out infinite;
+}
+@keyframes lab-progress-sheen { from { background-position: 120% 0; } to { background-position: -100% 0; } }
+@keyframes lab-progress-scan { from { left: -18%; } to { left: 100%; } }
 .lab-progress-meta { display: flex; gap: 12px; flex-wrap: wrap; }
 .lab-run-head { display: flex; flex-direction: column; gap: 4px; }
 .lab-run-head .lab-caption { color: var(--ink-2, #3B4250); }
@@ -317,5 +331,6 @@ body.lab-sheet-open .lab-dock { display: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
   .lab-btn, .lab-progress-fill { transition: none; }
+  .lab-progress[data-running] .lab-progress-fill, .lab-progress[data-running] .lab-progress-track::after { animation: none; }
   .lab-spin { animation-duration: 2s; }
 }

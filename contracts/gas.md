@@ -11,19 +11,19 @@ eth_estimateGas. The chain allows 32,000,000 gas per transaction.
 
 | step | gas |
 |---|---|
-| PonchemLab creation (runtime 21031 bytes) | 4397875 |
-| setTables (13,010 bytes stored as code) | 2677547 |
+| PonchemLab creation (runtime 21715 bytes) | 4535093 |
+| setTables (13,010 bytes stored as code) | 2677591 |
 
 ## Registration (the deploy's bulk)
 
 | item | bytes | gas |
 |---|---|---|
-| registerTarget 1M17 pocket (796 atoms) | 5762 | 2165826 |
-| registerLigand AQ4 erlotinib (29 atoms) | 553 | 342992 |
-| registerLigand QUE quercetin (22 atoms) | 446 | 309311 |
-| registerLigand TA1 paclitaxel (62 atoms) | 1250 | 577386 |
-| registerTarget SYN1 pocket (1 atoms) | 165 | 258823 |
-| registerLigand methanol (2 atoms) | 30 | 169826 |
+| registerTarget 1M17 pocket (796 atoms) | 5762 | 2165848 |
+| registerLigand AQ4 erlotinib (29 atoms) | 553 | 343036 |
+| registerLigand QUE quercetin (22 atoms) | 446 | 309355 |
+| registerLigand TA1 paclitaxel (62 atoms) | 1250 | 577430 |
+| registerTarget SYN1 pocket (1 atoms) | 165 | 258845 |
+| registerLigand methanol (2 atoms) | 30 | 169870 |
 
 Rule of thumb for a data blob of B bytes: 32,000 (CREATE) + 200 x B (code deposit) + 16 x B (calldata)
 + the structural check (about 200 gas per pocket atom, 150 per topology entry) + about 130,000 of storage
@@ -33,21 +33,21 @@ and event. contracts/register.sh prints the estimate for the whole registry befo
 
 | case | pocket atoms | ligand atoms | quote | submitRun | ceiling |
 |---|---|---|---|---|---|
-| real_02_1M17_AQ4_refined | 796 | 29 | 2875960 | 3150586 | 3600000 |
-| real_03_1M17_QUE_docked | 796 | 22 | 2395962 | 2570369 |  |
-| real_04_1M17_TA1_docked | 796 | 62 | 4349789 | 4571362 |  |
-| TA1 x synthetic pocket, 2000 atoms uniform in a 44 x 32 x 32 A reach cube | 2000 | 62 | 8919712 | 9196392 | 10500000 |
+| real_02_1M17_AQ4_refined | 796 | 29 | 2875960 | 3150608 | 3600000 |
+| real_03_1M17_QUE_docked | 796 | 22 | 2395962 | 2570391 |  |
+| real_04_1M17_TA1_docked | 796 | 62 | 4349789 | 4571384 |  |
+| TA1 x synthetic pocket, 2000 atoms uniform in a 44 x 32 x 32 A reach cube | 2000 | 62 | 8919712 | 9196414 | 10500000 |
 
-Registering the synthetic 2000-atom pocket (14330 bytes) cost 5038021 gas.
+Registering the synthetic 2000-atom pocket (14330 bytes) cost 5038043 gas.
 
 ## Money
 
 | action | gas |
 |---|---|
-| fund | 61140 |
+| fund | 61184 |
 | settle, one epoch with a winner | 88371 |
 | settle, three epochs without a run rolled in one call | 57341 |
-| withdraw (a refused prize) | 24678 |
+| withdraw (a refused prize) | 24700 |
 
 ## Rehearsal on anvil (contracts/register.sh, real receipts)
 

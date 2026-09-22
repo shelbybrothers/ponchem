@@ -180,6 +180,10 @@ export const LAB_FRAGMENTS = Object.freeze([
   'error BadTopology()',
   'error PayloadTooLarge()',
   'error StoreFailed()',
+  'function setName(string name)',
+  'function nameOf(address wallet) view returns (string)',
+  'event Named(address indexed wallet, string name)',
+  'error BadResearcherName()',
 ]);
 export const LAB_ABI = LAB_FRAGMENTS;
 
@@ -374,6 +378,43 @@ export function buildReview(runId, stars, note = '') {
   return { to, data: encodeCall(labFragment('reviewRun'), [asRunId(runId), s, text]), value: '0x0' };
 }
 
+/** setName: the researcher name shown with this wallet's docking tests (empty clears it). */
+export function buildSetName(name) {
+  const to = needLab();
+  const n = String(name === null || name === undefined ? '' : name).trim();
+  if (n.length > 32 || !/^[\x20-\x7e]*$/.test(n)) throw new Error('A researcher name is at most 32 plain characters.');
+  return { to, data: encodeCall(labFragment('setName'), [n]), value: '0x0' };
+}
+
+/** nameOf for many wallets at once (cached for the page): Map<lowercased address, name> (empty names omitted). */
+const nameCache = new Map();
+export async function namesOf(addresses) {
+  const to = labAddress();
+  const out = new Map();
+  if (!to) return out;
+  const want = [...new Set((addresses || []).filter((a) => isAddress(a)).map((a) => a.toLowerCase()))];
+  const missing = want.filter((a) => !nameCache.has(a));
+  const f = labFragment('nameOf');
+  await Promise.all(missing.map(async (a) => {
+    try {
+      const raw = await ethCall({ to, data: encodeCall(f, [a]) });
+      const [n] = decodeResult(f, raw);
+      nameCache.set(a, String(n || ''));
+    } catch { nameCache.set(a, ''); }
+  }));
+  for (const a of want) { const n = nameCache.get(a); if (n) out.set(a, n); }
+  return out;
+}
+export function forgetName(address) { if (address) nameCache.delete(String(address).toLowerCase()); }
+
+/** "Dr Alice (0x1234…abcd)" or just the short address. The name is untrusted text: render it with el(). */
+export function researcherLabel(address, names) {
+  const a = String(address || '');
+  const short = a.length > 10 ? `${a.slice(0, 6)}\u2026${a.slice(-4)}` : a;
+  const n = names && names.get ? names.get(a.toLowerCase()) : null;
+  return n ? `${n} (${short})` : short;
+}
+
 export function buildAttachAnalysis(runId, provider, text) {
   const to = needLab();
   const p = String(provider === null || provider === undefined ? '' : provider).trim();
@@ -475,6 +516,7 @@ export const ERROR_SENTENCES = Object.freeze({
   NotEnded: 'The epoch has not ended yet.',
   NoRuns: 'Nothing to settle: no run was recorded this epoch.',
   NotAuthor: 'Only the wallet that recorded this docking test can attach an analysis.',
+  BadResearcherName: 'A researcher name is at most 32 plain characters (letters, digits, spaces and punctuation), with no space at either end.',
   BadStars: 'Stars must be between 1 and 5.',
   NoteTooLong: NOTE_TOO_LONG,
   SelfReview: 'You cannot review your own docking test.',

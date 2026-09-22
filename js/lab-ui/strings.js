@@ -47,6 +47,8 @@ export const S = Object.freeze({
   stop: 'Stop',
   runAgain: 'Run again',
   progress: 'Pose search · {percent}% · best so far {dG} kcal/mol',
+  resumeToast: 'Resuming your docking run.',
+  errUnknownResult: 'That docking result is no longer stored in this browser.',
   stagePreparing: 'Preparing pocket',
   stageSearch: 'Pose search',
   stageRefining: 'Refining',

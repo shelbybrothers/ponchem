@@ -462,7 +462,7 @@ console.log('\nB. phone 390, real modules plus the method stub');
       overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     }));
     eq(got.bar, 'grid');
-    eq(got.chips, [['Choose target', 44], ['Ligand: Quercetin', 44]]);
+    eq(got.chips, [['Target: BCL2', 44], ['Ligand: Quercetin', 44]]);
     eq(got.viewer, 240);
     eq(got.dock, 'block');
     eq(got.dockText, 'Find a pose');

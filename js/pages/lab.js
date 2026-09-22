@@ -23,6 +23,7 @@ import { createSheet } from '../lab-ui/sheet.js';
 import { createResults } from '../lab-ui/results.js';
 import { createRecorder } from '../lab-ui/record.js';
 import { createRunner } from '../lab-ui/run.js';
+import * as jobs from '../lab-ui/jobs.js';
 import { createMethodApi, createMethodPanel } from '../lab-ui/method.js';
 import { fmtDg } from '../lab-ui/derive.js';
 
@@ -446,7 +447,18 @@ function boot() {
   }
 
   let lastPaint = 0;
+  // live pose: the engine sends its current best pose about four times a second; draw it so the ligand is seen
+  // settling into the pocket while the search runs (the final integer-polished pose replaces it at the end)
+  let lastLivePose = 0;
+  function paintLivePose(p) {
+    if (!viewer || !p || !p.poseAbs || !p.sdf) return;
+    const now = Date.now();
+    if (now - lastLivePose < 240) return;
+    lastLivePose = now;
+    try { viewer.showPose(p.sdf, p.poseAbs); } catch { /* viewer busy or disposed */ }
+  }
   function paintProgress(p, queuePos) {
+    paintLivePose(p);
     const now = Date.now();
     if (now - lastPaint < 200 && p.done < 1) return;
     lastPaint = now;
@@ -459,6 +471,7 @@ function boot() {
   function setStage(text) { progressStage.textContent = text || ''; }
   function showProgress(on) {
     progress.hidden = !on;
+    progress.toggleAttribute('data-running', !!on);
     if (on) { progressFill.style.width = '0%'; progressBar.setAttribute('aria-valuenow', '0'); progressCaption.textContent = fill(S.progress, { percent: 0, dG: '--' }); progressQueue.textContent = ''; }
   }
 
@@ -494,6 +507,14 @@ function boot() {
     else await runScreen(pairs);
   }
   runBtn.addEventListener('click', onRunClick);
+  // leaving mid run: release the job at once so the next page resumes it without waiting for the heartbeat to age
+  let leavingPage = false;
+  window.addEventListener('pagehide', () => {
+    if (!state.running) return;
+    leavingPage = true;
+    const cur = jobs.readJob();
+    if (cur && cur.status === 'running') { try { localStorage.setItem('ponchem.job', JSON.stringify({ ...cur, beatAt: 0 })); } catch { /* ignore */ } }
+  });
   if (dockRunBtn) dockRunBtn.addEventListener('click', onRunClick);
 
   async function runPair({ target, ligand }) {
@@ -505,10 +526,19 @@ function boot() {
     if (viewer) viewer.clearPose();
     const plan = runPlan();
     if (plan.seed !== state.seed) { state.seed = plan.seed; seedInput.value = String(plan.seed); }
+    // the job survives a page change: any page of the site resumes it (js/bg-dock.js) and pops up the result
+    const job = { id: jobs.newJobId(), status: 'running', targetId: target.id, ligandId: ligand.id, gene: target.gene || target.key,
+      pdbId: target.pdbId, ligandName: ligand.name, depthKey: plan.depthKey, seed: plan.seed, method: plan.method || null,
+      methodName: plan.methodName || null, startedAt: Date.now(), progress: 0, best: null };
+    jobs.writeJob(job);
+    const beatTimer = setInterval(() => jobs.beat(job), 2000);
     try {
-      const run = await runner.dock({ target, ligand, depthKey: plan.depthKey, seed: plan.seed, method: plan.method, methodName: plan.methodName, onProgress: (p) => paintProgress(p), onStage: setStage });
+      const run = await runner.dock({ target, ligand, depthKey: plan.depthKey, seed: plan.seed, method: plan.method, methodName: plan.methodName,
+        onProgress: (p) => { job.progress = p.done; if (p.best !== null && p.best !== undefined) job.best = p.best; paintProgress(p); }, onStage: setStage });
       run.methodJson = methodJsonOf(run, plan);
+      if (!run.cancelled) { const saved = jobs.addResult(jobs.resultOfRun(run, { jobId: job.id, methodJson: run.methodJson })); run.resultId = saved.id; }
       paintProgress({ done: 1, best: run.view.scoreMilli });
+      progress.removeAttribute('data-running');
       state.current = run;
       results.showRun(run.view);
       if (run.cancelled) toast(S.errStopped, { kind: 'info' });
@@ -518,6 +548,9 @@ function boot() {
       if (e && (e.code === 'cancelled' || e.name === 'CancelledError')) toast(S.errStopped, { kind: 'info' });
       else { console.warn('dock', e); toast((e && e.message) || S.engineMissing, { kind: 'error', ms: 8000 }); }
     } finally {
+      clearInterval(beatTimer);
+      const cur = jobs.readJob();
+      if (cur && cur.id === job.id && !leavingPage) jobs.clearJob();
       state.running = false;
       showProgress(false);
       setStage('');
@@ -621,6 +654,7 @@ function boot() {
     lab,
     getRun: () => (state.mode === 'pair' ? state.current : null),
     onChain: (run, chainView) => {
+      if (run && run.resultId) jobs.markRecorded(run.resultId, { runId: chainView.runId, tx: chainView.tx, scoreMilli: chainView.scoreMilli });
       if (run === state.current) results.setChain(chainView);
       if (state.screen) for (const [id, r] of state.screen.runs) if (r === run) results.updateRow(id, { chain: chainView, recording: 'done' });
     },
@@ -743,8 +777,9 @@ function boot() {
   paintDepth();
   paintMethodName();
   if (badLink) toast(S.methodBadLink, { kind: 'error', ms: 8000 });
-  const t0 = findTarget(params.get('target'));
-  const l0 = findLigand(params.get('ligand'));
+  // never open blank: without a link choice the lab starts on the top target and the top ligand of the lists
+  const t0 = findTarget(params.get('target')) || targets[0] || null;
+  const l0 = findLigand(params.get('ligand')) || ligands[0] || null;
   if (params.get('target') && !t0) toast(S.errUnknownTarget, { kind: 'error' });
   if (params.get('ligand') && !l0) toast(S.errUnknownLigand, { kind: 'error' });
   main.dataset.targets = String(targets.length);
@@ -759,4 +794,38 @@ function boot() {
   refreshRunButton();
   syncUrl();
   main.dataset.state = 'ready';
+  resumeOrRestore(params).catch((e) => console.warn('resume', e));
+
+  /** ?result=<id> reopens a finished dock (from another page) ready to record; an orphaned job is resumed here. */
+  async function resumeOrRestore(q) {
+    const rid = q.get('result');
+    if (rid) {
+      const saved = jobs.getResult(rid);
+      const t = saved && findTarget(String(saved.targetId));
+      const l = saved && findLigand(String(saved.ligandId));
+      if (!saved || !t || !l) { toast(S.errUnknownResult || 'That docking result is no longer stored in this browser.', { kind: 'error' }); return; }
+      setTarget(t); setLigand(l);
+      state.seed = saved.seed >>> 0; seedInput.value = String(state.seed); syncUrl();
+      const run = await runner.restore({ target: t, ligand: l, saved });
+      run.resultId = saved.id;
+      state.current = run;
+      results.showRun(run.view);
+      showPose(run);
+      recorder.update();
+      paintDock();
+      return;
+    }
+    const job = jobs.readJob();
+    if (!job || !jobs.isOrphan(job) || state.running) return;
+    const t = findTarget(String(job.targetId));
+    const l = findLigand(String(job.ligandId));
+    if (!t || !l) { jobs.clearJob(); return; }
+    setTarget(t); setLigand(l);
+    if (job.method && methodApi) { syncingMethod = true; methodPanel.applyQuery(methodApi.toQuery(job.method)); syncingMethod = false; paintMethodName(); }
+    else if (job.depthKey && methodApi) { methodPanel.setPreset(job.depthKey); paintMethodName(); }
+    state.seed = job.seed >>> 0; seedInput.value = String(state.seed);
+    jobs.clearJob();
+    toast(S.resumeToast || 'Resuming your docking run.', { kind: 'info' });
+    await runPair({ target: t, ligand: l });
+  }
 }

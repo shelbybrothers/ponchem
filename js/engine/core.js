@@ -104,8 +104,24 @@ export async function runDock(params) {
   const { method, seed: seedU32 } = resolveDockMethod(params);
   const knobs = searchKnobs(method);
   const nCandidates = method.candidates;
-  const report = (stage, done, best, evaluations, stepsDone) => {
-    if (onProgress) onProgress({ stage, done, best, evaluations, steps: stepsDone });
+  const report = (stage, done, best, evaluations, stepsDone, poseAbs = null) => {
+    if (onProgress) onProgress({ stage, done, best, evaluations, steps: stepsDone, poseAbs });
+  };
+  // live pose for the viewer: the current best state in absolute angstroms, at most every 250 ms (display only;
+  // it never feeds back into the search, so determinism and replays are untouched)
+  let lastPoseAt = -Infinity, livePoseX = null;
+  const livePose = (t, pk, lg, st) => {
+    if (!onProgress || t - lastPoseAt < 250 || !st) return null;
+    lastPoseAt = t;
+    if (!livePoseX) livePoseX = new Float64Array(3 * lg.n);
+    lg.build(st, livePoseX);
+    const out = new Float64Array(3 * lg.n);
+    for (let i = 0; i < lg.n; i++) {
+      out[3 * i] = pk.center[0] + livePoseX[3 * i];
+      out[3 * i + 1] = pk.center[1] + livePoseX[3 * i + 1];
+      out[3 * i + 2] = pk.center[2] + livePoseX[3 * i + 2];
+    }
+    return out;
   };
   const checkCancel = () => { if (shouldCancel()) throw new CancelledError(); };
 
@@ -180,7 +196,8 @@ export async function runDock(params) {
       lastReport = t;
       const done = Math.min(0.95, 0.02 + 0.93 * search.stats.steps / total);
       const b = search.best.energy < Infinity ? Math.round(search.best.affinity * 1000) : null;
-      report('search', done, b, en.evaluations, search.stats.steps);
+      const pose = search.best.energy < Infinity ? livePose(t, pocket, lig, search.best.state) : null;
+      report('search', done, b, en.evaluations, search.stats.steps, pose);
     }
     checkCancel();
     await yieldFn();

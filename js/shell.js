@@ -110,6 +110,8 @@ function markCurrentPage() {
 }
 
 export function initShell() {
+  // a docking run keeps going across pages (js/bg-dock.js); loaded lazily so a failure never touches the shell
+  import('./bg-dock.js').then((m) => m.startBackgroundDock()).catch(() => null);
   for (const buy of document.querySelectorAll('[data-shell="buy"]')) {
     if (!TOKEN.buyUrl) continue;
     buy.href = TOKEN.buyUrl;
