@@ -47,8 +47,9 @@ export const BRAND = Object.freeze({
 // stamps the live footer and nav into every page; js/shell.js does the same at run time from the same TOKEN.
 export const TOKEN = Object.freeze({
   symbol: 'PONCHEM',
-  ca: null,
-  buyUrl: null,
+  // live on ponsfamily.com since 2026-09-22; checked on chain: name "ponchem.ai", symbol PONCHEM, 18 decimals
+  ca: '0x8e997cCF391De70033aD416f9f0048996417484D',
+  buyUrl: 'https://www.ponsfamily.com/launchpad/0x8e997cCF391De70033aD416f9f0048996417484D',
   launchpad: 'https://ponsfamily.com',
 });
 export const TOKEN_CA_BLANK = 'CA posts here at launch';

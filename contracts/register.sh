@@ -188,7 +188,34 @@ if [ "$NODE_PRICE" != "0" ]; then
   NEED="$(python3 -c 'import sys; print(int(sys.argv[1]) * int(sys.argv[2]))' "$EST_GAS" "$NODE_PRICE")"
   say "estimate    $EST_GAS gas at $(cast to-unit "$NODE_PRICE" gwei) gwei = $(cast to-unit "$NEED" ether) ETH for this run"
   if [ "$(python3 -c 'import sys; print(1 if int(sys.argv[1]) < int(sys.argv[2]) * 2 else 0)' "$BAL" "$NEED")" = "1" ]; then
-    die "the owner should hold at least twice the estimate. Top it up, or send fewer with LIMIT=n. Nothing was sent."
+    # Not enough for the whole run: send the longest prefix whose estimate the balance covers twice (with 5 percent
+    # headroom on the gas price). Run the script again afterwards, or top up, to register the rest.
+    FIT="$(python3 - "$REGISTRY" "$REGISTRY_ROOT" "$POS" "$END" "$BAL" "$NODE_PRICE" <<'PY2'
+import json, os, sys
+path, root, pos, end, bal, price = sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]), int(sys.argv[5]), int(sys.argv[6])
+reg = json.load(open(path))
+def size(p):
+    full = p if os.path.isabs(p) else os.path.join(root, p)
+    return os.path.getsize(full)
+items = []
+for t in reg.get("targets", []):
+    b = size(t["pocket"]); n = t.get("atoms") or max(0, (b - 28) // 7)
+    items.append(21000 + 32000 + 200 * (28 + 9 * n + (b - 28 - 7 * n) + 1) + 16 * b + 220 * n + 140000)
+for l in reg.get("ligands", []):
+    b = size(l["topology"]); items.append(21000 + 32000 + 200 * (b + 1) + 16 * b + 150 * (b // 4) + 140000)
+p = price * 105 // 100
+k = 0; gas = 0
+while pos + k < end and 2 * (gas + items[pos + k]) * p <= bal:
+    gas += items[pos + k]; k += 1
+print(k, gas)
+PY2
+)"
+    set -- $FIT; FIT_N="$1"; FIT_GAS="$2"; set --
+    [ "${FIT_N:-0}" -gt 0 ] || die "the balance does not cover even one registration twice over. Top it up. Nothing was sent."
+    LIMIT="$FIT_N"; END=$((POS + FIT_N)); EST_GAS="$FIT_GAS"
+    NEED="$(python3 -c 'import sys; print(int(sys.argv[1]) * int(sys.argv[2]))' "$EST_GAS" "$NODE_PRICE")"
+    warn "the balance covers $FIT_N registrations this run (positions $POS to $((END - 1)), about $EST_GAS gas, $(cast to-unit "$NEED" ether) ETH)."
+    warn "run ./register.sh again afterwards for the rest; it continues where this run stops."
   fi
   ok "            the balance covers twice the estimate"
 else
