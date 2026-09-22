@@ -1,0 +1,8 @@
+# https://ponchem.ai/robots.txt
+# One group on purpose: a crawler obeys only its most specific match, so a per-bot block would replace this
+# policy instead of adding to it.
+User-agent: *
+Allow: /
+Disallow: /api/rpc
+
+Sitemap: https://ponchem.ai/sitemap.xml

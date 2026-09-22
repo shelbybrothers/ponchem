@@ -1,0 +1,5209 @@
+{
+ "generated": "2026-09-22T03:02:06Z",
+ "targets": [
+  {
+   "id": 1,
+   "key": "BCL2",
+   "gene": "BCL2",
+   "pdbId": "6O0K",
+   "name": "BCL2 apoptosis regulator",
+   "cancerBits": 67072,
+   "cancers": [
+    "leukemia",
+    "lymphoma",
+    "myeloma"
+   ],
+   "class": "apoptosis",
+   "pocket": "data/pockets/6O0K.bin",
+   "hash": "0x7e3fc97e8bafdcc00750a5d550423cfe35fb7119d0aeef86d365bb12f43e29ef",
+   "atoms": 765,
+   "bytes": 5625,
+   "box": {
+    "center": [
+     -15.357,
+     2.24,
+     -9.562
+    ],
+    "half": [
+     7.74,
+     9.06,
+     12.69
+    ]
+   },
+   "ligandCcd": "LBM",
+   "resolution": 1.62,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 2,
+   "key": "BIRC2",
+   "gene": "BIRC2",
+   "pdbId": "4KMN",
+   "name": "cIAP1 BIR3 domain",
+   "cancerBits": 1025,
+   "cancers": [
+    "lung",
+    "lymphoma"
+   ],
+   "class": "apoptosis",
+   "pocket": "data/pockets/4KMN.bin",
+   "hash": "0xdf09fdb8cfff5fc60bb41623a5e5e7d6106b839769ef5bb6e3de3e709ad78f22",
+   "atoms": 538,
+   "bytes": 4046,
+   "box": {
+    "center": [
+     1.01,
+     54.768,
+     14.868
+    ],
+    "half": [
+     11.26,
+     8.52,
+     9.78
+    ]
+   },
+   "ligandCcd": "436",
+   "resolution": 1.52,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 3,
+   "key": "MDM2",
+   "gene": "MDM2",
+   "pdbId": "4HG7",
+   "name": "MDM2 p53 binding domain",
+   "cancerBits": 528896,
+   "cancers": [
+    "sarcoma",
+    "leukemia",
+    "melanoma"
+   ],
+   "class": "apoptosis",
+   "pocket": "data/pockets/4HG7.bin",
+   "hash": "0x9fa9030dd970656dc4c14f7167dc33fcad05c482020ddcce262b8bb483c625d2",
+   "atoms": 552,
+   "bytes": 4054,
+   "box": {
+    "center": [
+     -23.835,
+     7.53,
+     -14.053
+    ],
+    "half": [
+     7.03,
+     8.83,
+     6.68
+    ]
+   },
+   "ligandCcd": "NUT",
+   "resolution": 1.6,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 4,
+   "key": "MDM4",
+   "gene": "MDM4",
+   "pdbId": "3LBJ",
+   "name": "MDMX p53 binding domain",
+   "cancerBits": 526336,
+   "cancers": [
+    "sarcoma",
+    "brain"
+   ],
+   "class": "apoptosis",
+   "pocket": "data/pockets/3LBJ.bin",
+   "hash": "0x3fabf3a928ecdd6fc4557c24f2f0633ce0acbbf900edcf7ec831d73c533472ad",
+   "atoms": 446,
+   "bytes": 3352,
+   "box": {
+    "center": [
+     20.283,
+     -20.172,
+     0.936
+    ],
+    "half": [
+     6.79,
+     11.2,
+     8.93
+    ]
+   },
+   "ligandCcd": "WW8",
+   "resolution": 1.5,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 5,
+   "key": "XIAP",
+   "gene": "XIAP",
+   "pdbId": "6GJW",
+   "name": "XIAP BIR3 domain",
+   "cancerBits": 8704,
+   "cancers": [
+    "ovarian",
+    "leukemia"
+   ],
+   "class": "apoptosis",
+   "pocket": "data/pockets/6GJW.bin",
+   "hash": "0x0162ec96cfac816caa0168f41d49c9554335cdf0602e9638395fc25b770f1180",
+   "atoms": 712,
+   "bytes": 5206,
+   "box": {
+    "center": [
+     10.207,
+     -10.078,
+     21.077
+    ],
+    "half": [
+     13.95,
+     6.24,
+     6.29
+    ]
+   },
+   "ligandCcd": "F2H",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 6,
+   "key": "APEX1",
+   "gene": "APEX1",
+   "pdbId": "7TC2",
+   "name": "APE1 base excision endonuclease",
+   "cancerBits": 8194,
+   "cancers": [
+    "colorectal",
+    "ovarian"
+   ],
+   "class": "dna-damage",
+   "pocket": "data/pockets/7TC2.bin",
+   "hash": "0xbec3ba76b9cf1b2bc35dcf2c7a26daee00ede07d4d0aac8957bab6f5651df717",
+   "atoms": 572,
+   "bytes": 4162,
+   "box": {
+    "center": [
+     -7.644,
+     -25.55,
+     24.379
+    ],
+    "half": [
+     6.0,
+     6.26,
+     6.0
+    ]
+   },
+   "ligandCcd": "GID",
+   "resolution": 1.43,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 7,
+   "key": "DHFR",
+   "gene": "DHFR",
+   "pdbId": "1U72",
+   "name": "Dihydrofolate reductase",
+   "cancerBits": 525824,
+   "cancers": [
+    "leukemia",
+    "lymphoma",
+    "sarcoma"
+   ],
+   "class": "dna-damage",
+   "pocket": "data/pockets/1U72.bin",
+   "hash": "0x6a804fc6f348fe64cc2e7bd912d55d90e9a164971ca954cba9df022ad5170a86",
+   "atoms": 805,
+   "bytes": 5825,
+   "box": {
+    "center": [
+     30.621,
+     16.876,
+     -1.624
+    ],
+    "half": [
+     6.63,
+     8.75,
+     6.08
+    ]
+   },
+   "ligandCcd": "MTX",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 8,
+   "key": "PARP1",
+   "gene": "PARP1",
+   "pdbId": "7KK4",
+   "name": "PARP1 catalytic domain",
+   "cancerBits": 8264,
+   "cancers": [
+    "ovarian",
+    "breast",
+    "prostate"
+   ],
+   "class": "dna-damage",
+   "pocket": "data/pockets/7KK4.bin",
+   "hash": "0x044571a7cad2c09fbc3e486b1d35647464ffac07eec96ac68655528a23cc0d16",
+   "atoms": 1104,
+   "bytes": 7918,
+   "box": {
+    "center": [
+     -9.294,
+     6.13,
+     26.348
+    ],
+    "half": [
+     6.0,
+     9.88,
+     6.0
+    ]
+   },
+   "ligandCcd": "09L",
+   "resolution": 1.96,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 9,
+   "key": "TNKS2",
+   "gene": "TNKS2",
+   "pdbId": "8B6M",
+   "name": "Tankyrase 2 catalytic domain",
+   "cancerBits": 2,
+   "cancers": [
+    "colorectal"
+   ],
+   "class": "dna-damage",
+   "pocket": "data/pockets/8B6M.bin",
+   "hash": "0xfb9c0171d744aa33a7cfb3fa20f04757ad9cf61ffd376aa37aa99dfeca0aaef4",
+   "atoms": 1058,
+   "bytes": 7636,
+   "box": {
+    "center": [
+     -50.889,
+     -42.801,
+     20.201
+    ],
+    "half": [
+     10.79,
+     6.0,
+     9.87
+    ]
+   },
+   "ligandCcd": "OY6",
+   "resolution": 1.6,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 10,
+   "key": "TYMS",
+   "gene": "TYMS",
+   "pdbId": "1HVY",
+   "name": "Thymidylate synthase",
+   "cancerBits": 19,
+   "cancers": [
+    "colorectal",
+    "stomach",
+    "lung"
+   ],
+   "class": "dna-damage",
+   "pocket": "data/pockets/1HVY.bin",
+   "hash": "0x6d78d54deb5baef534c3da9f12d436675314d525d6adc96473457f5491ba5e68",
+   "atoms": 982,
+   "bytes": 7064,
+   "box": {
+    "center": [
+     69.179,
+     45.229,
+     25.375
+    ],
+    "half": [
+     7.66,
+     9.37,
+     6.08
+    ]
+   },
+   "ligandCcd": "D16",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 11,
+   "key": "ATAD2",
+   "gene": "ATAD2",
+   "pdbId": "5EPB",
+   "name": "ATAD2 bromodomain",
+   "cancerBits": 9,
+   "cancers": [
+    "breast",
+    "lung"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/5EPB.bin",
+   "hash": "0x43a0e217d7803bd450516174d531649de63c5853ed2cd41755fd2da53673c4d7",
+   "atoms": 488,
+   "bytes": 3606,
+   "box": {
+    "center": [
+     9.387,
+     -24.77,
+     8.531
+    ],
+    "half": [
+     9.02,
+     6.0,
+     6.0
+    ]
+   },
+   "ligandCcd": "5QW",
+   "resolution": 1.5,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 12,
+   "key": "BRD2",
+   "gene": "BRD2",
+   "pdbId": "6WWB",
+   "name": "BRD2 bromodomain",
+   "cancerBits": 1536,
+   "cancers": [
+    "leukemia",
+    "lymphoma"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/6WWB.bin",
+   "hash": "0x7f5e5ca5f2ff6c5d0434fa5ee8ce04d3a747b8b49727d307dfcd3d29389242a8",
+   "atoms": 459,
+   "bytes": 3371,
+   "box": {
+    "center": [
+     18.187,
+     65.689,
+     42.31
+    ],
+    "half": [
+     6.11,
+     7.06,
+     6.9
+    ]
+   },
+   "ligandCcd": "YA3",
+   "resolution": 1.31,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 13,
+   "key": "BRD4",
+   "gene": "BRD4",
+   "pdbId": "3MXF",
+   "name": "BRD4 first bromodomain",
+   "cancerBits": 67072,
+   "cancers": [
+    "leukemia",
+    "lymphoma",
+    "myeloma"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/3MXF.bin",
+   "hash": "0x15dd7e0bf14f61a4c8bd65f88953e0eaf300c6d3cd7eb7c556792cb938e814e2",
+   "atoms": 502,
+   "bytes": 3672,
+   "box": {
+    "center": [
+     28.751,
+     15.826,
+     -2.335
+    ],
+    "half": [
+     6.0,
+     6.71,
+     6.44
+    ]
+   },
+   "ligandCcd": "JQ1",
+   "resolution": 1.6,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 14,
+   "key": "BRD9",
+   "gene": "BRD9",
+   "pdbId": "6V0X",
+   "name": "BRD9 bromodomain",
+   "cancerBits": 524800,
+   "cancers": [
+    "sarcoma",
+    "leukemia"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/6V0X.bin",
+   "hash": "0x0b93628caf036aee77c71367107a8b05b25adae82ef2c5b3fa8364782a714f85",
+   "atoms": 437,
+   "bytes": 3249,
+   "box": {
+    "center": [
+     -4.156,
+     27.334,
+     4.767
+    ],
+    "half": [
+     6.67,
+     8.33,
+     7.36
+    ]
+   },
+   "ligandCcd": "B49",
+   "resolution": 1.5,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 15,
+   "key": "BRPF1",
+   "gene": "BRPF1",
+   "pdbId": "5MWZ",
+   "name": "BRPF1 bromodomain",
+   "cancerBits": 512,
+   "cancers": [
+    "leukemia"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/5MWZ.bin",
+   "hash": "0x3309194fbdd7ed2fa83046f46e071e7bb32c48876453a14cc17b5051d34b6abe",
+   "atoms": 441,
+   "bytes": 3245,
+   "box": {
+    "center": [
+     -8.447,
+     10.112,
+     6.569
+    ],
+    "half": [
+     6.0,
+     6.99,
+     7.05
+    ]
+   },
+   "ligandCcd": "KGU",
+   "resolution": 1.25,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 16,
+   "key": "CARM1",
+   "gene": "CARM1",
+   "pdbId": "6ARJ",
+   "name": "CARM1 arginine methyltransferase",
+   "cancerBits": 520,
+   "cancers": [
+    "breast",
+    "leukemia"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/6ARJ.bin",
+   "hash": "0x31e675e82b6ea764bba16daaf2b042cd62a53cdcc49297297a9106a2dc57e80a",
+   "atoms": 1311,
+   "bytes": 9367,
+   "box": {
+    "center": [
+     8.143,
+     19.903,
+     80.462
+    ],
+    "half": [
+     9.71,
+     7.92,
+     6.96
+    ]
+   },
+   "ligandCcd": "BW4",
+   "resolution": 1.92,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 17,
+   "key": "CREBBP",
+   "gene": "CREBBP",
+   "pdbId": "6SQE",
+   "name": "CREB binding protein bromodomain",
+   "cancerBits": 1536,
+   "cancers": [
+    "lymphoma",
+    "leukemia"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/6SQE.bin",
+   "hash": "0xcdfcb899adc84ae0736577da32db1068079d9ea7270ca384288f45d10c88e5d5",
+   "atoms": 635,
+   "bytes": 4675,
+   "box": {
+    "center": [
+     13.121,
+     14.379,
+     -2.505
+    ],
+    "half": [
+     7.98,
+     11.09,
+     8.56
+    ]
+   },
+   "ligandCcd": "LSZ",
+   "resolution": 1.51,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 18,
+   "key": "EP300",
+   "gene": "EP300",
+   "pdbId": "3BIY",
+   "name": "p300 acetyltransferase",
+   "cancerBits": 1088,
+   "cancers": [
+    "prostate",
+    "lymphoma"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/3BIY.bin",
+   "hash": "0x8be8fad0caaed110f30e10aa0f300fd1c81b9b255224335103ec86da4fa206ce",
+   "atoms": 1019,
+   "bytes": 7443,
+   "box": {
+    "center": [
+     -17.628,
+     15.959,
+     1.475
+    ],
+    "half": [
+     8.2,
+     16.92,
+     6.0
+    ]
+   },
+   "ligandCcd": "01K",
+   "resolution": 1.7,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 19,
+   "key": "HDAC2",
+   "gene": "HDAC2",
+   "pdbId": "4LXZ",
+   "name": "Histone deacetylase 2",
+   "cancerBits": 1026,
+   "cancers": [
+    "colorectal",
+    "lymphoma"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/4LXZ.bin",
+   "hash": "0x8546aab79c73476ae6e85ab424f11eed7293d7245608aa143cfb7ca700d723eb",
+   "atoms": 779,
+   "bytes": 5643,
+   "box": {
+    "center": [
+     25.71,
+     -15.817,
+     1.122
+    ],
+    "half": [
+     8.08,
+     6.16,
+     6.42
+    ]
+   },
+   "ligandCcd": "SHH",
+   "resolution": 1.85,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 20,
+   "key": "HDAC8",
+   "gene": "HDAC8",
+   "pdbId": "1T64",
+   "name": "Histone deacetylase 8",
+   "cancerBits": 524800,
+   "cancers": [
+    "leukemia",
+    "sarcoma"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/1T64.bin",
+   "hash": "0x1bd76b19d67c5d200f0cc80899c24940b9ea198f2ffd6fb5667f8efd3029517b",
+   "atoms": 746,
+   "bytes": 5412,
+   "box": {
+    "center": [
+     61.341,
+     68.321,
+     14.043
+    ],
+    "half": [
+     8.41,
+     6.33,
+     6.0
+    ]
+   },
+   "ligandCcd": "TSN",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 21,
+   "key": "KAT6A",
+   "gene": "KAT6A",
+   "pdbId": "9DZN",
+   "name": "KAT6A histone acetyltransferase",
+   "cancerBits": 520,
+   "cancers": [
+    "breast",
+    "leukemia"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/9DZN.bin",
+   "hash": "0xbef1356d489537b2777df8f75dacca3b44ff1e7dd004f85e76948efc73c50706",
+   "atoms": 935,
+   "bytes": 6775,
+   "box": {
+    "center": [
+     13.143,
+     11.035,
+     16.474
+    ],
+    "half": [
+     10.55,
+     10.02,
+     6.0
+    ]
+   },
+   "ligandCcd": "CMC",
+   "resolution": 1.72,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 22,
+   "key": "MEN1",
+   "gene": "MEN1",
+   "pdbId": "4GQ4",
+   "name": "Menin, MLL binding pocket",
+   "cancerBits": 512,
+   "cancers": [
+    "leukemia"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/4GQ4.bin",
+   "hash": "0x0873fb5a4beec0119f999713c47d4ff568ad91c340e876866f771bd9d9c472a4",
+   "atoms": 1191,
+   "bytes": 8567,
+   "box": {
+    "center": [
+     -11.38,
+     11.117,
+     12.095
+    ],
+    "half": [
+     8.22,
+     8.81,
+     6.0
+    ]
+   },
+   "ligandCcd": "0RT",
+   "resolution": 1.27,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 23,
+   "key": "METTL3",
+   "gene": "METTL3",
+   "pdbId": "7O0L",
+   "name": "METTL3 RNA methyltransferase",
+   "cancerBits": 512,
+   "cancers": [
+    "leukemia"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/7O0L.bin",
+   "hash": "0xfa95f30e4435e99b5c8ddc37c2709cdf15ecfae073898babc3e60097b3281dc5",
+   "atoms": 952,
+   "bytes": 6894,
+   "box": {
+    "center": [
+     12.746,
+     -20.044,
+     -13.75
+    ],
+    "half": [
+     11.62,
+     8.35,
+     6.0
+    ]
+   },
+   "ligandCcd": "UXW",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 24,
+   "key": "WDR5",
+   "gene": "WDR5",
+   "pdbId": "8E9F",
+   "name": "WDR5 WIN site",
+   "cancerBits": 1536,
+   "cancers": [
+    "leukemia",
+    "lymphoma"
+   ],
+   "class": "epigenetic",
+   "pocket": "data/pockets/8E9F.bin",
+   "hash": "0x5b59931a78fd07b9863be9204c5cd2113c6041e859898d0cfe244d24c7dbbe72",
+   "atoms": 1096,
+   "bytes": 7902,
+   "box": {
+    "center": [
+     12.235,
+     17.591,
+     23.568
+    ],
+    "half": [
+     8.38,
+     7.89,
+     8.48
+    ]
+   },
+   "ligandCcd": "UY9",
+   "resolution": 1.55,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 25,
+   "key": "AKR1C3",
+   "gene": "AKR1C3",
+   "pdbId": "1RY8",
+   "name": "Aldo keto reductase 1C3",
+   "cancerBits": 576,
+   "cancers": [
+    "prostate",
+    "leukemia"
+   ],
+   "class": "hormone-receptor",
+   "pocket": "data/pockets/1RY8.bin",
+   "hash": "0x822ed96abefde87f232ee7ffc1b57dd0e49524cf3673f8fc6c5d7e4d6752ae7c",
+   "atoms": 1103,
+   "bytes": 7951,
+   "box": {
+    "center": [
+     12.246,
+     -15.894,
+     48.43
+    ],
+    "half": [
+     7.33,
+     9.62,
+     8.16
+    ]
+   },
+   "ligandCcd": "RUT",
+   "resolution": 1.69,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 26,
+   "key": "AR",
+   "gene": "AR",
+   "pdbId": "2AM9",
+   "name": "Androgen receptor ligand domain",
+   "cancerBits": 64,
+   "cancers": [
+    "prostate"
+   ],
+   "class": "hormone-receptor",
+   "pocket": "data/pockets/2AM9.bin",
+   "hash": "0x56855043b650a85c872c51fcbe44d89489ad3c66ebca794359aca75cd786efbd",
+   "atoms": 940,
+   "bytes": 6738,
+   "box": {
+    "center": [
+     26.767,
+     2.339,
+     4.632
+    ],
+    "half": [
+     6.0,
+     7.07,
+     6.0
+    ]
+   },
+   "ligandCcd": "TES",
+   "resolution": 1.64,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 27,
+   "key": "ESR1",
+   "gene": "ESR1",
+   "pdbId": "3ERT",
+   "name": "Estrogen receptor alpha ligand domain",
+   "cancerBits": 8456,
+   "cancers": [
+    "breast",
+    "ovarian",
+    "cervical"
+   ],
+   "class": "hormone-receptor",
+   "pocket": "data/pockets/3ERT.bin",
+   "hash": "0x7a9911e07343be43eb0852f0a4a0c63ecc8d2ebcb86f3bb6ac4c8858bf19f406",
+   "atoms": 920,
+   "bytes": 6670,
+   "box": {
+    "center": [
+     31.575,
+     -1.59,
+     25.599
+    ],
+    "half": [
+     8.52,
+     6.0,
+     8.74
+    ]
+   },
+   "ligandCcd": "OHT",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 28,
+   "key": "NR3C1",
+   "gene": "NR3C1",
+   "pdbId": "4P6W",
+   "name": "Glucocorticoid receptor ligand domain",
+   "cancerBits": 67072,
+   "cancers": [
+    "leukemia",
+    "lymphoma",
+    "myeloma"
+   ],
+   "class": "hormone-receptor",
+   "pocket": "data/pockets/4P6W.bin",
+   "hash": "0x1e81f3026c0a2588a4088c3d1bd4d0944d9c6149551e42a74111f925776444bc",
+   "atoms": 926,
+   "bytes": 6640,
+   "box": {
+    "center": [
+     27.004,
+     -52.533,
+     -36.625
+    ],
+    "half": [
+     6.0,
+     6.98,
+     7.49
+    ]
+   },
+   "ligandCcd": "MOF",
+   "resolution": 1.95,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 29,
+   "key": "PGR",
+   "gene": "PGR",
+   "pdbId": "1SR7",
+   "name": "Progesterone receptor ligand domain",
+   "cancerBits": 8200,
+   "cancers": [
+    "breast",
+    "ovarian"
+   ],
+   "class": "hormone-receptor",
+   "pocket": "data/pockets/1SR7.bin",
+   "hash": "0xb13fef4059744471115f91b249c9824475534a9bc2c8af35acfc01e8723ab468",
+   "atoms": 984,
+   "bytes": 7078,
+   "box": {
+    "center": [
+     11.34,
+     16.017,
+     9.293
+    ],
+    "half": [
+     6.5,
+     6.25,
+     8.17
+    ]
+   },
+   "ligandCcd": "MOF",
+   "resolution": 1.46,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 30,
+   "key": "ADORA2A",
+   "gene": "ADORA2A",
+   "pdbId": "8RW0",
+   "name": "Adenosine A2A receptor",
+   "cancerBits": 32769,
+   "cancers": [
+    "lung",
+    "kidney"
+   ],
+   "class": "immuno-oncology",
+   "pocket": "data/pockets/8RW0.bin",
+   "hash": "0x674ddcf03543ac2b89dcae9739537a10cc89c9bbb62d1d7e86c67eb3ec7ab36b",
+   "atoms": 960,
+   "bytes": 6910,
+   "box": {
+    "center": [
+     1.657,
+     8.782,
+     123.638
+    ],
+    "half": [
+     6.0,
+     9.66,
+     6.0
+    ]
+   },
+   "ligandCcd": "JQ9",
+   "resolution": 1.94,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 31,
+   "key": "ARG1",
+   "gene": "ARG1",
+   "pdbId": "8E5M",
+   "name": "Arginase 1",
+   "cancerBits": 3,
+   "cancers": [
+    "lung",
+    "colorectal"
+   ],
+   "class": "immuno-oncology",
+   "pocket": "data/pockets/8E5M.bin",
+   "hash": "0x27b9482a3c5f984671adb33355e801cd55ef85b2316cb47ed2b450d3c7156f32",
+   "atoms": 1094,
+   "bytes": 7888,
+   "box": {
+    "center": [
+     -17.574,
+     71.844,
+     20.697
+    ],
+    "half": [
+     7.91,
+     8.73,
+     9.35
+    ]
+   },
+   "ligandCcd": "UKR",
+   "resolution": 1.84,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 32,
+   "key": "CD274",
+   "gene": "CD274",
+   "pdbId": "5NIU",
+   "name": "PD-L1 immunoglobulin domains",
+   "cancerBits": 20481,
+   "cancers": [
+    "lung",
+    "melanoma",
+    "bladder"
+   ],
+   "class": "immuno-oncology",
+   "pocket": "data/pockets/5NIU.bin",
+   "hash": "0xc6b2bea444a5b297cfe66590d178d8c1de371acf3d047a4f17a7a89f15d1cdc8",
+   "atoms": 1099,
+   "bytes": 7963,
+   "box": {
+    "center": [
+     7.747,
+     60.336,
+     183.479
+    ],
+    "half": [
+     12.06,
+     9.87,
+     6.31
+    ]
+   },
+   "ligandCcd": "8YZ",
+   "resolution": 2.01,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 33,
+   "key": "MAP4K1",
+   "gene": "MAP4K1",
+   "pdbId": "6NG0",
+   "name": "HPK1 kinase domain",
+   "cancerBits": 4097,
+   "cancers": [
+    "lung",
+    "melanoma"
+   ],
+   "class": "immuno-oncology",
+   "pocket": "data/pockets/6NG0.bin",
+   "hash": "0x4e57654bfbbeeef9eb8d378def0ac4113d3df000751133f05c9ffd36a8828b9d",
+   "atoms": 768,
+   "bytes": 5606,
+   "box": {
+    "center": [
+     -33.377,
+     -83.475,
+     -21.917
+    ],
+    "half": [
+     8.09,
+     6.0,
+     8.75
+    ]
+   },
+   "ligandCcd": "B49",
+   "resolution": 2.05,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 34,
+   "key": "NT5E",
+   "gene": "NT5E",
+   "pdbId": "7QGL",
+   "name": "CD73 ecto 5 prime nucleotidase",
+   "cancerBits": 8201,
+   "cancers": [
+    "lung",
+    "breast",
+    "ovarian"
+   ],
+   "class": "immuno-oncology",
+   "pocket": "data/pockets/7QGL.bin",
+   "hash": "0x7a5d618724c9603c0fe6a99c5c281f85a259f5a8e9b021f3a7bb954f3fa5f84c",
+   "atoms": 860,
+   "bytes": 6210,
+   "box": {
+    "center": [
+     9.211,
+     15.253,
+     33.307
+    ],
+    "half": [
+     7.61,
+     6.94,
+     10.53
+    ]
+   },
+   "ligandCcd": "BW0",
+   "resolution": 1.5,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 35,
+   "key": "ACVR1",
+   "gene": "ACVR1",
+   "pdbId": "6SRH",
+   "name": "ALK2 activin receptor kinase",
+   "cancerBits": 2048,
+   "cancers": [
+    "brain"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6SRH.bin",
+   "hash": "0x7e6009b198a9f9ec29017e09931bfaa961de45634d96f5d824b2f947c520405c",
+   "atoms": 814,
+   "bytes": 5888,
+   "box": {
+    "center": [
+     -31.916,
+     21.803,
+     15.192
+    ],
+    "half": [
+     10.62,
+     6.06,
+     6.0
+    ]
+   },
+   "ligandCcd": "LU8",
+   "resolution": 1.25,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 36,
+   "key": "ALK",
+   "gene": "ALK",
+   "pdbId": "4MKC",
+   "name": "Anaplastic lymphoma kinase domain",
+   "cancerBits": 3073,
+   "cancers": [
+    "lung",
+    "lymphoma",
+    "brain"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4MKC.bin",
+   "hash": "0x3f135c8bc914b15d280aebc7c58330b1afe10b318a582a1d6192c784d569799d",
+   "atoms": 850,
+   "bytes": 6180,
+   "box": {
+    "center": [
+     -21.253,
+     9.84,
+     -7.668
+    ],
+    "half": [
+     8.58,
+     8.65,
+     6.17
+    ]
+   },
+   "ligandCcd": "4MK",
+   "resolution": 2.01,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 37,
+   "key": "BTK",
+   "gene": "BTK",
+   "pdbId": "5P9J",
+   "name": "Bruton tyrosine kinase",
+   "cancerBits": 1536,
+   "cancers": [
+    "lymphoma",
+    "leukemia"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/5P9J.bin",
+   "hash": "0x296eab9104412ad48de5db7cf04d3832a2b48fb16c72ad420464904afcf924e3",
+   "atoms": 947,
+   "bytes": 6819,
+   "box": {
+    "center": [
+     19.812,
+     7.156,
+     3.617
+    ],
+    "half": [
+     7.28,
+     6.76,
+     9.18
+    ]
+   },
+   "ligandCcd": "8E8",
+   "resolution": 1.08,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 38,
+   "key": "CDK1",
+   "gene": "CDK1",
+   "pdbId": "6GU2",
+   "name": "Cyclin dependent kinase 1",
+   "cancerBits": 532480,
+   "cancers": [
+    "ovarian",
+    "sarcoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6GU2.bin",
+   "hash": "0x3bcbb83a4b94b0d4656c6139bf40a0028eea15e0fb177112ea6562b2406c4e37",
+   "atoms": 818,
+   "bytes": 5884,
+   "box": {
+    "center": [
+     328.829,
+     213.268,
+     192.528
+    ],
+    "half": [
+     6.0,
+     6.98,
+     6.76
+    ]
+   },
+   "ligandCcd": "F9Z",
+   "resolution": 2.0,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 39,
+   "key": "CDK2",
+   "gene": "CDK2",
+   "pdbId": "1H00",
+   "name": "Cyclin dependent kinase 2",
+   "cancerBits": 8712,
+   "cancers": [
+    "ovarian",
+    "breast",
+    "leukemia"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/1H00.bin",
+   "hash": "0x3e762bebd3de55b7a8036b4923463689e38dccb9ce131c727d535c7ea05ca999",
+   "atoms": 760,
+   "bytes": 5510,
+   "box": {
+    "center": [
+     1.924,
+     27.646,
+     8.434
+    ],
+    "half": [
+     7.77,
+     9.42,
+     6.0
+    ]
+   },
+   "ligandCcd": "FCP",
+   "resolution": 1.6,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 40,
+   "key": "CHEK2",
+   "gene": "CHEK2",
+   "pdbId": "2YCF",
+   "name": "Checkpoint kinase 2",
+   "cancerBits": 72,
+   "cancers": [
+    "breast",
+    "prostate"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/2YCF.bin",
+   "hash": "0x7e1683564b72af5c547970ee54fb984b51dee4b51085b6aad74a15896ea489de",
+   "atoms": 974,
+   "bytes": 7048,
+   "box": {
+    "center": [
+     46.74,
+     16.085,
+     -6.794
+    ],
+    "half": [
+     6.0,
+     10.52,
+     11.62
+    ]
+   },
+   "ligandCcd": "YCF",
+   "resolution": 1.77,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 41,
+   "key": "CSNK1D",
+   "gene": "CSNK1D",
+   "pdbId": "6F26",
+   "name": "Casein kinase 1 delta",
+   "cancerBits": 2560,
+   "cancers": [
+    "leukemia",
+    "brain"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6F26.bin",
+   "hash": "0x9ad8c11d76a5d091b125cd07bd8ce8b649fd672ef7c698af023cccfbd961df19",
+   "atoms": 857,
+   "bytes": 6229,
+   "box": {
+    "center": [
+     38.17,
+     26.463,
+     66.544
+    ],
+    "half": [
+     6.0,
+     11.32,
+     10.11
+    ]
+   },
+   "ligandCcd": "C9Z",
+   "resolution": 1.83,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 42,
+   "key": "DDR1",
+   "gene": "DDR1",
+   "pdbId": "4BKJ",
+   "name": "Discoidin domain receptor 1",
+   "cancerBits": 3,
+   "cancers": [
+    "lung",
+    "colorectal"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4BKJ.bin",
+   "hash": "0xa4e3269b560c386f909c0644ea607203c349ca5d70684242bf8528a6d42486fd",
+   "atoms": 1315,
+   "bytes": 9475,
+   "box": {
+    "center": [
+     13.162,
+     -2.161,
+     9.61
+    ],
+    "half": [
+     9.39,
+     12.09,
+     6.0
+    ]
+   },
+   "ligandCcd": "STI",
+   "resolution": 1.7,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 43,
+   "key": "EGFR",
+   "gene": "EGFR",
+   "pdbId": "4WKQ",
+   "name": "Epidermal growth factor receptor kinase domain",
+   "cancerBits": 131075,
+   "cancers": [
+    "lung",
+    "colorectal",
+    "head and neck"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4WKQ.bin",
+   "hash": "0xb9ad69cc433fc6eeea679e8f0e9c8c0eec7b85b461146af8b16b6322de63d1bd",
+   "atoms": 917,
+   "bytes": 6609,
+   "box": {
+    "center": [
+     1.457,
+     194.208,
+     20.413
+    ],
+    "half": [
+     7.68,
+     7.71,
+     9.73
+    ]
+   },
+   "ligandCcd": "IRE",
+   "resolution": 1.85,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 44,
+   "key": "EPHA2",
+   "gene": "EPHA2",
+   "pdbId": "5I9X",
+   "name": "EPHA2 receptor kinase domain",
+   "cancerBits": 2120,
+   "cancers": [
+    "brain",
+    "breast",
+    "prostate"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/5I9X.bin",
+   "hash": "0x97c76df382a721e1e7b0b2a1ce8ef91ed8a3d54b94bdd2aa1d9d701b164ff468",
+   "atoms": 895,
+   "bytes": 6487,
+   "box": {
+    "center": [
+     -86.941,
+     -14.572,
+     7.43
+    ],
+    "half": [
+     12.07,
+     6.61,
+     6.78
+    ]
+   },
+   "ligandCcd": "DB8",
+   "resolution": 1.43,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 45,
+   "key": "ERBB2",
+   "gene": "ERBB2",
+   "pdbId": "3PP0",
+   "name": "HER2 receptor tyrosine kinase domain",
+   "cancerBits": 152,
+   "cancers": [
+    "breast",
+    "stomach",
+    "esophageal"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3PP0.bin",
+   "hash": "0xf9d85a4dea5d9d4d2549e500590b71071b479ee63101de7e2975420a5fe55220",
+   "atoms": 995,
+   "bytes": 7155,
+   "box": {
+    "center": [
+     34.614,
+     44.676,
+     -11.496
+    ],
+    "half": [
+     9.86,
+     6.64,
+     6.0
+    ]
+   },
+   "ligandCcd": "03Q",
+   "resolution": 2.25,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 46,
+   "key": "FGFR3",
+   "gene": "FGFR3",
+   "pdbId": "6LVM",
+   "name": "FGFR3 kinase domain",
+   "cancerBits": 81920,
+   "cancers": [
+    "bladder",
+    "myeloma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6LVM.bin",
+   "hash": "0x3649217e7900ec1522b3bb4d36292ecb379bd5e0e2be6ffef295461f7f61a76d",
+   "atoms": 1160,
+   "bytes": 8400,
+   "box": {
+    "center": [
+     -3.518,
+     1.018,
+     11.361
+    ],
+    "half": [
+     9.22,
+     11.38,
+     9.43
+    ]
+   },
+   "ligandCcd": "EVR",
+   "resolution": 2.53,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 47,
+   "key": "FGFR4",
+   "gene": "FGFR4",
+   "pdbId": "4XCU",
+   "name": "FGFR4 kinase domain",
+   "cancerBits": 4,
+   "cancers": [
+    "liver"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4XCU.bin",
+   "hash": "0xc76717e74ca5a9dacb8a85a9bc2b79e31d574ac7f0c877e5b42d9845e66991e8",
+   "atoms": 927,
+   "bytes": 6679,
+   "box": {
+    "center": [
+     -13.827,
+     4.769,
+     -21.667
+    ],
+    "half": [
+     7.72,
+     6.0,
+     9.01
+    ]
+   },
+   "ligandCcd": "40M",
+   "resolution": 1.71,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 48,
+   "key": "HASPIN",
+   "gene": "GSG2",
+   "pdbId": "4QTC",
+   "name": "Haspin histone kinase",
+   "cancerBits": 513,
+   "cancers": [
+    "leukemia",
+    "lung"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4QTC.bin",
+   "hash": "0x7db5132510bef1f3b6bd7d5c0bc7d8245e71bf42de5ee9732e8f6a040158b857",
+   "atoms": 1183,
+   "bytes": 8611,
+   "box": {
+    "center": [
+     58.373,
+     34.201,
+     10.955
+    ],
+    "half": [
+     12.19,
+     10.41,
+     8.09
+    ]
+   },
+   "ligandCcd": "38Z",
+   "resolution": 1.4,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 49,
+   "key": "ITK",
+   "gene": "ITK",
+   "pdbId": "3MIY",
+   "name": "Interleukin 2 inducible T cell kinase",
+   "cancerBits": 1024,
+   "cancers": [
+    "lymphoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3MIY.bin",
+   "hash": "0x5edad9880e7ee5860b788f4d0914833f2877667d7798cdc5b592bd14f64ff8f7",
+   "atoms": 713,
+   "bytes": 5181,
+   "box": {
+    "center": [
+     5.285,
+     -1.541,
+     -29.67
+    ],
+    "half": [
+     10.32,
+     6.0,
+     6.0
+    ]
+   },
+   "ligandCcd": "B49",
+   "resolution": 1.67,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 50,
+   "key": "JAK1",
+   "gene": "JAK1",
+   "pdbId": "4E4N",
+   "name": "Janus kinase 1",
+   "cancerBits": 1536,
+   "cancers": [
+    "leukemia",
+    "lymphoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4E4N.bin",
+   "hash": "0x6db185b041ac2cac1671ffc85c5c053ae835c1b9befda9cf2edfae75d863a416",
+   "atoms": 837,
+   "bytes": 6049,
+   "box": {
+    "center": [
+     15.333,
+     6.135,
+     0.613
+    ],
+    "half": [
+     6.0,
+     8.72,
+     6.0
+    ]
+   },
+   "ligandCcd": "0NL",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 51,
+   "key": "JAK2",
+   "gene": "JAK2",
+   "pdbId": "3KRR",
+   "name": "Janus kinase 2",
+   "cancerBits": 67072,
+   "cancers": [
+    "leukemia",
+    "lymphoma",
+    "myeloma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3KRR.bin",
+   "hash": "0x066e6fe99dea91924b004f2ad4772003e930ae5bca6ad63e22bd605927f4fc55",
+   "atoms": 823,
+   "bytes": 5951,
+   "box": {
+    "center": [
+     15.13,
+     11.389,
+     4.134
+    ],
+    "half": [
+     6.25,
+     10.09,
+     6.0
+    ]
+   },
+   "ligandCcd": "DQX",
+   "resolution": 1.8,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 52,
+   "key": "JAK3",
+   "gene": "JAK3",
+   "pdbId": "7C3N",
+   "name": "Janus kinase 3",
+   "cancerBits": 1536,
+   "cancers": [
+    "leukemia",
+    "lymphoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/7C3N.bin",
+   "hash": "0xbb577134054a1d7dcf271ca06833aaf8e7ddf5cbf41b37d7b98e41a3cce7fc89",
+   "atoms": 773,
+   "bytes": 5569,
+   "box": {
+    "center": [
+     8.971,
+     -1.191,
+     26.458
+    ],
+    "half": [
+     6.0,
+     6.33,
+     6.72
+    ]
+   },
+   "ligandCcd": "FHX",
+   "resolution": 1.98,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 53,
+   "key": "KDR",
+   "gene": "KDR",
+   "pdbId": "4ASD",
+   "name": "VEGFR2 kinase domain",
+   "cancerBits": 32774,
+   "cancers": [
+    "kidney",
+    "liver",
+    "colorectal"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4ASD.bin",
+   "hash": "0x16efc854b5a55fcf06d53ce56176c381cb8188e32ed57480059a7c826af27269",
+   "atoms": 1264,
+   "bytes": 9078,
+   "box": {
+    "center": [
+     -24.622,
+     -0.388,
+     -10.929
+    ],
+    "half": [
+     9.95,
+     6.63,
+     8.68
+    ]
+   },
+   "ligandCcd": "BAX",
+   "resolution": 2.03,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 54,
+   "key": "KIT",
+   "gene": "KIT",
+   "pdbId": "1T46",
+   "name": "KIT receptor tyrosine kinase domain",
+   "cancerBits": 528896,
+   "cancers": [
+    "sarcoma",
+    "leukemia",
+    "melanoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/1T46.bin",
+   "hash": "0x5d9871a862e45a32efcea9e369687dc8666fc60ea7496258637c39bb21f0042a",
+   "atoms": 1325,
+   "bytes": 9505,
+   "box": {
+    "center": [
+     26.181,
+     26.061,
+     40.364
+    ],
+    "half": [
+     8.52,
+     6.38,
+     11.64
+    ]
+   },
+   "ligandCcd": "STI",
+   "resolution": 1.6,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 55,
+   "key": "KRASG12D",
+   "gene": "KRAS",
+   "pdbId": "7RPZ",
+   "name": "KRAS GTPase, G12D switch II pocket",
+   "cancerBits": 34,
+   "cancers": [
+    "pancreatic",
+    "colorectal"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/7RPZ.bin",
+   "hash": "0x5bce2fb1b6c96a0fa45629bdecbaeae69d72d498320eba1b5fd60506e7124af0",
+   "atoms": 662,
+   "bytes": 4864,
+   "box": {
+    "center": [
+     1.714,
+     4.927,
+     -23.164
+    ],
+    "half": [
+     9.03,
+     8.86,
+     6.83
+    ]
+   },
+   "ligandCcd": "6IC",
+   "resolution": 1.3,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 56,
+   "key": "KRAS",
+   "gene": "KRAS",
+   "pdbId": "6OIM",
+   "name": "KRAS GTPase, switch II pocket",
+   "cancerBits": 35,
+   "cancers": [
+    "pancreatic",
+    "lung",
+    "colorectal"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6OIM.bin",
+   "hash": "0x10c40c43e85be6085117f1ae27763b23654a6af131aff5da8347aafd47c31b0b",
+   "atoms": 634,
+   "bytes": 4668,
+   "box": {
+    "center": [
+     1.872,
+     -8.26,
+     -1.361
+    ],
+    "half": [
+     9.24,
+     8.1,
+     6.0
+    ]
+   },
+   "ligandCcd": "MOV",
+   "resolution": 1.65,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 57,
+   "key": "LCK",
+   "gene": "LCK",
+   "pdbId": "2OF2",
+   "name": "LCK tyrosine kinase",
+   "cancerBits": 1536,
+   "cancers": [
+    "leukemia",
+    "lymphoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/2OF2.bin",
+   "hash": "0x943e2e20957f0752e1863a8ec2f0929ec0a772fc405291add35f878436986c81",
+   "atoms": 761,
+   "bytes": 5485,
+   "box": {
+    "center": [
+     25.942,
+     38.704,
+     84.261
+    ],
+    "half": [
+     7.95,
+     7.15,
+     6.0
+    ]
+   },
+   "ligandCcd": "547",
+   "resolution": 2.0,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 58,
+   "key": "MAP2K1",
+   "gene": "MAP2K1",
+   "pdbId": "3EQC",
+   "name": "MEK1 dual specificity kinase",
+   "cancerBits": 4099,
+   "cancers": [
+    "melanoma",
+    "lung",
+    "colorectal"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3EQC.bin",
+   "hash": "0x786d1e979edd27585799747932d7f52d316fd48484203617f168d2f1b5d1486b",
+   "atoms": 945,
+   "bytes": 6805,
+   "box": {
+    "center": [
+     -2.038,
+     59.587,
+     34.172
+    ],
+    "half": [
+     9.58,
+     6.84,
+     6.0
+    ]
+   },
+   "ligandCcd": "3BM",
+   "resolution": 1.8,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 59,
+   "key": "MAPK1",
+   "gene": "MAPK1",
+   "pdbId": "4QTE",
+   "name": "ERK2 mitogen activated kinase",
+   "cancerBits": 4130,
+   "cancers": [
+    "colorectal",
+    "melanoma",
+    "pancreatic"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4QTE.bin",
+   "hash": "0x2dc57b4d200061d368a27ad27425936be25a724986897f1d4760188d44fb9b0c",
+   "atoms": 989,
+   "bytes": 7113,
+   "box": {
+    "center": [
+     23.37,
+     69.225,
+     23.263
+    ],
+    "half": [
+     6.49,
+     11.37,
+     7.18
+    ]
+   },
+   "ligandCcd": "390",
+   "resolution": 1.5,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 60,
+   "key": "MAPK14",
+   "gene": "MAPK14",
+   "pdbId": "3FLN",
+   "name": "p38 alpha mitogen activated kinase",
+   "cancerBits": 66048,
+   "cancers": [
+    "leukemia",
+    "myeloma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3FLN.bin",
+   "hash": "0x24badfad151ab9c76df6768b6f76d8f441e4426e7f4b7ca5d0a45ec8159d8332",
+   "atoms": 870,
+   "bytes": 6280,
+   "box": {
+    "center": [
+     21.618,
+     10.308,
+     31.104
+    ],
+    "half": [
+     9.7,
+     6.0,
+     6.0
+    ]
+   },
+   "ligandCcd": "3FN",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 61,
+   "key": "MELK",
+   "gene": "MELK",
+   "pdbId": "5MAH",
+   "name": "Maternal embryonic leucine zipper kinase",
+   "cancerBits": 2056,
+   "cancers": [
+    "breast",
+    "brain"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/5MAH.bin",
+   "hash": "0xd7b129b193af68b0e1a6cd8dc3d72f4e98ab34b619d2d9259d63228ffee91adb",
+   "atoms": 753,
+   "bytes": 5461,
+   "box": {
+    "center": [
+     -14.216,
+     10.235,
+     -4.681
+    ],
+    "half": [
+     6.0,
+     6.0,
+     8.97
+    ]
+   },
+   "ligandCcd": "7KD",
+   "resolution": 2.0,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 62,
+   "key": "MET",
+   "gene": "MET",
+   "pdbId": "3LQ8",
+   "name": "MET hepatocyte growth factor receptor kinase",
+   "cancerBits": 32785,
+   "cancers": [
+    "lung",
+    "stomach",
+    "kidney"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3LQ8.bin",
+   "hash": "0x96ef00a03fac2649b0f9be5f25c4fa013576ebfdff0cec3fe0c92abbbb77d825",
+   "atoms": 1262,
+   "bytes": 9104,
+   "box": {
+    "center": [
+     0.206,
+     4.041,
+     28.968
+    ],
+    "half": [
+     14.64,
+     6.0,
+     9.58
+    ]
+   },
+   "ligandCcd": "88Z",
+   "resolution": 2.02,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 63,
+   "key": "MTOR",
+   "gene": "MTOR",
+   "pdbId": "4DRI",
+   "name": "mTOR kinase domain",
+   "cancerBits": 33800,
+   "cancers": [
+    "kidney",
+    "breast",
+    "lymphoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4DRI.bin",
+   "hash": "0x937617c96d659f230585b22942db3695425e410f8516cf9c94760a1b848922e8",
+   "atoms": 1070,
+   "bytes": 7720,
+   "box": {
+    "center": [
+     35.506,
+     49.953,
+     36.03
+    ],
+    "half": [
+     9.04,
+     10.21,
+     6.66
+    ]
+   },
+   "ligandCcd": "RAP",
+   "resolution": 1.45,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 64,
+   "key": "NEK2",
+   "gene": "NEK2",
+   "pdbId": "2XNM",
+   "name": "NIMA related kinase 2",
+   "cancerBits": 65544,
+   "cancers": [
+    "breast",
+    "myeloma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/2XNM.bin",
+   "hash": "0x8306bdbb4b57b8665b736f6538d38b7351a77500cdf47f67f034a27ceacb0c41",
+   "atoms": 779,
+   "bytes": 5611,
+   "box": {
+    "center": [
+     26.15,
+     10.714,
+     -18.345
+    ],
+    "half": [
+     6.89,
+     7.3,
+     7.0
+    ]
+   },
+   "ligandCcd": "WGZ",
+   "resolution": 1.85,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 65,
+   "key": "NTRK1",
+   "gene": "NTRK1",
+   "pdbId": "6D20",
+   "name": "TRKA kinase domain",
+   "cancerBits": 786433,
+   "cancers": [
+    "thyroid",
+    "lung",
+    "sarcoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6D20.bin",
+   "hash": "0x871d9c87fe2200f2338bf135c845b1c289cbe6fe63fd71e88f87bc3188ec9788",
+   "atoms": 1086,
+   "bytes": 7832,
+   "box": {
+    "center": [
+     -23.446,
+     2.972,
+     -13.355
+    ],
+    "half": [
+     8.49,
+     8.73,
+     6.0
+    ]
+   },
+   "ligandCcd": "FQG",
+   "resolution": 1.94,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 66,
+   "key": "NTRK3",
+   "gene": "NTRK3",
+   "pdbId": "6KZD",
+   "name": "TRKC kinase domain",
+   "cancerBits": 786432,
+   "cancers": [
+    "sarcoma",
+    "thyroid"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6KZD.bin",
+   "hash": "0x8c19e299e0f23e097bc7bafed47e1fc1d4628688e5ea41cfa14a19f8daed0206",
+   "atoms": 1123,
+   "bytes": 8091,
+   "box": {
+    "center": [
+     -10.851,
+     -14.748,
+     14.705
+    ],
+    "half": [
+     10.57,
+     7.46,
+     8.16
+    ]
+   },
+   "ligandCcd": "DZ6",
+   "resolution": 1.71,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 67,
+   "key": "PAK1",
+   "gene": "PAK1",
+   "pdbId": "3FXZ",
+   "name": "p21 activated kinase 1",
+   "cancerBits": 8200,
+   "cancers": [
+    "breast",
+    "ovarian"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3FXZ.bin",
+   "hash": "0x47fb0159c518629e831ba48c9877f5671f86f77f25ba08deabfdbf01fb903567",
+   "atoms": 847,
+   "bytes": 6119,
+   "box": {
+    "center": [
+     -12.407,
+     34.664,
+     -17.355
+    ],
+    "half": [
+     8.61,
+     6.52,
+     7.88
+    ]
+   },
+   "ligandCcd": "FLL",
+   "resolution": 1.64,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 68,
+   "key": "PDGFRA",
+   "gene": "PDGFRA",
+   "pdbId": "6JOL",
+   "name": "PDGFR alpha kinase domain",
+   "cancerBits": 526336,
+   "cancers": [
+    "sarcoma",
+    "brain"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6JOL.bin",
+   "hash": "0x8554f185df78bdcf94b1ca57449309b24b733b6b6156263a9cf35666ad73de80",
+   "atoms": 1170,
+   "bytes": 8420,
+   "box": {
+    "center": [
+     -37.855,
+     158.012,
+     1.596
+    ],
+    "half": [
+     6.67,
+     11.33,
+     9.73
+    ]
+   },
+   "ligandCcd": "STI",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 69,
+   "key": "PDPK1",
+   "gene": "PDPK1",
+   "pdbId": "3QD0",
+   "name": "PDK1 kinase domain",
+   "cancerBits": 72,
+   "cancers": [
+    "breast",
+    "prostate"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3QD0.bin",
+   "hash": "0x52126b32e6e5473eb56d05e2f0a88226f1c73902e7580ebe38435a3d2ddd9a9e",
+   "atoms": 983,
+   "bytes": 7111,
+   "box": {
+    "center": [
+     -45.77,
+     19.384,
+     11.582
+    ],
+    "half": [
+     9.3,
+     8.49,
+     6.0
+    ]
+   },
+   "ligandCcd": "3Q4",
+   "resolution": 1.99,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 70,
+   "key": "PIK3CA",
+   "gene": "PIK3CA",
+   "pdbId": "4JPS",
+   "name": "PI3K alpha catalytic subunit",
+   "cancerBits": 266,
+   "cancers": [
+    "breast",
+    "cervical",
+    "colorectal"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/4JPS.bin",
+   "hash": "0x4db9448045b03efb92822b1b1da7a91eac5739c39155e8a7492ec2a3831e3a91",
+   "atoms": 864,
+   "bytes": 6238,
+   "box": {
+    "center": [
+     -1.319,
+     -9.513,
+     16.948
+    ],
+    "half": [
+     6.0,
+     6.31,
+     8.59
+    ]
+   },
+   "ligandCcd": "1LT",
+   "resolution": 2.2,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 71,
+   "key": "PIM1",
+   "gene": "PIM1",
+   "pdbId": "3BGQ",
+   "name": "PIM1 kinase",
+   "cancerBits": 66624,
+   "cancers": [
+    "myeloma",
+    "lymphoma",
+    "prostate"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3BGQ.bin",
+   "hash": "0x61391f31cdbcb53175ff818dc6aaa43375eac9b2b36d3381db7f991ca5cb7780",
+   "atoms": 751,
+   "bytes": 5415,
+   "box": {
+    "center": [
+     -18.879,
+     37.198,
+     -1.52
+    ],
+    "half": [
+     6.0,
+     6.0,
+     6.69
+    ]
+   },
+   "ligandCcd": "VX2",
+   "resolution": 2.0,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 72,
+   "key": "PRKCQ",
+   "gene": "PRKCQ",
+   "pdbId": "1XJD",
+   "name": "Protein kinase C theta",
+   "cancerBits": 1536,
+   "cancers": [
+    "lymphoma",
+    "leukemia"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/1XJD.bin",
+   "hash": "0x1a16760b227ff9ccc9eabb2ff7c9f88d6d2657fde54b89cb8e6abe0dc642ef74",
+   "atoms": 802,
+   "bytes": 5772,
+   "box": {
+    "center": [
+     56.078,
+     8.068,
+     3.366
+    ],
+    "half": [
+     7.1,
+     6.77,
+     6.0
+    ]
+   },
+   "ligandCcd": "STU",
+   "resolution": 2.0,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 73,
+   "key": "RAF1",
+   "gene": "RAF1",
+   "pdbId": "8A68",
+   "name": "C-Raf serine threonine kinase domain",
+   "cancerBits": 33,
+   "cancers": [
+    "lung",
+    "pancreatic"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/8A68.bin",
+   "hash": "0x47772b75f17e78b2a3fb343531ff7021a0aa8b2100897e7e7e1b235808ad278c",
+   "atoms": 825,
+   "bytes": 5965,
+   "box": {
+    "center": [
+     -24.478,
+     22.101,
+     -1.388
+    ],
+    "half": [
+     6.88,
+     7.57,
+     8.01
+    ]
+   },
+   "ligandCcd": "L7U",
+   "resolution": 1.6,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 74,
+   "key": "RET",
+   "gene": "RET",
+   "pdbId": "6NEC",
+   "name": "RET receptor tyrosine kinase domain",
+   "cancerBits": 262145,
+   "cancers": [
+    "thyroid",
+    "lung"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/6NEC.bin",
+   "hash": "0x353f8ffb3d9aad3731b4c68caafce95a83084aba0894cb7e1c8d4e94d0a2b625",
+   "atoms": 907,
+   "bytes": 6539,
+   "box": {
+    "center": [
+     21.396,
+     15.748,
+     -26.091
+    ],
+    "half": [
+     11.3,
+     7.7,
+     6.27
+    ]
+   },
+   "ligandCcd": "XIN",
+   "resolution": 1.87,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 75,
+   "key": "SYK",
+   "gene": "SYK",
+   "pdbId": "1XBB",
+   "name": "Spleen tyrosine kinase",
+   "cancerBits": 1536,
+   "cancers": [
+    "lymphoma",
+    "leukemia"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/1XBB.bin",
+   "hash": "0x93b5ea32059717bbae9a461b4f29e96077d5df812666891f0c0cfe011dfa60be",
+   "atoms": 880,
+   "bytes": 6350,
+   "box": {
+    "center": [
+     0.049,
+     2.462,
+     11.885
+    ],
+    "half": [
+     9.66,
+     7.49,
+     6.77
+    ]
+   },
+   "ligandCcd": "STI",
+   "resolution": 1.57,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 76,
+   "key": "TGFBR1",
+   "gene": "TGFBR1",
+   "pdbId": "3HMM",
+   "name": "TGF beta receptor 1 kinase",
+   "cancerBits": 38,
+   "cancers": [
+    "pancreatic",
+    "liver",
+    "colorectal"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/3HMM.bin",
+   "hash": "0x11a230d8f380685f39539704c8011632712dfe77a7106aa8275d7cb0292a2e61",
+   "atoms": 852,
+   "bytes": 6122,
+   "box": {
+    "center": [
+     15.362,
+     66.78,
+     5.358
+    ],
+    "half": [
+     7.06,
+     6.0,
+     6.81
+    ]
+   },
+   "ligandCcd": "855",
+   "resolution": 1.7,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 77,
+   "key": "TTK",
+   "gene": "TTK",
+   "pdbId": "7LQD",
+   "name": "MPS1 spindle checkpoint kinase",
+   "cancerBits": 9,
+   "cancers": [
+    "breast",
+    "lung"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/7LQD.bin",
+   "hash": "0x039e033adac1f882c3d54674d400a65b06ab064c610faef108d5289a0be032e0",
+   "atoms": 1107,
+   "bytes": 8029,
+   "box": {
+    "center": [
+     69.829,
+     66.342,
+     44.814
+    ],
+    "half": [
+     8.37,
+     8.75,
+     10.32
+    ]
+   },
+   "ligandCcd": "YB4",
+   "resolution": 1.95,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 78,
+   "key": "WEE1",
+   "gene": "WEE1",
+   "pdbId": "5VC3",
+   "name": "WEE1 G2 checkpoint kinase",
+   "cancerBits": 532496,
+   "cancers": [
+    "ovarian",
+    "stomach",
+    "sarcoma"
+   ],
+   "class": "kinase",
+   "pocket": "data/pockets/5VC3.bin",
+   "hash": "0x542f026dd45b0435c36e1f1a04a80d49c569f033a6bb1c5438fd28b4b917033b",
+   "atoms": 994,
+   "bytes": 7188,
+   "box": {
+    "center": [
+     -5.008,
+     5.143,
+     10.719
+    ],
+    "half": [
+     10.08,
+     9.57,
+     6.0
+    ]
+   },
+   "ligandCcd": "DB8",
+   "resolution": 1.97,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 79,
+   "key": "ALDH1A1",
+   "gene": "ALDH1A1",
+   "pdbId": "8T0T",
+   "name": "Aldehyde dehydrogenase 1A1",
+   "cancerBits": 8193,
+   "cancers": [
+    "ovarian",
+    "lung"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/8T0T.bin",
+   "hash": "0x26e83824b3aba0584364ed8f1946ddd5fb71ec7e46885036aa172d3ab1c9f59e",
+   "atoms": 1034,
+   "bytes": 7396,
+   "box": {
+    "center": [
+     38.087,
+     -17.03,
+     14.382
+    ],
+    "half": [
+     7.92,
+     6.0,
+     7.27
+    ]
+   },
+   "ligandCcd": "Y6E",
+   "resolution": 1.75,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 80,
+   "key": "CA9",
+   "gene": "CA9",
+   "pdbId": "6G9U",
+   "name": "Carbonic anhydrase IX",
+   "cancerBits": 32776,
+   "cancers": [
+    "kidney",
+    "breast"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/6G9U.bin",
+   "hash": "0xcce002029ec82fcdfcb48039aaa8be286fa1fc6cda1b37a3adece781666eb6c1",
+   "atoms": 936,
+   "bytes": 6742,
+   "box": {
+    "center": [
+     12.967,
+     -28.034,
+     -58.966
+    ],
+    "half": [
+     7.27,
+     6.0,
+     8.03
+    ]
+   },
+   "ligandCcd": "ETK",
+   "resolution": 1.75,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 81,
+   "key": "DCK",
+   "gene": "DCK",
+   "pdbId": "7ZI3",
+   "name": "Deoxycytidine kinase",
+   "cancerBits": 544,
+   "cancers": [
+    "leukemia",
+    "pancreatic"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/7ZI3.bin",
+   "hash": "0x4efece10efb48b09640f781d60ef9d6a154542462db3c1be7351f542d67f645e",
+   "atoms": 981,
+   "bytes": 7057,
+   "box": {
+    "center": [
+     -10.82,
+     -34.378,
+     12.193
+    ],
+    "half": [
+     7.29,
+     10.85,
+     7.39
+    ]
+   },
+   "ligandCcd": "J98",
+   "resolution": 1.9,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 82,
+   "key": "DHODH",
+   "gene": "DHODH",
+   "pdbId": "6QU7",
+   "name": "Dihydroorotate dehydrogenase",
+   "cancerBits": 512,
+   "cancers": [
+    "leukemia"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/6QU7.bin",
+   "hash": "0x8f40f858871d85828efe2abb1829c7fec2728cba3fe7c534fb97026a9410a78d",
+   "atoms": 828,
+   "bytes": 5986,
+   "box": {
+    "center": [
+     33.359,
+     -11.558,
+     -22.82
+    ],
+    "half": [
+     6.0,
+     9.55,
+     6.0
+    ]
+   },
+   "ligandCcd": "JJE",
+   "resolution": 1.52,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 83,
+   "key": "EGLN1",
+   "gene": "EGLN1",
+   "pdbId": "7UMP",
+   "name": "Prolyl hydroxylase 2",
+   "cancerBits": 32768,
+   "cancers": [
+    "kidney"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/7UMP.bin",
+   "hash": "0x854360383d89a24d2a98a2256c1cdbef33d19d35bd0258db365ab3650a293cb8",
+   "atoms": 861,
+   "bytes": 6217,
+   "box": {
+    "center": [
+     42.003,
+     -20.251,
+     -13.648
+    ],
+    "half": [
+     8.38,
+     6.0,
+     6.0
+    ]
+   },
+   "ligandCcd": "A1Z",
+   "resolution": 1.8,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 84,
+   "key": "EPAS1",
+   "gene": "EPAS1",
+   "pdbId": "4XT2",
+   "name": "HIF2 alpha PAS B domain",
+   "cancerBits": 32768,
+   "cancers": [
+    "kidney"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/4XT2.bin",
+   "hash": "0x7b07eab4923f928ba1ecbff705589810d235790e2c86ff29befc3c62f8ece277",
+   "atoms": 832,
+   "bytes": 5982,
+   "box": {
+    "center": [
+     50.053,
+     0.944,
+     10.147
+    ],
+    "half": [
+     7.54,
+     6.0,
+     6.0
+    ]
+   },
+   "ligandCcd": "43L",
+   "resolution": 1.7,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 85,
+   "key": "IDH2",
+   "gene": "IDH2",
+   "pdbId": "5I96",
+   "name": "Isocitrate dehydrogenase 2, mitochondrial",
+   "cancerBits": 2560,
+   "cancers": [
+    "leukemia",
+    "brain"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/5I96.bin",
+   "hash": "0x584c304b28dbddf17565114c33a0c1a83ba0585090f2c7463d7bc0512c48f244",
+   "atoms": 1199,
+   "bytes": 8583,
+   "box": {
+    "center": [
+     -1.293,
+     15.052,
+     -28.495
+    ],
+    "half": [
+     6.0,
+     8.83,
+     7.53
+    ]
+   },
+   "ligandCcd": "69Q",
+   "resolution": 1.55,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 86,
+   "key": "MAT2A",
+   "gene": "MAT2A",
+   "pdbId": "8XAM",
+   "name": "Methionine adenosyltransferase 2A",
+   "cancerBits": 1056,
+   "cancers": [
+    "lymphoma",
+    "pancreatic"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/8XAM.bin",
+   "hash": "0x3ee5338760523d25695f3d6c5ec5a7c1d375e15e40e305be2f9b36da73103977",
+   "atoms": 1449,
+   "bytes": 10373,
+   "box": {
+    "center": [
+     -33.928,
+     -0.024,
+     -42.7
+    ],
+    "half": [
+     8.98,
+     9.21,
+     6.64
+    ]
+   },
+   "ligandCcd": "XRH",
+   "resolution": 1.3,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 87,
+   "key": "MTAP",
+   "gene": "MTAP",
+   "pdbId": "6DZ2",
+   "name": "Methylthioadenosine phosphorylase",
+   "cancerBits": 2080,
+   "cancers": [
+    "pancreatic",
+    "brain"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/6DZ2.bin",
+   "hash": "0x08ac78cbbfbc2bc8a06a57795b7bb1ef062cfa27380c2a750d3c9618febe1f7e",
+   "atoms": 1136,
+   "bytes": 8182,
+   "box": {
+    "center": [
+     53.897,
+     173.602,
+     183.09
+    ],
+    "half": [
+     7.19,
+     8.28,
+     8.02
+    ]
+   },
+   "ligandCcd": "OS5",
+   "resolution": 1.99,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 88,
+   "key": "NNMT",
+   "gene": "NNMT",
+   "pdbId": "7WMT",
+   "name": "Nicotinamide N methyltransferase",
+   "cancerBits": 8224,
+   "cancers": [
+    "pancreatic",
+    "ovarian"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/7WMT.bin",
+   "hash": "0xb258e476566a042de88eda6dadf2368eda95692eb01764f003bd219c5ee137e3",
+   "atoms": 852,
+   "bytes": 6154,
+   "box": {
+    "center": [
+     -23.341,
+     10.312,
+     3.863
+    ],
+    "half": [
+     6.0,
+     9.11,
+     7.1
+    ]
+   },
+   "ligandCcd": "1IV",
+   "resolution": 1.77,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 89,
+   "key": "PHGDH",
+   "gene": "PHGDH",
+   "pdbId": "7VA1",
+   "name": "Phosphoglycerate dehydrogenase",
+   "cancerBits": 4104,
+   "cancers": [
+    "breast",
+    "melanoma"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/7VA1.bin",
+   "hash": "0x89d25a5c003202095311fd680faafd6da0c5064bb6684729686244d9257c834e",
+   "atoms": 598,
+   "bytes": 4416,
+   "box": {
+    "center": [
+     20.526,
+     8.862,
+     46.056
+    ],
+    "half": [
+     8.63,
+     6.67,
+     10.98
+    ]
+   },
+   "ligandCcd": "5YP",
+   "resolution": 1.74,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 90,
+   "key": "PKM",
+   "gene": "PKM",
+   "pdbId": "3GR4",
+   "name": "Pyruvate kinase M2",
+   "cancerBits": 7,
+   "cancers": [
+    "lung",
+    "liver",
+    "colorectal"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/3GR4.bin",
+   "hash": "0x03534fe0b9c3f7cec30aafcafec2ded98221bb5ba0234bd9c020ef53807f14b4",
+   "atoms": 1128,
+   "bytes": 8086,
+   "box": {
+    "center": [
+     10.882,
+     3.221,
+     13.357
+    ],
+    "half": [
+     8.73,
+     6.0,
+     6.0
+    ]
+   },
+   "ligandCcd": "DYY",
+   "resolution": 1.6,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 91,
+   "key": "SPHK1",
+   "gene": "SPHK1",
+   "pdbId": "4V24",
+   "name": "Sphingosine kinase 1",
+   "cancerBits": 10,
+   "cancers": [
+    "breast",
+    "colorectal"
+   ],
+   "class": "metabolism",
+   "pocket": "data/pockets/4V24.bin",
+   "hash": "0x94e31419fcdaed8a83c17eb8168d0e86681b3c72207027d49b35388ec13f292c",
+   "atoms": 1178,
+   "bytes": 8476,
+   "box": {
+    "center": [
+     -26.126,
+     10.033,
+     -13.923
+    ],
+    "half": [
+     6.0,
+     8.45,
+     8.44
+    ]
+   },
+   "ligandCcd": "GYR",
+   "resolution": 1.8,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 92,
+   "key": "EIF4E",
+   "gene": "EIF4E",
+   "pdbId": "5EI3",
+   "name": "Eukaryotic translation initiation factor 4E",
+   "cancerBits": 1088,
+   "cancers": [
+    "lymphoma",
+    "prostate"
+   ],
+   "class": "other",
+   "pocket": "data/pockets/5EI3.bin",
+   "hash": "0xca2f5cb934850ad696fffa5eff075477e5ae78b0befb1f78b9e6f1242a21e15d",
+   "atoms": 578,
+   "bytes": 4204,
+   "box": {
+    "center": [
+     5.85,
+     -12.264,
+     -4.293
+    ],
+    "half": [
+     6.0,
+     6.28,
+     6.0
+    ]
+   },
+   "ligandCcd": "5O8",
+   "resolution": 1.71,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 93,
+   "key": "PTGS2",
+   "gene": "PTGS2",
+   "pdbId": "5F19",
+   "name": "Cyclooxygenase 2",
+   "cancerBits": 18,
+   "cancers": [
+    "colorectal",
+    "stomach"
+   ],
+   "class": "other",
+   "pocket": "data/pockets/5F19.bin",
+   "hash": "0x7af72fd6668de1f31a4806b9cd55d3c665bdfdf6ea51132eb808674f250ebd46",
+   "atoms": 1226,
+   "bytes": 8812,
+   "box": {
+    "center": [
+     31.003,
+     37.504,
+     13.718
+    ],
+    "half": [
+     6.8,
+     8.0,
+     8.35
+    ]
+   },
+   "ligandCcd": "COH",
+   "resolution": 2.04,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 94,
+   "key": "PTPN11",
+   "gene": "PTPN11",
+   "pdbId": "5EHR",
+   "name": "SHP2 phosphatase, allosteric site",
+   "cancerBits": 545,
+   "cancers": [
+    "lung",
+    "leukemia",
+    "pancreatic"
+   ],
+   "class": "phosphatase",
+   "pocket": "data/pockets/5EHR.bin",
+   "hash": "0x02685da604a7da6559b7019b6248d2a1be910ea44861c12f9ee1324eed67d7bd",
+   "atoms": 937,
+   "bytes": 6717,
+   "box": {
+    "center": [
+     20.445,
+     -24.236,
+     27.178
+    ],
+    "half": [
+     7.13,
+     6.0,
+     7.28
+    ]
+   },
+   "ligandCcd": "5OD",
+   "resolution": 1.7,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 95,
+   "key": "PTPN2",
+   "gene": "PTPN2",
+   "pdbId": "8U0H",
+   "name": "TC-PTP phosphatase",
+   "cancerBits": 4098,
+   "cancers": [
+    "melanoma",
+    "colorectal"
+   ],
+   "class": "phosphatase",
+   "pocket": "data/pockets/8U0H.bin",
+   "hash": "0x7db7c553b4ed76b8d82701e9e2a7383f67412c9c4360afa562dd94ed5ca4f7a5",
+   "atoms": 1301,
+   "bytes": 9457,
+   "box": {
+    "center": [
+     -0.295,
+     -14.347,
+     17.614
+    ],
+    "half": [
+     9.09,
+     20.13,
+     6.07
+    ]
+   },
+   "ligandCcd": "UB0",
+   "resolution": 1.93,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 96,
+   "key": "MMP9",
+   "gene": "MMP9",
+   "pdbId": "5I12",
+   "name": "Matrix metalloproteinase 9",
+   "cancerBits": 11,
+   "cancers": [
+    "breast",
+    "colorectal",
+    "lung"
+   ],
+   "class": "protease",
+   "pocket": "data/pockets/5I12.bin",
+   "hash": "0xf10eb34c160dcf6e06ae8157e3c64807cc286a9ef13fa1db97905cd3574bc18a",
+   "atoms": 763,
+   "bytes": 5571,
+   "box": {
+    "center": [
+     19.849,
+     -20.998,
+     20.771
+    ],
+    "half": [
+     7.24,
+     10.82,
+     8.1
+    ]
+   },
+   "ligandCcd": "H27",
+   "resolution": 1.59,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 97,
+   "key": "HSP90AA1",
+   "gene": "HSP90AA1",
+   "pdbId": "2XJX",
+   "name": "HSP90 alpha N terminal domain",
+   "cancerBits": 65545,
+   "cancers": [
+    "breast",
+    "lung",
+    "myeloma"
+   ],
+   "class": "protein-homeostasis",
+   "pocket": "data/pockets/2XJX.bin",
+   "hash": "0xacc524d387eecbae5b20576ee14df7773efcf10f3153df92cf9df6167179fef4",
+   "atoms": 793,
+   "bytes": 5741,
+   "box": {
+    "center": [
+     14.692,
+     -3.635,
+     5.777
+    ],
+    "half": [
+     6.0,
+     6.0,
+     8.75
+    ]
+   },
+   "ligandCcd": "XJX",
+   "resolution": 1.66,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 98,
+   "key": "TRAP1",
+   "gene": "TRAP1",
+   "pdbId": "7U8X",
+   "name": "TRAP1 mitochondrial chaperone",
+   "cancerBits": 66,
+   "cancers": [
+    "prostate",
+    "colorectal"
+   ],
+   "class": "protein-homeostasis",
+   "pocket": "data/pockets/7U8X.bin",
+   "hash": "0x3673f270ed4ed639d8d2478430ae48a06f31b2effbb7521acd41a15af400d4fa",
+   "atoms": 1020,
+   "bytes": 7330,
+   "box": {
+    "center": [
+     46.647,
+     100.66,
+     216.844
+    ],
+    "half": [
+     9.22,
+     7.41,
+     6.78
+    ]
+   },
+   "ligandCcd": "UJV",
+   "resolution": 1.6,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 99,
+   "key": "KIF11",
+   "gene": "KIF11",
+   "pdbId": "3ZCW",
+   "name": "Kinesin spindle protein Eg5",
+   "cancerBits": 521,
+   "cancers": [
+    "breast",
+    "leukemia",
+    "lung"
+   ],
+   "class": "structural",
+   "pocket": "data/pockets/3ZCW.bin",
+   "hash": "0xe2b1ead618ba9fa82da478e1c9710c2357febff0c9610ee0646c6f7955308f46",
+   "atoms": 870,
+   "bytes": 6280,
+   "box": {
+    "center": [
+     -3.51,
+     -2.489,
+     9.231
+    ],
+    "half": [
+     7.91,
+     7.07,
+     8.15
+    ]
+   },
+   "ligandCcd": "4A2",
+   "resolution": 1.69,
+   "method": "X-RAY DIFFRACTION"
+  },
+  {
+   "id": 100,
+   "key": "BCL6",
+   "gene": "BCL6",
+   "pdbId": "7RV8",
+   "name": "BCL6 BTB domain",
+   "cancerBits": 1024,
+   "cancers": [
+    "lymphoma"
+   ],
+   "class": "transcription",
+   "pocket": "data/pockets/7RV8.bin",
+   "hash": "0x260f033199ddcd59b17e4df658ddeebdbc05562a263643c2c3261c849de1f40a",
+   "atoms": 697,
+   "bytes": 5149,
+   "box": {
+    "center": [
+     12.15,
+     -0.125,
+     13.033
+    ],
+    "half": [
+     11.06,
+     6.47,
+     12.41
+    ]
+   },
+   "ligandCcd": "7ST",
+   "resolution": 1.25,
+   "method": "X-RAY DIFFRACTION"
+  }
+ ],
+ "ligands": [
+  {
+   "id": 1,
+   "key": "BERBERINE",
+   "name": "Berberine",
+   "topology": "data/topologies/BERBERINE.bin",
+   "hash": "0xfaedf0dbb7de1c46c2fbe4d641519e9275e0adcb93fdb0b060dc9efbefe4a2ca",
+   "atoms": 25,
+   "nrot": 2,
+   "bonds": 29,
+   "pairs13": 43,
+   "bytes": 521,
+   "file": "data/ligands/BERBERINE.sdf"
+  },
+  {
+   "id": 2,
+   "key": "CAMPTOTHECIN",
+   "name": "Camptothecin",
+   "topology": "data/topologies/CAMPTOTHECIN.bin",
+   "hash": "0x3ade878e727c4efc61315b3f1e83793a3d5e55a5509f284f9333e6fafccd333d",
+   "atoms": 26,
+   "nrot": 1,
+   "bonds": 30,
+   "pairs13": 47,
+   "bytes": 550,
+   "file": "data/ligands/CAMPTOTHECIN.sdf"
+  },
+  {
+   "id": 3,
+   "key": "CHELERYTHRINE",
+   "name": "Chelerythrine",
+   "topology": "data/topologies/CHELERYTHRINE.bin",
+   "hash": "0xc607a32916c8f8963dd14aea25ecd780a9da3fc91fb71c46bb179db175aada59",
+   "atoms": 26,
+   "nrot": 2,
+   "bonds": 30,
+   "pairs13": 45,
+   "bytes": 542,
+   "file": "data/ligands/CHELERYTHRINE.sdf"
+  },
+  {
+   "id": 4,
+   "key": "COLCHICINE",
+   "name": "Colchicine",
+   "topology": "data/topologies/COLCHICINE.bin",
+   "hash": "0x0ea4cedf316140bbf523644d25a4f86421a59699e43819aa4e0ebfd037cb2448",
+   "atoms": 29,
+   "nrot": 5,
+   "bonds": 31,
+   "pairs13": 44,
+   "bytes": 569,
+   "file": "data/ligands/COLCHICINE.sdf"
+  },
+  {
+   "id": 5,
+   "key": "EVODIAMINE",
+   "name": "Evodiamine",
+   "topology": "data/topologies/EVODIAMINE.bin",
+   "hash": "0x0e35b4a215d5242dd64e0d3428d2e09fb8e79f780f1bc120b30128c730fe7178",
+   "atoms": 23,
+   "nrot": 0,
+   "bonds": 27,
+   "pairs13": 41,
+   "bytes": 487,
+   "file": "data/ligands/EVODIAMINE.sdf"
+  },
+  {
+   "id": 6,
+   "key": "HARMINE",
+   "name": "Harmine",
+   "topology": "data/topologies/HARMINE.bin",
+   "hash": "0xbe7b7f93194ae3ec9b8b4ccd53dc37f84d64b8e0f541ad8b6b867c61d93664c6",
+   "atoms": 16,
+   "nrot": 1,
+   "bonds": 18,
+   "pairs13": 26,
+   "bytes": 328,
+   "file": "data/ligands/HARMINE.sdf"
+  },
+  {
+   "id": 7,
+   "key": "HOMOHARRINGTONINE",
+   "name": "Homoharringtonine",
+   "topology": "data/topologies/HOMOHARRINGTONINE.bin",
+   "hash": "0x3de2cdf485abe51798c9305bcaf80ffb022f4540208bf8d9092fed31db70fa4d",
+   "atoms": 39,
+   "nrot": 11,
+   "bonds": 43,
+   "pairs13": 66,
+   "bytes": 795,
+   "file": "data/ligands/HOMOHARRINGTONINE.sdf"
+  },
+  {
+   "id": 8,
+   "key": "INDIRUBIN",
+   "name": "Indirubin",
+   "topology": "data/topologies/INDIRUBIN.bin",
+   "hash": "0xf202d0ebb20de98c0a8029d6168d75ef9c59402b0893c4c5b20ae621e84e78f0",
+   "atoms": 20,
+   "nrot": 0,
+   "bonds": 23,
+   "pairs13": 34,
+   "bytes": 416,
+   "file": "data/ligands/INDIRUBIN.sdf"
+  },
+  {
+   "id": 9,
+   "key": "LYCORINE",
+   "name": "Lycorine",
+   "topology": "data/topologies/LYCORINE.bin",
+   "hash": "0x40dccd2293b9f43889415915e431e103c5c8038ba41eda7732c2fc777daddd95",
+   "atoms": 21,
+   "nrot": 0,
+   "bonds": 25,
+   "pairs13": 39,
+   "bytes": 453,
+   "file": "data/ligands/LYCORINE.sdf"
+  },
+  {
+   "id": 10,
+   "key": "MATRINE",
+   "name": "Matrine",
+   "topology": "data/topologies/MATRINE.bin",
+   "hash": "0xdb50acafea70744947cfc4464a5e7f1bf1dc3baccc7391a685c3b74b24f6e758",
+   "atoms": 18,
+   "nrot": 0,
+   "bonds": 21,
+   "pairs13": 31,
+   "bytes": 378,
+   "file": "data/ligands/MATRINE.sdf"
+  },
+  {
+   "id": 11,
+   "key": "NOSCAPINE",
+   "name": "Noscapine",
+   "topology": "data/topologies/NOSCAPINE.bin",
+   "hash": "0xbc152d15124619497d51c7fc03453f0a2c2f847ea07195b623e5da3440e2ada9",
+   "atoms": 30,
+   "nrot": 4,
+   "bonds": 34,
+   "pairs13": 51,
+   "bytes": 618,
+   "file": "data/ligands/NOSCAPINE.sdf"
+  },
+  {
+   "id": 12,
+   "key": "PIPERINE",
+   "name": "Piperine",
+   "topology": "data/topologies/PIPERINE.bin",
+   "hash": "0xd391f23be6e156425ffc1c4faf936b4326a18e81dbe35da299174f036a15e946",
+   "atoms": 21,
+   "nrot": 3,
+   "bonds": 23,
+   "pairs13": 30,
+   "bytes": 409,
+   "file": "data/ligands/PIPERINE.sdf"
+  },
+  {
+   "id": 13,
+   "key": "RUTAECARPINE",
+   "name": "Rutaecarpine",
+   "topology": "data/topologies/RUTAECARPINE.bin",
+   "hash": "0xb8c5e3cb0059d2027c5b4fb30d5f39f6a394984972f45a14f4544492834958c1",
+   "atoms": 22,
+   "nrot": 0,
+   "bonds": 26,
+   "pairs13": 39,
+   "bytes": 466,
+   "file": "data/ligands/RUTAECARPINE.sdf"
+  },
+  {
+   "id": 14,
+   "key": "SANGUINARINE",
+   "name": "Sanguinarine",
+   "topology": "data/topologies/SANGUINARINE.bin",
+   "hash": "0x0ec4a0145b1fc1b61ffce564235735eb26306d72ab58c1f8cb5190d32c90ecbd",
+   "atoms": 25,
+   "nrot": 0,
+   "bonds": 30,
+   "pairs13": 46,
+   "bytes": 537,
+   "file": "data/ligands/SANGUINARINE.sdf"
+  },
+  {
+   "id": 15,
+   "key": "TETRANDRINE",
+   "name": "Tetrandrine",
+   "topology": "data/topologies/TETRANDRINE.bin",
+   "hash": "0x6bb2fc8e539c2191c69d9c00328aabf88452da802abafae57398ffb6b2f6ccef",
+   "atoms": 46,
+   "nrot": 4,
+   "bonds": 52,
+   "pairs13": 76,
+   "bytes": 934,
+   "file": "data/ligands/TETRANDRINE.sdf"
+  },
+  {
+   "id": 16,
+   "key": "VINBLASTINE",
+   "name": "Vinblastine",
+   "topology": "data/topologies/VINBLASTINE.bin",
+   "hash": "0x5350ec04732089c3cf703ea0d6b1af568cea55c4f1a9b0b3be565540a2d168d4",
+   "atoms": 59,
+   "nrot": 10,
+   "bonds": 67,
+   "pairs13": 108,
+   "bytes": 1239,
+   "file": "data/ligands/VINBLASTINE.sdf"
+  },
+  {
+   "id": 17,
+   "key": "VINCRISTINE",
+   "name": "Vincristine",
+   "topology": "data/topologies/VINCRISTINE.bin",
+   "hash": "0x79423d3d1fa5d59d291ceb08493cfa6844d889aeda8005615747df410786cf09",
+   "atoms": 60,
+   "nrot": 10,
+   "bonds": 68,
+   "pairs13": 109,
+   "bytes": 1256,
+   "file": "data/ligands/VINCRISTINE.sdf"
+  },
+  {
+   "id": 18,
+   "key": "CYANIDIN",
+   "name": "Cyanidin",
+   "topology": "data/topologies/CYANIDIN.bin",
+   "hash": "0x0b304a7fda65745b2ce6fcb556fc8d723c789442789f6764dbd9776ec6189d70",
+   "atoms": 21,
+   "nrot": 1,
+   "bonds": 23,
+   "pairs13": 34,
+   "bytes": 425,
+   "file": "data/ligands/CYANIDIN.sdf"
+  },
+  {
+   "id": 19,
+   "key": "DELPHINIDIN",
+   "name": "Delphinidin",
+   "topology": "data/topologies/DELPHINIDIN.bin",
+   "hash": "0x569654e80fec7a46fd47fd45323963292a4fc15cdd33cee4746e3fb5b35c86d3",
+   "atoms": 22,
+   "nrot": 1,
+   "bonds": 24,
+   "pairs13": 36,
+   "bytes": 446,
+   "file": "data/ligands/DELPHINIDIN.sdf"
+  },
+  {
+   "id": 20,
+   "key": "ALOE_EMODIN",
+   "name": "Aloe-emodin",
+   "topology": "data/topologies/ALOE_EMODIN.bin",
+   "hash": "0xbe9841930e85786f018288f9aa43f03d18529738dc2c9fbf1b0b9eb8d31269d5",
+   "atoms": 20,
+   "nrot": 1,
+   "bonds": 22,
+   "pairs13": 33,
+   "bytes": 408,
+   "file": "data/ligands/ALOE_EMODIN.sdf"
+  },
+  {
+   "id": 21,
+   "key": "CHRYSOPHANOL",
+   "name": "Chrysophanol",
+   "topology": "data/topologies/CHRYSOPHANOL.bin",
+   "hash": "0x63946f26dca25a9c92b42c55eb8a621d2b6b52a56821726d0cb858b4371e500e",
+   "atoms": 19,
+   "nrot": 0,
+   "bonds": 21,
+   "pairs13": 32,
+   "bytes": 391,
+   "file": "data/ligands/CHRYSOPHANOL.sdf"
+  },
+  {
+   "id": 22,
+   "key": "EMODIN",
+   "name": "Emodin",
+   "topology": "data/topologies/EMODIN.bin",
+   "hash": "0x2aa01324ff1a19255900eb0e5bd9fa5b16fc7c878103428dc5605b89a12c22cc",
+   "atoms": 20,
+   "nrot": 0,
+   "bonds": 22,
+   "pairs13": 34,
+   "bytes": 412,
+   "file": "data/ligands/EMODIN.sdf"
+  },
+  {
+   "id": 23,
+   "key": "PHYSCION",
+   "name": "Physcion",
+   "topology": "data/topologies/PHYSCION.bin",
+   "hash": "0x2315083a19f5bd2bfa3a1f2874f66f683eaa5a07c44f0abf630400ba614ba4ce",
+   "atoms": 21,
+   "nrot": 1,
+   "bonds": 23,
+   "pairs13": 35,
+   "bytes": 429,
+   "file": "data/ligands/PHYSCION.sdf"
+  },
+  {
+   "id": 24,
+   "key": "RHEIN",
+   "name": "Rhein",
+   "topology": "data/topologies/RHEIN.bin",
+   "hash": "0xc6df64ac571690e28c91eed06d0263b6b22fce063494d0e6b4060b5754538b46",
+   "atoms": 21,
+   "nrot": 1,
+   "bonds": 23,
+   "pairs13": 35,
+   "bytes": 429,
+   "file": "data/ligands/RHEIN.sdf"
+  },
+  {
+   "id": 25,
+   "key": "GARCINOL",
+   "name": "Garcinol",
+   "topology": "data/topologies/GARCINOL.bin",
+   "hash": "0x510dab02500f809f1c0ee82f5f1356a7d1cb8990acf9b8e1ee0c88d0f4c5abd8",
+   "atoms": 44,
+   "nrot": 10,
+   "bonds": 46,
+   "pairs13": 71,
+   "bytes": 872,
+   "file": "data/ligands/GARCINOL.sdf"
+  },
+  {
+   "id": 26,
+   "key": "EMBELIN",
+   "name": "Embelin",
+   "topology": "data/topologies/EMBELIN.bin",
+   "hash": "0x226ecb43c3c4d71bb5c5fab217809f9f1b02e0b1d8a90f69e6edefbc53f905ab",
+   "atoms": 21,
+   "nrot": 10,
+   "bonds": 21,
+   "pairs13": 26,
+   "bytes": 385,
+   "file": "data/ligands/EMBELIN.sdf"
+  },
+  {
+   "id": 27,
+   "key": "THYMOQUINONE",
+   "name": "Thymoquinone",
+   "topology": "data/topologies/THYMOQUINONE.bin",
+   "hash": "0xd20686c93fffaa2a045b2941bb5c091352e19d805a4ad3e769acdd4e6ed506ea",
+   "atoms": 12,
+   "nrot": 1,
+   "bonds": 12,
+   "pairs13": 17,
+   "bytes": 232,
+   "file": "data/ligands/THYMOQUINONE.sdf"
+  },
+  {
+   "id": 28,
+   "key": "BETANIN",
+   "name": "Betanin",
+   "topology": "data/topologies/BETANIN.bin",
+   "hash": "0x9bff7cdd16f599b4fc3cdcd5109ebf6853480cbd67ebc864abaea03f1ed93c44",
+   "atoms": 39,
+   "nrot": 8,
+   "bonds": 42,
+   "pairs13": 62,
+   "bytes": 775,
+   "file": "data/ligands/BETANIN.sdf"
+  },
+  {
+   "id": 29,
+   "key": "BUFALIN",
+   "name": "Bufalin",
+   "topology": "data/topologies/BUFALIN.bin",
+   "hash": "0x9650def98885f200ed091f321dfcf5f5efd7a1c3ed45aa9e499d9877cf444b20",
+   "atoms": 28,
+   "nrot": 1,
+   "bonds": 32,
+   "pairs13": 52,
+   "bytes": 596,
+   "file": "data/ligands/BUFALIN.sdf"
+  },
+  {
+   "id": 30,
+   "key": "LYCOPENE",
+   "name": "Lycopene",
+   "topology": "data/topologies/LYCOPENE.bin",
+   "hash": "0xb0cf2933e8f7b25d9db3d1238a22f5efcfd89c03e972b94f56f411696a145976",
+   "atoms": 40,
+   "nrot": 16,
+   "bonds": 39,
+   "pairs13": 46,
+   "bytes": 708,
+   "file": "data/ligands/LYCOPENE.sdf"
+  },
+  {
+   "id": 31,
+   "key": "CARDAMONIN",
+   "name": "Cardamonin",
+   "topology": "data/topologies/CARDAMONIN.bin",
+   "hash": "0xfde5999456a951a80e8c1bdcac51ef4eeddcbc4fb0b55269e4da473f9a47e06b",
+   "atoms": 20,
+   "nrot": 4,
+   "bonds": 21,
+   "pairs13": 28,
+   "bytes": 384,
+   "file": "data/ligands/CARDAMONIN.sdf"
+  },
+  {
+   "id": 32,
+   "key": "ISOLIQUIRITIGENIN",
+   "name": "Isoliquiritigenin",
+   "topology": "data/topologies/ISOLIQUIRITIGENIN.bin",
+   "hash": "0x30f54fcec37120e77d1b7db6b25c20029cc46e371bfdebc417ac9062539e597e",
+   "atoms": 19,
+   "nrot": 3,
+   "bonds": 20,
+   "pairs13": 27,
+   "bytes": 367,
+   "file": "data/ligands/ISOLIQUIRITIGENIN.sdf"
+  },
+  {
+   "id": 33,
+   "key": "LICOCHALCONE_A",
+   "name": "Licochalcone A",
+   "topology": "data/topologies/LICOCHALCONE_A.bin",
+   "hash": "0x3d70572cc164c179af6a76594e230907b829d4aee92caf2e0c4f02ebd5e257d1",
+   "atoms": 25,
+   "nrot": 6,
+   "bonds": 26,
+   "pairs13": 37,
+   "bytes": 485,
+   "file": "data/ligands/LICOCHALCONE_A.sdf"
+  },
+  {
+   "id": 34,
+   "key": "PHLORETIN",
+   "name": "Phloretin",
+   "topology": "data/topologies/PHLORETIN.bin",
+   "hash": "0x17dbaeb2e0075fe72e1fd758588565f50bb163ecc6be8041d007222abae3ae37",
+   "atoms": 20,
+   "nrot": 4,
+   "bonds": 21,
+   "pairs13": 29,
+   "bytes": 388,
+   "file": "data/ligands/PHLORETIN.sdf"
+  },
+  {
+   "id": 35,
+   "key": "XANTHOHUMOL",
+   "name": "Xanthohumol",
+   "topology": "data/topologies/XANTHOHUMOL.bin",
+   "hash": "0x7c2b23ae94cc5ffa31bc556d8f20d663581ef33465caf700134639e479b7c3bc",
+   "atoms": 26,
+   "nrot": 6,
+   "bonds": 27,
+   "pairs13": 37,
+   "bytes": 498,
+   "file": "data/ligands/XANTHOHUMOL.sdf"
+  },
+  {
+   "id": 36,
+   "key": "DAPHNETIN",
+   "name": "Daphnetin",
+   "topology": "data/topologies/DAPHNETIN.bin",
+   "hash": "0x781dd1233a2571117d69cc49c1fc269ccf8d4f8ffd15cdf561a1b25c0fe032d7",
+   "atoms": 13,
+   "nrot": 0,
+   "bonds": 14,
+   "pairs13": 20,
+   "bytes": 261,
+   "file": "data/ligands/DAPHNETIN.sdf"
+  },
+  {
+   "id": 37,
+   "key": "ESCULETIN",
+   "name": "Esculetin",
+   "topology": "data/topologies/ESCULETIN.bin",
+   "hash": "0xca19634f3739311a92515e87a8951f270c4c683bb2453d29f5dddd97b33a6936",
+   "atoms": 13,
+   "nrot": 0,
+   "bonds": 14,
+   "pairs13": 20,
+   "bytes": 261,
+   "file": "data/ligands/ESCULETIN.sdf"
+  },
+  {
+   "id": 38,
+   "key": "OSTHOLE",
+   "name": "Osthole",
+   "topology": "data/topologies/OSTHOLE.bin",
+   "hash": "0x3f9c812a4c5a9eab603b72d7f4284b81e1acda7493e162814f31bb4038a2b165",
+   "atoms": 18,
+   "nrot": 3,
+   "bonds": 19,
+   "pairs13": 26,
+   "bytes": 350,
+   "file": "data/ligands/OSTHOLE.sdf"
+  },
+  {
+   "id": 39,
+   "key": "SCOPOLETIN",
+   "name": "Scopoletin",
+   "topology": "data/topologies/SCOPOLETIN.bin",
+   "hash": "0x4ebb377abb3fb484ec3b6c105cb2221af37e2f3f7308705f99ad28f2516b0760",
+   "atoms": 14,
+   "nrot": 1,
+   "bonds": 15,
+   "pairs13": 21,
+   "bytes": 278,
+   "file": "data/ligands/SCOPOLETIN.sdf"
+  },
+  {
+   "id": 40,
+   "key": "UMBELLIFERONE",
+   "name": "Umbelliferone",
+   "topology": "data/topologies/UMBELLIFERONE.bin",
+   "hash": "0x06c61def85c2b8a74d9c8efca60be75b80e9ebb3a60e48db67e75e999c67cabc",
+   "atoms": 12,
+   "nrot": 0,
+   "bonds": 13,
+   "pairs13": 18,
+   "bytes": 240,
+   "file": "data/ligands/UMBELLIFERONE.sdf"
+  },
+  {
+   "id": 41,
+   "key": "WEDELOLACTONE",
+   "name": "Wedelolactone",
+   "topology": "data/topologies/WEDELOLACTONE.bin",
+   "hash": "0x9e16a0fc759cf5b08828463d0d9aa5074ace869ffa077d43e3ea4d5341acc8ec",
+   "atoms": 23,
+   "nrot": 1,
+   "bonds": 26,
+   "pairs13": 40,
+   "bytes": 479,
+   "file": "data/ligands/WEDELOLACTONE.sdf"
+  },
+  {
+   "id": 42,
+   "key": "CURCUMIN",
+   "name": "Curcumin",
+   "topology": "data/topologies/CURCUMIN.bin",
+   "hash": "0x73aa875d9898f7f7b5032384fbc8e5d31025429d3352594d0e8db9723746de85",
+   "atoms": 27,
+   "nrot": 8,
+   "bonds": 28,
+   "pairs13": 37,
+   "bytes": 511,
+   "file": "data/ligands/CURCUMIN.sdf"
+  },
+  {
+   "id": 43,
+   "key": "SENNIDIN_A",
+   "name": "Sennidin A",
+   "topology": "data/topologies/SENNIDIN_A.bin",
+   "hash": "0xc7cfaf2d4db194be4c741909048863a6cc61d502bb2ef73633225cebd3c8a632",
+   "atoms": 40,
+   "nrot": 3,
+   "bonds": 45,
+   "pairs13": 70,
+   "bytes": 828,
+   "file": "data/ligands/SENNIDIN_A.sdf"
+  },
+  {
+   "id": 44,
+   "key": "ANDROGRAPHOLIDE",
+   "name": "Andrographolide",
+   "topology": "data/topologies/ANDROGRAPHOLIDE.bin",
+   "hash": "0x45022c74aa8bdff16fdca6d68870a62fd9262f00381bc48615a5794ccec936a3",
+   "atoms": 25,
+   "nrot": 3,
+   "bonds": 27,
+   "pairs13": 42,
+   "bytes": 509,
+   "file": "data/ligands/ANDROGRAPHOLIDE.sdf"
+  },
+  {
+   "id": 45,
+   "key": "INGENOL_MEBUTATE",
+   "name": "Ingenol mebutate",
+   "topology": "data/topologies/INGENOL_MEBUTATE.bin",
+   "hash": "0x24f308aa3af23b272e7294ac1426cbb089da0dbe71b1c5cc801af1c13f6b45c6",
+   "atoms": 31,
+   "nrot": 4,
+   "bonds": 34,
+   "pairs13": 54,
+   "bytes": 639,
+   "file": "data/ligands/INGENOL_MEBUTATE.sdf"
+  },
+  {
+   "id": 46,
+   "key": "ORIDONIN",
+   "name": "Oridonin",
+   "topology": "data/topologies/ORIDONIN.bin",
+   "hash": "0xc1e317d783b222f072869bcbbc0fb23206cd240dfd6db3fead77c4726e9040cd",
+   "atoms": 26,
+   "nrot": 0,
+   "bonds": 30,
+   "pairs13": 54,
+   "bytes": 578,
+   "file": "data/ligands/ORIDONIN.sdf"
+  },
+  {
+   "id": 47,
+   "key": "TRIPTOLIDE",
+   "name": "Triptolide",
+   "topology": "data/topologies/TRIPTOLIDE.bin",
+   "hash": "0xe6e14bc180d26b6ce2d99be4bd752ae9fd6ea09c391a37f48fa20dca70f90e8c",
+   "atoms": 26,
+   "nrot": 1,
+   "bonds": 32,
+   "pairs13": 50,
+   "bytes": 570,
+   "file": "data/ligands/TRIPTOLIDE.sdf"
+  },
+  {
+   "id": 48,
+   "key": "CRYPTOTANSHINONE",
+   "name": "Cryptotanshinone",
+   "topology": "data/topologies/CRYPTOTANSHINONE.bin",
+   "hash": "0xabda1aafb8e43ab699061c21a0cc7be61cd67cc60e9a907e9791720adc10f673",
+   "atoms": 22,
+   "nrot": 0,
+   "bonds": 25,
+   "pairs13": 40,
+   "bytes": 466,
+   "file": "data/ligands/CRYPTOTANSHINONE.sdf"
+  },
+  {
+   "id": 49,
+   "key": "TANSHINONE_IIA",
+   "name": "Tanshinone IIA",
+   "topology": "data/topologies/TANSHINONE_IIA.bin",
+   "hash": "0x2be7e0204c6aef80db29ebaf3a64b19f5125ca88fcae1adcceb028f0a995c002",
+   "atoms": 22,
+   "nrot": 0,
+   "bonds": 25,
+   "pairs13": 40,
+   "bytes": 466,
+   "file": "data/ligands/TANSHINONE_IIA.sdf"
+  },
+  {
+   "id": 50,
+   "key": "EGCG",
+   "name": "Epigallocatechin gallate",
+   "topology": "data/topologies/EGCG.bin",
+   "hash": "0x1d5d15d4f065ce2f4adc7c7d67bef1427051c8247c3b844f8a1acec4263f462e",
+   "atoms": 33,
+   "nrot": 4,
+   "bonds": 36,
+   "pairs13": 54,
+   "bytes": 665,
+   "file": "data/ligands/EGCG.sdf"
+  },
+  {
+   "id": 51,
+   "key": "PROCYANIDIN_B2",
+   "name": "Procyanidin B2",
+   "topology": "data/topologies/PROCYANIDIN_B2.bin",
+   "hash": "0x8e1cfe7735f767f03e666ddbeb6905d7c3f2b2dcf5f0d072f221cecfd09628a3",
+   "atoms": 42,
+   "nrot": 3,
+   "bonds": 47,
+   "pairs13": 72,
+   "bytes": 862,
+   "file": "data/ligands/PROCYANIDIN_B2.sdf"
+  },
+  {
+   "id": 52,
+   "key": "THEAFLAVIN",
+   "name": "Theaflavin",
+   "topology": "data/topologies/THEAFLAVIN.bin",
+   "hash": "0xd820601e72da218ddf97ebd17156d1ce35d43e51106608cdf1878ff6866e3250",
+   "atoms": 41,
+   "nrot": 2,
+   "bonds": 46,
+   "pairs13": 71,
+   "bytes": 845,
+   "file": "data/ligands/THEAFLAVIN.sdf"
+  },
+  {
+   "id": 53,
+   "key": "HESPERETIN",
+   "name": "Hesperetin",
+   "topology": "data/topologies/HESPERETIN.bin",
+   "hash": "0x091e8a4c985f1d7439ed3f56f86ff9dd9de90fb6194da5e79f5fe5c4e6c72ff1",
+   "atoms": 22,
+   "nrot": 2,
+   "bonds": 24,
+   "pairs13": 35,
+   "bytes": 442,
+   "file": "data/ligands/HESPERETIN.sdf"
+  },
+  {
+   "id": 54,
+   "key": "NARINGENIN",
+   "name": "Naringenin",
+   "topology": "data/topologies/NARINGENIN.bin",
+   "hash": "0x5ee158c144e407bdf1f8ecd02a840ebb90feb025758a055b40ab503310384d09",
+   "atoms": 20,
+   "nrot": 1,
+   "bonds": 22,
+   "pairs13": 32,
+   "bytes": 404,
+   "file": "data/ligands/NARINGENIN.sdf"
+  },
+  {
+   "id": 55,
+   "key": "DIHYDROMYRICETIN",
+   "name": "Dihydromyricetin",
+   "topology": "data/topologies/DIHYDROMYRICETIN.bin",
+   "hash": "0x87d23d405054976bdaa9c236ffafdbde586018f75849ce971dfa8bc296cde8db",
+   "atoms": 23,
+   "nrot": 1,
+   "bonds": 25,
+   "pairs13": 38,
+   "bytes": 467,
+   "file": "data/ligands/DIHYDROMYRICETIN.sdf"
+  },
+  {
+   "id": 56,
+   "key": "TAXIFOLIN",
+   "name": "Taxifolin",
+   "topology": "data/topologies/TAXIFOLIN.bin",
+   "hash": "0x419196b2dc9a84a813b34a5b8e169cd20a0173b8e85fdf3c000bdee7ab6bc849",
+   "atoms": 22,
+   "nrot": 1,
+   "bonds": 24,
+   "pairs13": 36,
+   "bytes": 446,
+   "file": "data/ligands/TAXIFOLIN.sdf"
+  },
+  {
+   "id": 57,
+   "key": "APIGENIN",
+   "name": "Apigenin",
+   "topology": "data/topologies/APIGENIN.bin",
+   "hash": "0x9775bbfc17cded117716ba97b83588363a465d327e63091e019792123208ff0b",
+   "atoms": 20,
+   "nrot": 1,
+   "bonds": 22,
+   "pairs13": 32,
+   "bytes": 404,
+   "file": "data/ligands/APIGENIN.sdf"
+  },
+  {
+   "id": 58,
+   "key": "BAICALEIN",
+   "name": "Baicalein",
+   "topology": "data/topologies/BAICALEIN.bin",
+   "hash": "0xec0847e4ca12d379ecc8179286159a915efc6460e71cd99c9a77d287d3e153bb",
+   "atoms": 20,
+   "nrot": 1,
+   "bonds": 22,
+   "pairs13": 32,
+   "bytes": 404,
+   "file": "data/ligands/BAICALEIN.sdf"
+  },
+  {
+   "id": 59,
+   "key": "CHRYSIN",
+   "name": "Chrysin",
+   "topology": "data/topologies/CHRYSIN.bin",
+   "hash": "0x689624b4e8ea613a8898b1e30e556b4a7243ca9779e48f1f20b9d92a810a812e",
+   "atoms": 19,
+   "nrot": 1,
+   "bonds": 21,
+   "pairs13": 30,
+   "bytes": 383,
+   "file": "data/ligands/CHRYSIN.sdf"
+  },
+  {
+   "id": 60,
+   "key": "LUTEOLIN",
+   "name": "Luteolin",
+   "topology": "data/topologies/LUTEOLIN.bin",
+   "hash": "0xe6db38a6db93cd33c2e03309924bb70d8e5e53feae65d37fdb4fbbc3e826e284",
+   "atoms": 21,
+   "nrot": 1,
+   "bonds": 23,
+   "pairs13": 34,
+   "bytes": 425,
+   "file": "data/ligands/LUTEOLIN.sdf"
+  },
+  {
+   "id": 61,
+   "key": "NOBILETIN",
+   "name": "Nobiletin",
+   "topology": "data/topologies/NOBILETIN.bin",
+   "hash": "0x373a261173c43cc2634f10f0f8342cf706aa107088fe309c44104de2d5784dcd",
+   "atoms": 29,
+   "nrot": 7,
+   "bonds": 31,
+   "pairs13": 44,
+   "bytes": 569,
+   "file": "data/ligands/NOBILETIN.sdf"
+  },
+  {
+   "id": 62,
+   "key": "ORIENTIN",
+   "name": "Orientin",
+   "topology": "data/topologies/ORIENTIN.bin",
+   "hash": "0x31ef0bfb53028f5c371e9a4d440190f8836fe9567d357c6c0a9c8da020696ad5",
+   "atoms": 32,
+   "nrot": 3,
+   "bonds": 35,
+   "pairs13": 53,
+   "bytes": 648,
+   "file": "data/ligands/ORIENTIN.sdf"
+  },
+  {
+   "id": 63,
+   "key": "TANGERETIN",
+   "name": "Tangeretin",
+   "topology": "data/topologies/TANGERETIN.bin",
+   "hash": "0xd5afa16761f0c6ee6b9bf47421e0b76b308ba1a3710b098611dcfebcfc6d7a87",
+   "atoms": 27,
+   "nrot": 6,
+   "bonds": 29,
+   "pairs13": 41,
+   "bytes": 531,
+   "file": "data/ligands/TANGERETIN.sdf"
+  },
+  {
+   "id": 64,
+   "key": "VITEXIN",
+   "name": "Vitexin",
+   "topology": "data/topologies/VITEXIN.bin",
+   "hash": "0x69da36d73cb2a3afedcff5049d8dca68810d53a3896cd7589266579c2b6fd747",
+   "atoms": 31,
+   "nrot": 3,
+   "bonds": 34,
+   "pairs13": 51,
+   "bytes": 627,
+   "file": "data/ligands/VITEXIN.sdf"
+  },
+  {
+   "id": 65,
+   "key": "WOGONIN",
+   "name": "Wogonin",
+   "topology": "data/topologies/WOGONIN.bin",
+   "hash": "0x258642063343bc5291cb8f5fe5a04633e3085bf9235f6ac926938c386d347a5a",
+   "atoms": 21,
+   "nrot": 2,
+   "bonds": 23,
+   "pairs13": 33,
+   "bytes": 421,
+   "file": "data/ligands/WOGONIN.sdf"
+  },
+  {
+   "id": 66,
+   "key": "FISETIN",
+   "name": "Fisetin",
+   "topology": "data/topologies/FISETIN.bin",
+   "hash": "0x39584661a2f8b3e975fb0a4955b88087b4f0fa03060ce55ae55d74f543947607",
+   "atoms": 21,
+   "nrot": 1,
+   "bonds": 23,
+   "pairs13": 34,
+   "bytes": 425,
+   "file": "data/ligands/FISETIN.sdf"
+  },
+  {
+   "id": 67,
+   "key": "KAEMPFEROL",
+   "name": "Kaempferol",
+   "topology": "data/topologies/KAEMPFEROL.bin",
+   "hash": "0x1a659d41847e580703716c1612b6b1a769a8522f867cd774a6f16a2f4f677e93",
+   "atoms": 21,
+   "nrot": 1,
+   "bonds": 23,
+   "pairs13": 34,
+   "bytes": 425,
+   "file": "data/ligands/KAEMPFEROL.sdf"
+  },
+  {
+   "id": 68,
+   "key": "MORIN",
+   "name": "Morin",
+   "topology": "data/topologies/MORIN.bin",
+   "hash": "0x460496a82b5893e9822db14dec173995b204efb73b311ff592de55398bf2c504",
+   "atoms": 22,
+   "nrot": 1,
+   "bonds": 24,
+   "pairs13": 36,
+   "bytes": 446,
+   "file": "data/ligands/MORIN.sdf"
+  },
+  {
+   "id": 69,
+   "key": "MYRICETIN",
+   "name": "Myricetin",
+   "topology": "data/topologies/MYRICETIN.bin",
+   "hash": "0x864cb95be8d203ebb66788fb8ac2c40d0fe915bb3216a4d246e7d5c8e4d27dbd",
+   "atoms": 23,
+   "nrot": 1,
+   "bonds": 25,
+   "pairs13": 38,
+   "bytes": 467,
+   "file": "data/ligands/MYRICETIN.sdf"
+  },
+  {
+   "id": 70,
+   "key": "QUERCETIN",
+   "name": "Quercetin",
+   "topology": "data/topologies/QUERCETIN.bin",
+   "hash": "0xba86d55e707bff798b2d1f36e33ccbd7a49ba58aca8780cb53f907feaabe2b8f",
+   "atoms": 22,
+   "nrot": 1,
+   "bonds": 24,
+   "pairs13": 36,
+   "bytes": 446,
+   "file": "data/ligands/QUERCETIN.sdf"
+  },
+  {
+   "id": 71,
+   "key": "SILIBININ",
+   "name": "Silibinin",
+   "topology": "data/topologies/SILIBININ.bin",
+   "hash": "0xc8e0e2b4a3130d6a5b193595689eb9fc6c68b7c301b51776c2acbb639bb103a0",
+   "atoms": 35,
+   "nrot": 4,
+   "bonds": 39,
+   "pairs13": 58,
+   "bytes": 711,
+   "file": "data/ligands/SILIBININ.sdf"
+  },
+  {
+   "id": 72,
+   "key": "BERGAPTEN",
+   "name": "Bergapten",
+   "topology": "data/topologies/BERGAPTEN.bin",
+   "hash": "0xd1a46229b0f4a262633a9630d64b538e81a40c3b4b2b3cf5509110366fd7a7b9",
+   "atoms": 16,
+   "nrot": 1,
+   "bonds": 18,
+   "pairs13": 26,
+   "bytes": 328,
+   "file": "data/ligands/BERGAPTEN.sdf"
+  },
+  {
+   "id": 73,
+   "key": "IMPERATORIN",
+   "name": "Imperatorin",
+   "topology": "data/topologies/IMPERATORIN.bin",
+   "hash": "0x415297cdd05d30c3f2f7fd4de4adabeaaa9206aea0ba500e3f64ccf0a7fba2bd",
+   "atoms": 20,
+   "nrot": 3,
+   "bonds": 22,
+   "pairs13": 31,
+   "bytes": 400,
+   "file": "data/ligands/IMPERATORIN.sdf"
+  },
+  {
+   "id": 74,
+   "key": "PSORALEN",
+   "name": "Psoralen",
+   "topology": "data/topologies/PSORALEN.bin",
+   "hash": "0x69be77a795e67b04d4d1eb25869a78791fbad0b51a6bad3884db98d8f199574a",
+   "atoms": 14,
+   "nrot": 0,
+   "bonds": 16,
+   "pairs13": 23,
+   "bytes": 290,
+   "file": "data/ligands/PSORALEN.sdf"
+  },
+  {
+   "id": 75,
+   "key": "DIINDOLYLMETHANE",
+   "name": "3,3'-Diindolylmethane",
+   "topology": "data/topologies/DIINDOLYLMETHANE.bin",
+   "hash": "0xc3c3e90ea898cdfa362e032392bffb387dc4d9ac512f82c38b8e2fa06ed32f8b",
+   "atoms": 19,
+   "nrot": 2,
+   "bonds": 22,
+   "pairs13": 31,
+   "bytes": 391,
+   "file": "data/ligands/DIINDOLYLMETHANE.sdf"
+  },
+  {
+   "id": 76,
+   "key": "INDOLE_3_CARBINOL",
+   "name": "Indole-3-carbinol",
+   "topology": "data/topologies/INDOLE_3_CARBINOL.bin",
+   "hash": "0xb27f579254c159ba3c748237b8aa8de89302d8d4fb77f91ea8b4473ad75cc218",
+   "atoms": 11,
+   "nrot": 1,
+   "bonds": 12,
+   "pairs13": 16,
+   "bytes": 219,
+   "file": "data/ligands/INDOLE_3_CARBINOL.sdf"
+  },
+  {
+   "id": 77,
+   "key": "PLUMERICIN",
+   "name": "Plumericin",
+   "topology": "data/topologies/PLUMERICIN.bin",
+   "hash": "0x3a3ca7dd2a95c8dac5e0080fda10a2f0318f5b6ace1baf0636adece3a51127a6",
+   "atoms": 21,
+   "nrot": 2,
+   "bonds": 24,
+   "pairs13": 38,
+   "bytes": 445,
+   "file": "data/ligands/PLUMERICIN.sdf"
+  },
+  {
+   "id": 78,
+   "key": "GLABRIDIN",
+   "name": "Glabridin",
+   "topology": "data/topologies/GLABRIDIN.bin",
+   "hash": "0x04e177f5f39689b3fc2f411fa67fb7c1265bb118e8151a484ac401bcaa1cbace",
+   "atoms": 24,
+   "nrot": 1,
+   "bonds": 27,
+   "pairs13": 41,
+   "bytes": 496,
+   "file": "data/ligands/GLABRIDIN.sdf"
+  },
+  {
+   "id": 79,
+   "key": "GENISTEIN",
+   "name": "Genistein",
+   "topology": "data/topologies/GENISTEIN.bin",
+   "hash": "0x3bd72720fa5afeb9e000c2a8a63331d5fc1d251ee1d2f7a85e6cd8c7f9675976",
+   "atoms": 20,
+   "nrot": 1,
+   "bonds": 22,
+   "pairs13": 32,
+   "bytes": 404,
+   "file": "data/ligands/GENISTEIN.sdf"
+  },
+  {
+   "id": 80,
+   "key": "BENZYL_ISOTHIOCYANATE",
+   "name": "Benzyl isothiocyanate",
+   "topology": "data/topologies/BENZYL_ISOTHIOCYANATE.bin",
+   "hash": "0x4ec2d91e986d0e1412bc47676408e47ba443b3a1d22ac0065724a91893e74a5b",
+   "atoms": 10,
+   "nrot": 2,
+   "bonds": 10,
+   "pairs13": 11,
+   "bytes": 182,
+   "file": "data/ligands/BENZYL_ISOTHIOCYANATE.sdf"
+  },
+  {
+   "id": 81,
+   "key": "PHENETHYL_ISOTHIOCYANATE",
+   "name": "Phenethyl isothiocyanate",
+   "topology": "data/topologies/PHENETHYL_ISOTHIOCYANATE.bin",
+   "hash": "0x9fedb844477388b16feef2b75087f68dd3ed54031d9ce9215f65283c8dc4df95",
+   "atoms": 11,
+   "nrot": 3,
+   "bonds": 11,
+   "pairs13": 12,
+   "bytes": 199,
+   "file": "data/ligands/PHENETHYL_ISOTHIOCYANATE.sdf"
+  },
+  {
+   "id": 82,
+   "key": "SULFORAPHANE",
+   "name": "Sulforaphane",
+   "topology": "data/topologies/SULFORAPHANE.bin",
+   "hash": "0x29ed2bd4d390d713560265604d2ce84bfa784216b401cd4d97d03b7c1fa5dc25",
+   "atoms": 10,
+   "nrot": 5,
+   "bonds": 9,
+   "pairs13": 9,
+   "bytes": 170,
+   "file": "data/ligands/SULFORAPHANE.sdf"
+  },
+  {
+   "id": 83,
+   "key": "ARCTIGENIN",
+   "name": "Arctigenin",
+   "topology": "data/topologies/ARCTIGENIN.bin",
+   "hash": "0x4e775226c2bad90085e085cc71be39ddd8750cd6b7c48aea1f8604eb820f5695",
+   "atoms": 27,
+   "nrot": 7,
+   "bonds": 29,
+   "pairs13": 40,
+   "bytes": 527,
+   "file": "data/ligands/ARCTIGENIN.sdf"
+  },
+  {
+   "id": 84,
+   "key": "MATAIRESINOL",
+   "name": "Matairesinol",
+   "topology": "data/topologies/MATAIRESINOL.bin",
+   "hash": "0x0de26551ee97b23d17e324115e8729b926688338443e1a5b44e29413f7917657",
+   "atoms": 26,
+   "nrot": 6,
+   "bonds": 28,
+   "pairs13": 39,
+   "bytes": 510,
+   "file": "data/ligands/MATAIRESINOL.sdf"
+  },
+  {
+   "id": 85,
+   "key": "PODOPHYLLOTOXIN",
+   "name": "Podophyllotoxin",
+   "topology": "data/topologies/PODOPHYLLOTOXIN.bin",
+   "hash": "0x4f2f15c8dadca84e7cdfabc52b3cfe20f30970a9cec3b3ea2ad45e6746d9950b",
+   "atoms": 30,
+   "nrot": 4,
+   "bonds": 34,
+   "pairs13": 51,
+   "bytes": 618,
+   "file": "data/ligands/PODOPHYLLOTOXIN.sdf"
+  },
+  {
+   "id": 86,
+   "key": "SECOISOLARICIRESINOL",
+   "name": "Secoisolariciresinol",
+   "topology": "data/topologies/SECOISOLARICIRESINOL.bin",
+   "hash": "0xd603c0643d6ffb568b28586207d5a9bd65b57d60ed550e38babb36536963fb23",
+   "atoms": 26,
+   "nrot": 9,
+   "bonds": 27,
+   "pairs13": 36,
+   "bytes": 494,
+   "file": "data/ligands/SECOISOLARICIRESINOL.sdf"
+  },
+  {
+   "id": 87,
+   "key": "SESAMIN",
+   "name": "Sesamin",
+   "topology": "data/topologies/SESAMIN.bin",
+   "hash": "0x188a3c4e750a0b1619c402dc4e26f374814b6fee94f4431da43558fe34740daa",
+   "atoms": 26,
+   "nrot": 2,
+   "bonds": 31,
+   "pairs13": 46,
+   "bytes": 550,
+   "file": "data/ligands/SESAMIN.sdf"
+  },
+  {
+   "id": 88,
+   "key": "LIMONIN",
+   "name": "Limonin",
+   "topology": "data/topologies/LIMONIN.bin",
+   "hash": "0xd54992aeb9238879f4f82de724bb9f6e1610c75583fe77d1b87da1e663fd4b98",
+   "atoms": 34,
+   "nrot": 1,
+   "bonds": 40,
+   "pairs13": 67,
+   "bytes": 742,
+   "file": "data/ligands/LIMONIN.sdf"
+  },
+  {
+   "id": 89,
+   "key": "NOMILIN",
+   "name": "Nomilin",
+   "topology": "data/topologies/NOMILIN.bin",
+   "hash": "0xecedbd92b25e371d5b8545e7649e7c5e2c186c5e20e8a41bbc3f453596391b6d",
+   "atoms": 37,
+   "nrot": 3,
+   "bonds": 42,
+   "pairs13": 69,
+   "bytes": 785,
+   "file": "data/ligands/NOMILIN.sdf"
+  },
+  {
+   "id": 90,
+   "key": "OBACUNONE",
+   "name": "Obacunone",
+   "topology": "data/topologies/OBACUNONE.bin",
+   "hash": "0x245ae4778dd4c3ca0be40611e8e48f98eebc81f201f4acbf3634fb81bf2ffe4a",
+   "atoms": 33,
+   "nrot": 1,
+   "bonds": 38,
+   "pairs13": 63,
+   "bytes": 709,
+   "file": "data/ligands/OBACUNONE.sdf"
+  },
+  {
+   "id": 91,
+   "key": "CARVACROL",
+   "name": "Carvacrol",
+   "topology": "data/topologies/CARVACROL.bin",
+   "hash": "0x31490798519a3cd352d82fb29ab07a72edc94dd24619e2bc34cce88ba04dda59",
+   "atoms": 11,
+   "nrot": 1,
+   "bonds": 11,
+   "pairs13": 15,
+   "bytes": 211,
+   "file": "data/ligands/CARVACROL.sdf"
+  },
+  {
+   "id": 92,
+   "key": "GERANIOL",
+   "name": "Geraniol",
+   "topology": "data/topologies/GERANIOL.bin",
+   "hash": "0x0a9391e39e299aae8e096f2dfb72527184c5be309832ee27649ff38a2b3797da",
+   "atoms": 11,
+   "nrot": 4,
+   "bonds": 10,
+   "pairs13": 11,
+   "bytes": 191,
+   "file": "data/ligands/GERANIOL.sdf"
+  },
+  {
+   "id": 93,
+   "key": "PERILLYL_ALCOHOL",
+   "name": "Perillyl alcohol",
+   "topology": "data/topologies/PERILLYL_ALCOHOL.bin",
+   "hash": "0xea102999def1d686b4c1bca1638bc298e824c72fcda0dd6eae90da0cd818588c",
+   "atoms": 11,
+   "nrot": 2,
+   "bonds": 11,
+   "pairs13": 14,
+   "bytes": 207,
+   "file": "data/ligands/PERILLYL_ALCOHOL.sdf"
+  },
+  {
+   "id": 94,
+   "key": "THYMOL",
+   "name": "Thymol",
+   "topology": "data/topologies/THYMOL.bin",
+   "hash": "0x7476acb325b73b2e3ffc9bee4723256115b58ea25728faa167320e13b5f7c0be",
+   "atoms": 11,
+   "nrot": 1,
+   "bonds": 11,
+   "pairs13": 15,
+   "bytes": 211,
+   "file": "data/ligands/THYMOL.sdf"
+  },
+  {
+   "id": 95,
+   "key": "HYPERICIN",
+   "name": "Hypericin",
+   "topology": "data/topologies/HYPERICIN.bin",
+   "hash": "0xe2d590847d8fdad364c058b83d72573e28b812603f7c55e59650cae7a66f1494",
+   "atoms": 38,
+   "nrot": 0,
+   "bonds": 45,
+   "pairs13": 76,
+   "bytes": 834,
+   "file": "data/ligands/HYPERICIN.sdf"
+  },
+  {
+   "id": 96,
+   "key": "BETA_LAPACHONE",
+   "name": "beta-Lapachone",
+   "topology": "data/topologies/BETA_LAPACHONE.bin",
+   "hash": "0x77a2eccd96ee79e75829306309867cd6ca379790278c24efa49109d913757169",
+   "atoms": 18,
+   "nrot": 0,
+   "bonds": 20,
+   "pairs13": 31,
+   "bytes": 374,
+   "file": "data/ligands/BETA_LAPACHONE.sdf"
+  },
+  {
+   "id": 97,
+   "key": "JUGLONE",
+   "name": "Juglone",
+   "topology": "data/topologies/JUGLONE.bin",
+   "hash": "0xf5c719a0cb2466de9f131d2c0712bb9805049f0191d0119fbfc4e3b11260b8d4",
+   "atoms": 13,
+   "nrot": 0,
+   "bonds": 14,
+   "pairs13": 20,
+   "bytes": 261,
+   "file": "data/ligands/JUGLONE.sdf"
+  },
+  {
+   "id": 98,
+   "key": "LAPACHOL",
+   "name": "Lapachol",
+   "topology": "data/topologies/LAPACHOL.bin",
+   "hash": "0x6441ca84d56968a20feaa84a86590d0f0937b90676ae5e5c0e3617de32d5e94e",
+   "atoms": 18,
+   "nrot": 2,
+   "bonds": 19,
+   "pairs13": 27,
+   "bytes": 354,
+   "file": "data/ligands/LAPACHOL.sdf"
+  },
+  {
+   "id": 99,
+   "key": "LAWSONE",
+   "name": "Lawsone",
+   "topology": "data/topologies/LAWSONE.bin",
+   "hash": "0x07854d8b01f8eda307a148b2f2b5ba3a69225b3afe496c5ea5a44660a907eff8",
+   "atoms": 13,
+   "nrot": 0,
+   "bonds": 14,
+   "pairs13": 20,
+   "bytes": 261,
+   "file": "data/ligands/LAWSONE.sdf"
+  },
+  {
+   "id": 100,
+   "key": "PLUMBAGIN",
+   "name": "Plumbagin",
+   "topology": "data/topologies/PLUMBAGIN.bin",
+   "hash": "0x1fc5c2d0ee9e9c6e693d00df3b143a823072801ac06a10aea704311a907883b7",
+   "atoms": 14,
+   "nrot": 0,
+   "bonds": 15,
+   "pairs13": 22,
+   "bytes": 282,
+   "file": "data/ligands/PLUMBAGIN.sdf"
+  },
+  {
+   "id": 101,
+   "key": "SHIKONIN",
+   "name": "Shikonin",
+   "topology": "data/topologies/SHIKONIN.bin",
+   "hash": "0xaec07f5b6f39a351739723979e29b53d00204e9c99b6bd00cc0ab0f27b963f9c",
+   "atoms": 21,
+   "nrot": 3,
+   "bonds": 22,
+   "pairs13": 32,
+   "bytes": 413,
+   "file": "data/ligands/SHIKONIN.sdf"
+  },
+  {
+   "id": 102,
+   "key": "HONOKIOL",
+   "name": "Honokiol",
+   "topology": "data/topologies/HONOKIOL.bin",
+   "hash": "0x586fbb30d8bffde8e1b9b200d236f9b584aa6f1312b166a31523d6f22858fb90",
+   "atoms": 20,
+   "nrot": 5,
+   "bonds": 21,
+   "pairs13": 28,
+   "bytes": 384,
+   "file": "data/ligands/HONOKIOL.sdf"
+  },
+  {
+   "id": 103,
+   "key": "MAGNOLOL",
+   "name": "Magnolol",
+   "topology": "data/topologies/MAGNOLOL.bin",
+   "hash": "0x171edbb54640a7a90d879f26554022f3aec6aae21f0a683bfbfaf18da87e70fd",
+   "atoms": 20,
+   "nrot": 5,
+   "bonds": 21,
+   "pairs13": 28,
+   "bytes": 384,
+   "file": "data/ligands/MAGNOLOL.sdf"
+  },
+  {
+   "id": 104,
+   "key": "AJOENE",
+   "name": "Ajoene",
+   "topology": "data/topologies/AJOENE.bin",
+   "hash": "0x6803838413bc2b15dd3c43f7e3beadb504a6689b7c6c14b59c79b737a8237d4e",
+   "atoms": 13,
+   "nrot": 8,
+   "bonds": 12,
+   "pairs13": 12,
+   "bytes": 221,
+   "file": "data/ligands/AJOENE.sdf"
+  },
+  {
+   "id": 105,
+   "key": "CHLOROGENIC_ACID",
+   "name": "Chlorogenic acid",
+   "topology": "data/topologies/CHLOROGENIC_ACID.bin",
+   "hash": "0xe5b66c6bad11ae766174e031d9611c576612d098b93a847977ea4ac28f08d809",
+   "atoms": 25,
+   "nrot": 5,
+   "bonds": 26,
+   "pairs13": 38,
+   "bytes": 489,
+   "file": "data/ligands/CHLOROGENIC_ACID.sdf"
+  },
+  {
+   "id": 106,
+   "key": "FERULIC_ACID",
+   "name": "Ferulic acid",
+   "topology": "data/topologies/FERULIC_ACID.bin",
+   "hash": "0x9e04950c5f9e61f95e885309236c27705b43c385fbe1949fdbe6b67bf13bdb7b",
+   "atoms": 14,
+   "nrot": 3,
+   "bonds": 14,
+   "pairs13": 18,
+   "bytes": 262,
+   "file": "data/ligands/FERULIC_ACID.sdf"
+  },
+  {
+   "id": 107,
+   "key": "ROSMARINIC_ACID",
+   "name": "Rosmarinic acid",
+   "topology": "data/topologies/ROSMARINIC_ACID.bin",
+   "hash": "0xe8a6e49bbaf7504595c4223b6974cd004e8138c8b5dd9c276ad2cd1ddd85ebd6",
+   "atoms": 26,
+   "nrot": 7,
+   "bonds": 27,
+   "pairs13": 37,
+   "bytes": 498,
+   "file": "data/ligands/ROSMARINIC_ACID.sdf"
+  },
+  {
+   "id": 108,
+   "key": "SALVIANOLIC_ACID_A",
+   "name": "Salvianolic acid A",
+   "topology": "data/topologies/SALVIANOLIC_ACID_A.bin",
+   "hash": "0x51d5687c32c8a8019942f72625fdee0df31f726454f27d50fc1b2f9bf774dace",
+   "atoms": 36,
+   "nrot": 9,
+   "bonds": 38,
+   "pairs13": 53,
+   "bytes": 696,
+   "file": "data/ligands/SALVIANOLIC_ACID_A.sdf"
+  },
+  {
+   "id": 109,
+   "key": "CAPE",
+   "name": "Caffeic acid phenethyl ester",
+   "topology": "data/topologies/CAPE.bin",
+   "hash": "0xe82fb6a81499ce6d9a0bef4ff59664c62329e4b9f5bde6ef70ce6f8e313c11e8",
+   "atoms": 21,
+   "nrot": 6,
+   "bonds": 22,
+   "pairs13": 28,
+   "bytes": 397,
+   "file": "data/ligands/CAPE.sdf"
+  },
+  {
+   "id": 110,
+   "key": "CINNAMALDEHYDE",
+   "name": "Cinnamaldehyde",
+   "topology": "data/topologies/CINNAMALDEHYDE.bin",
+   "hash": "0x8a99d9580f7dfd8a6e3b85ede6f823494795a93b06720ca2c24cd82119ac69e4",
+   "atoms": 10,
+   "nrot": 2,
+   "bonds": 10,
+   "pairs13": 11,
+   "bytes": 182,
+   "file": "data/ligands/CINNAMALDEHYDE.sdf"
+  },
+  {
+   "id": 111,
+   "key": "EUGENOL",
+   "name": "Eugenol",
+   "topology": "data/topologies/EUGENOL.bin",
+   "hash": "0x0e3ecf075504b71fdc2bec317913cc60173ae09aa3ec04dcdc8b2e008eb6503c",
+   "atoms": 12,
+   "nrot": 3,
+   "bonds": 12,
+   "pairs13": 15,
+   "bytes": 224,
+   "file": "data/ligands/EUGENOL.sdf"
+  },
+  {
+   "id": 112,
+   "key": "HYPERFORIN",
+   "name": "Hyperforin",
+   "topology": "data/topologies/HYPERFORIN.bin",
+   "hash": "0x0bcf12b079147052f3d00c1e1482f81a5212f9b43cfaad58d091f7f04c74761e",
+   "atoms": 39,
+   "nrot": 11,
+   "bonds": 40,
+   "pairs13": 61,
+   "bytes": 763,
+   "file": "data/ligands/HYPERFORIN.sdf"
+  },
+  {
+   "id": 113,
+   "key": "ELLAGIC_ACID",
+   "name": "Ellagic acid",
+   "topology": "data/topologies/ELLAGIC_ACID.bin",
+   "hash": "0x516b3c2552cbbb0ae34bcfa4c0fe77bbb5f37856dc18efaeb1dfcba3acb78d2a",
+   "atoms": 22,
+   "nrot": 0,
+   "bonds": 25,
+   "pairs13": 40,
+   "bytes": 466,
+   "file": "data/ligands/ELLAGIC_ACID.sdf"
+  },
+  {
+   "id": 114,
+   "key": "BRUSATOL",
+   "name": "Brusatol",
+   "topology": "data/topologies/BRUSATOL.bin",
+   "hash": "0xb1ccbcc6e4656a5eb65e7df0b57bf48ffd101c78f80936794eb4b28d4134098e",
+   "atoms": 37,
+   "nrot": 5,
+   "bonds": 41,
+   "pairs13": 68,
+   "bytes": 777,
+   "file": "data/ligands/BRUSATOL.sdf"
+  },
+  {
+   "id": 115,
+   "key": "DEGUELIN",
+   "name": "Deguelin",
+   "topology": "data/topologies/DEGUELIN.bin",
+   "hash": "0x0128c6344b64670c5d1c380f9dfec8517568462bc29ba4cd35427ed18bd6975a",
+   "atoms": 29,
+   "nrot": 2,
+   "bonds": 33,
+   "pairs13": 51,
+   "bytes": 605,
+   "file": "data/ligands/DEGUELIN.sdf"
+  },
+  {
+   "id": 116,
+   "key": "ROTENONE",
+   "name": "Rotenone",
+   "topology": "data/topologies/ROTENONE.bin",
+   "hash": "0xae8bedab0b69811cc671801919deb01a4c48593e218bb4b8393fa55011de9305",
+   "atoms": 29,
+   "nrot": 3,
+   "bonds": 33,
+   "pairs13": 50,
+   "bytes": 601,
+   "file": "data/ligands/ROTENONE.sdf"
+  },
+  {
+   "id": 117,
+   "key": "ALANTOLACTONE",
+   "name": "Alantolactone",
+   "topology": "data/topologies/ALANTOLACTONE.bin",
+   "hash": "0x32c3f44b8ade35404716283ea690fd3a00ea40237da965b8b972bb0b6fe6354a",
+   "atoms": 17,
+   "nrot": 0,
+   "bonds": 19,
+   "pairs13": 30,
+   "bytes": 357,
+   "file": "data/ligands/ALANTOLACTONE.sdf"
+  },
+  {
+   "id": 118,
+   "key": "ARTEMISININ",
+   "name": "Artemisinin",
+   "topology": "data/topologies/ARTEMISININ.bin",
+   "hash": "0x17377788f73187df000e3634953716d2c49ea864f235e97674d7acf1eba486d4",
+   "atoms": 20,
+   "nrot": 0,
+   "bonds": 23,
+   "pairs13": 38,
+   "bytes": 432,
+   "file": "data/ligands/ARTEMISININ.sdf"
+  },
+  {
+   "id": 119,
+   "key": "COSTUNOLIDE",
+   "name": "Costunolide",
+   "topology": "data/topologies/COSTUNOLIDE.bin",
+   "hash": "0xf414cbafc4e1bc06673c57237c34853448e3e6c583953c0da550f425bd69b13a",
+   "atoms": 17,
+   "nrot": 0,
+   "bonds": 18,
+   "pairs13": 25,
+   "bytes": 333,
+   "file": "data/ligands/COSTUNOLIDE.sdf"
+  },
+  {
+   "id": 120,
+   "key": "HELENALIN",
+   "name": "Helenalin",
+   "topology": "data/topologies/HELENALIN.bin",
+   "hash": "0x9f65ed695549f3904a392b92788c5c02abef4bcb7ad1471334c12de83aa0de99",
+   "atoms": 19,
+   "nrot": 0,
+   "bonds": 21,
+   "pairs13": 34,
+   "bytes": 399,
+   "file": "data/ligands/HELENALIN.sdf"
+  },
+  {
+   "id": 121,
+   "key": "PARTHENOLIDE",
+   "name": "Parthenolide",
+   "topology": "data/topologies/PARTHENOLIDE.bin",
+   "hash": "0x427c74a918d719eac219aa76c170e5bf46650f7cb754394cc0363d85437285de",
+   "atoms": 18,
+   "nrot": 0,
+   "bonds": 20,
+   "pairs13": 28,
+   "bytes": 362,
+   "file": "data/ligands/PARTHENOLIDE.sdf"
+  },
+  {
+   "id": 122,
+   "key": "ALPHA_HUMULENE",
+   "name": "alpha-Humulene",
+   "topology": "data/topologies/ALPHA_HUMULENE.bin",
+   "hash": "0x33a8834e83f17578157e9f41439caad072faf97034d5c5c6514dd1c1618fbb64",
+   "atoms": 15,
+   "nrot": 0,
+   "bonds": 15,
+   "pairs13": 20,
+   "bytes": 283,
+   "file": "data/ligands/ALPHA_HUMULENE.sdf"
+  },
+  {
+   "id": 123,
+   "key": "BETA_ELEMENE",
+   "name": "beta-Elemene",
+   "topology": "data/topologies/BETA_ELEMENE.bin",
+   "hash": "0x2c8e33908ae5ccc20e0efa30591d4eb04f67479da4ea730300ea04e8634e8dff",
+   "atoms": 15,
+   "nrot": 3,
+   "bonds": 15,
+   "pairs13": 22,
+   "bytes": 291,
+   "file": "data/ligands/BETA_ELEMENE.sdf"
+  },
+  {
+   "id": 124,
+   "key": "CARYOPHYLLENE_OXIDE",
+   "name": "Caryophyllene oxide",
+   "topology": "data/topologies/CARYOPHYLLENE_OXIDE.bin",
+   "hash": "0x2427d0f220357aa79270cfd6d9c18063a21e43bb9220b80f61f8f2d806d525ae",
+   "atoms": 16,
+   "nrot": 0,
+   "bonds": 18,
+   "pairs13": 25,
+   "bytes": 324,
+   "file": "data/ligands/CARYOPHYLLENE_OXIDE.sdf"
+  },
+  {
+   "id": 125,
+   "key": "FARNESOL",
+   "name": "Farnesol",
+   "topology": "data/topologies/FARNESOL.bin",
+   "hash": "0x40b5caf444325b2b19b991ac8e706fdd180c8b3eb8923508405ebc73ddaef1e1",
+   "atoms": 16,
+   "nrot": 7,
+   "bonds": 15,
+   "pairs13": 17,
+   "bytes": 280,
+   "file": "data/ligands/FARNESOL.sdf"
+  },
+  {
+   "id": 126,
+   "key": "GOSSYPOL",
+   "name": "Gossypol",
+   "topology": "data/topologies/GOSSYPOL.bin",
+   "hash": "0x7b33e645303786f78d1759f13dde750e274d65e485547ab841480c4d3ea6f17b",
+   "atoms": 38,
+   "nrot": 5,
+   "bonds": 41,
+   "pairs13": 64,
+   "bytes": 770,
+   "file": "data/ligands/GOSSYPOL.sdf"
+  },
+  {
+   "id": 127,
+   "key": "NEROLIDOL",
+   "name": "Nerolidol",
+   "topology": "data/topologies/NEROLIDOL.bin",
+   "hash": "0xe943f2c5eaabaae42eadd8ed4f2599c4f3dff0b9a0537801b3c3dce75ab1bdd4",
+   "atoms": 16,
+   "nrot": 7,
+   "bonds": 15,
+   "pairs13": 19,
+   "bytes": 288,
+   "file": "data/ligands/NEROLIDOL.sdf"
+  },
+  {
+   "id": 128,
+   "key": "ZERUMBONE",
+   "name": "Zerumbone",
+   "topology": "data/topologies/ZERUMBONE.bin",
+   "hash": "0x3e6aedd677050f7a0e3bd0e10db2a5fe6c338ae06a29094111616c76c9388a3d",
+   "atoms": 16,
+   "nrot": 0,
+   "bonds": 16,
+   "pairs13": 22,
+   "bytes": 304,
+   "file": "data/ligands/ZERUMBONE.sdf"
+  },
+  {
+   "id": 129,
+   "key": "DIOSGENIN",
+   "name": "Diosgenin",
+   "topology": "data/topologies/DIOSGENIN.bin",
+   "hash": "0xf8e38f4a16fe09ed9f0a55f18e091cec49502b5a51e48f54af9566baf30a9e88",
+   "atoms": 30,
+   "nrot": 0,
+   "bonds": 35,
+   "pairs13": 58,
+   "bytes": 650,
+   "file": "data/ligands/DIOSGENIN.sdf"
+  },
+  {
+   "id": 130,
+   "key": "COMBRETASTATIN_A4",
+   "name": "Combretastatin A4",
+   "topology": "data/topologies/COMBRETASTATIN_A4.bin",
+   "hash": "0x650e2df72f4245ca035999e382579505d75943ddf12575b1814ad1501c0bf75f",
+   "atoms": 23,
+   "nrot": 6,
+   "bonds": 24,
+   "pairs13": 32,
+   "bytes": 439,
+   "file": "data/ligands/COMBRETASTATIN_A4.sdf"
+  },
+  {
+   "id": 131,
+   "key": "PICEATANNOL",
+   "name": "Piceatannol",
+   "topology": "data/topologies/PICEATANNOL.bin",
+   "hash": "0xc6cb55d16f99edd31c2b81491f49575f47edef0b9c759ea85ecaa679ec83d634",
+   "atoms": 18,
+   "nrot": 2,
+   "bonds": 19,
+   "pairs13": 26,
+   "bytes": 350,
+   "file": "data/ligands/PICEATANNOL.sdf"
+  },
+  {
+   "id": 132,
+   "key": "PTEROSTILBENE",
+   "name": "Pterostilbene",
+   "topology": "data/topologies/PTEROSTILBENE.bin",
+   "hash": "0x03ed84d0271b75795c8c589d77d9649946a7a842f09eafcdd4620519a9449598",
+   "atoms": 19,
+   "nrot": 4,
+   "bonds": 20,
+   "pairs13": 26,
+   "bytes": 363,
+   "file": "data/ligands/PTEROSTILBENE.sdf"
+  },
+  {
+   "id": 133,
+   "key": "RESVERATROL",
+   "name": "Resveratrol",
+   "topology": "data/topologies/RESVERATROL.bin",
+   "hash": "0xeb67f1ae45d751534b938c0b7fb91e57c85c4903602da9731b60826d5e283ec1",
+   "atoms": 17,
+   "nrot": 2,
+   "bonds": 18,
+   "pairs13": 24,
+   "bytes": 329,
+   "file": "data/ligands/RESVERATROL.sdf"
+  },
+  {
+   "id": 134,
+   "key": "PACLITAXEL",
+   "name": "Paclitaxel",
+   "topology": "data/topologies/PACLITAXEL.bin",
+   "hash": "0xbf6376081058959abafe359a1baf5f1ec4e9105c6200aa3512334ce4c0f49ada",
+   "atoms": 62,
+   "nrot": 14,
+   "bonds": 68,
+   "pairs13": 103,
+   "bytes": 1250,
+   "file": "data/ligands/PACLITAXEL.sdf"
+  },
+  {
+   "id": 135,
+   "key": "ASIATIC_ACID",
+   "name": "Asiatic acid",
+   "topology": "data/topologies/ASIATIC_ACID.bin",
+   "hash": "0xab8c6c8858fd925fc132c1f6dab03f31bf6b4bda4ef1edc9c5afabbb9bc9683f",
+   "atoms": 35,
+   "nrot": 2,
+   "bonds": 39,
+   "pairs13": 67,
+   "bytes": 747,
+   "file": "data/ligands/ASIATIC_ACID.sdf"
+  },
+  {
+   "id": 136,
+   "key": "BETULIN",
+   "name": "Betulin",
+   "topology": "data/topologies/BETULIN.bin",
+   "hash": "0x66013cca84bacad9312eeb1cbcfbfd824c0c8889e97c2b5111cb09cacc8d58f6",
+   "atoms": 32,
+   "nrot": 2,
+   "bonds": 36,
+   "pairs13": 62,
+   "bytes": 688,
+   "file": "data/ligands/BETULIN.sdf"
+  },
+  {
+   "id": 137,
+   "key": "BETULINIC_ACID",
+   "name": "Betulinic acid",
+   "topology": "data/topologies/BETULINIC_ACID.bin",
+   "hash": "0x62244ddf8e3431b8f6bdab1ab8b28ff197cd91c8c019424e31dc5c338817a7b2",
+   "atoms": 33,
+   "nrot": 2,
+   "bonds": 37,
+   "pairs13": 64,
+   "bytes": 709,
+   "file": "data/ligands/BETULINIC_ACID.sdf"
+  },
+  {
+   "id": 138,
+   "key": "CELASTROL",
+   "name": "Celastrol",
+   "topology": "data/topologies/CELASTROL.bin",
+   "hash": "0xfc3979a9ea75f8ef92cbe25fb0d35eec803c0c8072f13a5afccfa4e206315888",
+   "atoms": 33,
+   "nrot": 1,
+   "bonds": 37,
+   "pairs13": 64,
+   "bytes": 709,
+   "file": "data/ligands/CELASTROL.sdf"
+  },
+  {
+   "id": 139,
+   "key": "COROSOLIC_ACID",
+   "name": "Corosolic acid",
+   "topology": "data/topologies/COROSOLIC_ACID.bin",
+   "hash": "0x4f929bf8b18bdf67f120241e4b17ece5f8dcf747db75859ca826c96ebe4891e0",
+   "atoms": 34,
+   "nrot": 1,
+   "bonds": 38,
+   "pairs13": 66,
+   "bytes": 730,
+   "file": "data/ligands/COROSOLIC_ACID.sdf"
+  },
+  {
+   "id": 140,
+   "key": "CUCURBITACIN_B",
+   "name": "Cucurbitacin B",
+   "topology": "data/topologies/CUCURBITACIN_B.bin",
+   "hash": "0xe6180f649a4936e956a7ec429663bde98f38ed647a117d59e503eacc0e8cf92b",
+   "atoms": 40,
+   "nrot": 6,
+   "bonds": 43,
+   "pairs13": 74,
+   "bytes": 836,
+   "file": "data/ligands/CUCURBITACIN_B.sdf"
+  },
+  {
+   "id": 141,
+   "key": "GLYCYRRHETINIC_ACID",
+   "name": "Glycyrrhetinic acid",
+   "topology": "data/topologies/GLYCYRRHETINIC_ACID.bin",
+   "hash": "0x73f3bb615ec14f852f54f82c67d4fa6665fcdebbdd19b1a226793745adda1493",
+   "atoms": 34,
+   "nrot": 1,
+   "bonds": 38,
+   "pairs13": 67,
+   "bytes": 734,
+   "file": "data/ligands/GLYCYRRHETINIC_ACID.sdf"
+  },
+  {
+   "id": 142,
+   "key": "LUPEOL",
+   "name": "Lupeol",
+   "topology": "data/topologies/LUPEOL.bin",
+   "hash": "0x888015f4697ac48e1a8a0eb0a24641f2bd18ed8cb3487c28a1e8b5460d4adeee",
+   "atoms": 31,
+   "nrot": 1,
+   "bonds": 35,
+   "pairs13": 61,
+   "bytes": 671,
+   "file": "data/ligands/LUPEOL.sdf"
+  },
+  {
+   "id": 143,
+   "key": "OLEANOLIC_ACID",
+   "name": "Oleanolic acid",
+   "topology": "data/topologies/OLEANOLIC_ACID.bin",
+   "hash": "0x5322a9dbac67f0dee599db2098849642580acebaa124cae102317aff9e18c9d1",
+   "atoms": 33,
+   "nrot": 1,
+   "bonds": 37,
+   "pairs13": 65,
+   "bytes": 713,
+   "file": "data/ligands/OLEANOLIC_ACID.sdf"
+  },
+  {
+   "id": 144,
+   "key": "URSOLIC_ACID",
+   "name": "Ursolic acid",
+   "topology": "data/topologies/URSOLIC_ACID.bin",
+   "hash": "0x9fb888bea1a9f8ee66d43cbf49cfd926b43bc4bb9a7b0c90e7a585180a26b808",
+   "atoms": 33,
+   "nrot": 1,
+   "bonds": 37,
+   "pairs13": 64,
+   "bytes": 709,
+   "file": "data/ligands/URSOLIC_ACID.sdf"
+  },
+  {
+   "id": 145,
+   "key": "GINSENOSIDE_RG3",
+   "name": "Ginsenoside Rg3",
+   "topology": "data/topologies/GINSENOSIDE_RG3.bin",
+   "hash": "0x8f8d9389efdc4932d41e03a4b462aa118c4d7c80bf790a39ae7525b803b89f92",
+   "atoms": 55,
+   "nrot": 10,
+   "bonds": 60,
+   "pairs13": 97,
+   "bytes": 1131,
+   "file": "data/ligands/GINSENOSIDE_RG3.sdf"
+  },
+  {
+   "id": 146,
+   "key": "GINSENOSIDE_RH2",
+   "name": "Ginsenoside Rh2",
+   "topology": "data/topologies/GINSENOSIDE_RH2.bin",
+   "hash": "0x3a9a7a32bfc807658887b8801090a8c9e07a7d0ad23fa557645cc468e88f7571",
+   "atoms": 44,
+   "nrot": 7,
+   "bonds": 48,
+   "pairs13": 79,
+   "bytes": 912,
+   "file": "data/ligands/GINSENOSIDE_RH2.sdf"
+  },
+  {
+   "id": 147,
+   "key": "GINGEROL",
+   "name": "6-Gingerol",
+   "topology": "data/topologies/GINGEROL.bin",
+   "hash": "0xe421d32e393ee1d4c9f4c217228d619fcbacc78906eba086054ae3e6774c4b2d",
+   "atoms": 21,
+   "nrot": 10,
+   "bonds": 21,
+   "pairs13": 26,
+   "bytes": 385,
+   "file": "data/ligands/GINGEROL.sdf"
+  },
+  {
+   "id": 148,
+   "key": "CAPSAICIN",
+   "name": "Capsaicin",
+   "topology": "data/topologies/CAPSAICIN.bin",
+   "hash": "0x4c73a864c34a68e5bbceb80b2f72f3c61b88e7494e126b7618743cd07d80e30e",
+   "atoms": 22,
+   "nrot": 9,
+   "bonds": 22,
+   "pairs13": 27,
+   "bytes": 402,
+   "file": "data/ligands/CAPSAICIN.sdf"
+  },
+  {
+   "id": 149,
+   "key": "WITHAFERIN_A",
+   "name": "Withaferin A",
+   "topology": "data/topologies/WITHAFERIN_A.bin",
+   "hash": "0x742b41b3d2ffb1edf6bc13cd2f2a1504c10d6e2c60fb3110d42566feb9c67243",
+   "atoms": 34,
+   "nrot": 3,
+   "bonds": 39,
+   "pairs13": 62,
+   "bytes": 718,
+   "file": "data/ligands/WITHAFERIN_A.sdf"
+  },
+  {
+   "id": 150,
+   "key": "ALPHA_MANGOSTIN",
+   "name": "alpha-Mangostin",
+   "topology": "data/topologies/ALPHA_MANGOSTIN.bin",
+   "hash": "0xf9d9c1509a238d06636a1d445c9c82bf81c234f84c83a1673adb48a98f5b6cf7",
+   "atoms": 30,
+   "nrot": 5,
+   "bonds": 32,
+   "pairs13": 47,
+   "bytes": 594,
+   "file": "data/ligands/ALPHA_MANGOSTIN.sdf"
+  },
+  {
+   "id": 151,
+   "key": "GAMBOGIC_ACID",
+   "name": "Gambogic acid",
+   "topology": "data/topologies/GAMBOGIC_ACID.bin",
+   "hash": "0xc9720b4ddc8ab6b2c666802a42b557934637880c0f57adcd56df09012b13857e",
+   "atoms": 46,
+   "nrot": 8,
+   "bonds": 51,
+   "pairs13": 83,
+   "bytes": 958,
+   "file": "data/ligands/GAMBOGIC_ACID.sdf"
+  },
+  {
+   "id": 152,
+   "key": "MANGIFERIN",
+   "name": "Mangiferin",
+   "topology": "data/topologies/MANGIFERIN.bin",
+   "hash": "0xbca8d279f88d28282c041503bb9fc9b5e68968365b012288b2f0dbc80e680fb9",
+   "atoms": 30,
+   "nrot": 2,
+   "bonds": 33,
+   "pairs13": 51,
+   "bytes": 614,
+   "file": "data/ligands/MANGIFERIN.sdf"
+  }
+ ],
+ "tables": {
+  "file": "data/tables/tables.bin",
+  "hash": "0x0ecc4dd8e9494c3eb87f910dec144d463f5dc8e285fbbbbeaded5061d0365e93",
+  "bytes": 13010
+ }
+}

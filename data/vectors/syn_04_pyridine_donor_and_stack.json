@@ -1,0 +1,76 @@
+{
+ "name": "syn_04",
+ "kind": "synthetic",
+ "description": "Pyridine ring (N_A, 2 x C_P, 3 x C_H), nrot=0, three para pairs at graph distance 3 (clash floor checked). Pocket: N_D donor 2.90 A from the ring N along the lone pair, two C_H at 3.6 A above and below the ring.",
+ "pocket_hex": "0x53594e3400030258025802580000000000000000000000000404040100780000fe980000000000016800000001ad00000300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000200020002000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003000300030003",
+ "pocket_keccak": "0x0d89e6187b7b9aefb79d2cf641724251729a5fa5087c9556fab8997b4810b0d6",
+ "pocket_atoms": 3,
+ "half": [
+  600,
+  600,
+  600
+ ],
+ "grid": [
+  4,
+  4,
+  4
+ ],
+ "topology_hex": "0x01060600000600000401000000010001008b0005008b0102008b0203008b0304008b0405008b000200f1000400f1010300f1010500f1020400f1030500f10000000000000037000000000000002f000000000000001f000000000000003e000000000000003d000000000000003b",
+ "topology_keccak": "0xb2d3ed0ec7664f0ba98898569840f7d0ea63567b8a9d183c5be752aa24f328b1",
+ "ligand_atoms": 6,
+ "nrot": 0,
+ "pose_hex": "0x0000008b0000ff8800460000ff88ffba00000000ff7500000078ffba0000007800460000",
+ "pose_flat": [
+  0,
+  139,
+  0,
+  -120,
+  70,
+  0,
+  -120,
+  -70,
+  0,
+  0,
+  -139,
+  0,
+  120,
+  -70,
+  0,
+  120,
+  70,
+  0
+ ],
+ "expect_code": 0,
+ "expect_error": "OK",
+ "expect_sum_g1": 11748991,
+ "expect_sum_g2": 3771833,
+ "expect_sum_rep": 529200,
+ "expect_sum_hyd": 5920000,
+ "expect_sum_hb": 1000000,
+ "expect_e_pico": -787990737880,
+ "expect_score_milli": -787,
+ "expect_pairs_in_cutoff": 18,
+ "display": {
+  "dG_kcal": -0.787,
+  "pKd": 0.5768821972834492,
+  "Kd_M": 0.26492186437757337,
+  "ligand_efficiency": 0.13116666666666668,
+  "note": "display only: pKd = -dG/1.36423 (RT ln10 at 298.15 K), Kd = 10^-pKd, LE = -dG / heavy atoms"
+ },
+ "types": [
+  4,
+  1,
+  0,
+  0,
+  0,
+  1
+ ],
+ "type_names": [
+  "N_A",
+  "C_P",
+  "C_H",
+  "C_H",
+  "C_H",
+  "C_P"
+ ]
+}

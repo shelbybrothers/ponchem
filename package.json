@@ -1,0 +1,14 @@
+{
+  "name": "ponchem",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Ponchem (ponchem.ai): an on-chain computer-aided drug design lab from Pons Lab. Plant compounds docked into cancer targets from the RCSB Protein Data Bank, scored on Robinhood Chain.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node tools/dev.mjs",
+    "verify": "node tools/verify.mjs",
+    "shell": "node tools/shell.mjs",
+    "test": "node tools/wallet-test.mjs"
+  }
+}

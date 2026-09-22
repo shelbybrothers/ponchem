@@ -1,0 +1,12 @@
+node_modules
+.venv
+.tmp
+.vercel
+reference/
+.data
+contracts/out
+contracts/cache
+contracts/broadcast
+contracts/deployments.pending.json
+.env*
+.DS_Store

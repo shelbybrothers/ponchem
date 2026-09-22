@@ -1,0 +1,10 @@
+{
+  "chainId": 4663,
+  "contract": "PonchemLab",
+  "address": null,
+  "check": null,
+  "tables": null,
+  "deployBlock": 0,
+  "genesis": 0,
+  "status": "not deployed: contracts/deploy.sh writes this file after the broadcast is read back"
+}

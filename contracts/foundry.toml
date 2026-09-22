@@ -1,0 +1,31 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+test = "test"
+script = "script"
+solc = "0.8.28"
+optimizer = true
+# 10,000 runs: the constant optimizer then emits the scorer's 32-byte masks as plain PUSH32 instead of
+# PUSH+NOT/SHL pairs, which the visit loop executes thousands of times per run
+optimizer_runs = 10000
+via_ir = true
+evm_version = "cancun"
+# read-write inside the project (deploy records, gas.md, out/rehearsal), read-only on the shared data:
+# the engine test vectors, the frozen tables, and the registry with its pocket and topology bytes
+fs_permissions = [{ access = "read-write", path = "./" }, { access = "read", path = "../data" }]
+
+[fuzz]
+runs = 512
+
+[invariant]
+runs = 128
+depth = 64
+fail_on_revert = false
+
+[rpc_endpoints]
+# the Robinhood Chain relay contracts/script/lib/shell.sh looks for (resolve_rpc); RPC_URL overrides it
+rhood = "http://127.0.0.1:8670"
+
+[lint]
+lint_on_build = false

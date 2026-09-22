@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ponchem · Targets</title>
+    <meta name="description" content="About one hundred cancer targets from the RCSB Protein Data Bank, each with its PDB id, resolution, reference ligand, pool and best binders." />
+    <link rel="canonical" href="https://ponchem.ai/targets" />
+    <meta property="og:title" content="Ponchem · Targets" />
+    <meta property="og:description" content="About one hundred cancer targets from the RCSB Protein Data Bank, each with its PDB id, resolution, reference ligand, pool and best binders." />
+    <meta property="og:url" content="https://ponchem.ai/targets" />
+    <meta property="og:image" content="https://ponchem.ai/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- shell:head -->
+    <meta name="theme-color" content="#F5F3EC" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:site_name" content="Ponchem" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PonchemAI" />
+    <link rel="icon" href="/img/brand/favicon.ico" sizes="48x48 32x32 16x16" />
+    <link rel="icon" href="/img/brand/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/img/brand/favicon-16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/img/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <!-- /shell:head -->
+  </head>
+  <body>
+      <!-- shell:nav -->
+      <a class="pc-skip" href="#main">Skip to content</a>
+      <nav class="pc-nav" aria-label="Main">
+        <div class="pc-nav-inner">
+          <a class="pc-logo" href="/" aria-label="Ponchem home">
+            <img class="pc-logo-mark" src="/img/brand/mark.png" width="32" height="32" alt="" />
+            <span class="pc-wordmark">Ponchem</span>
+          </a>
+          <button type="button" class="pc-nav-toggle" data-nav-toggle aria-controls="pc-nav-links" aria-expanded="false" aria-label="Open menu">
+            <svg class="pc-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
+          </button>
+          <div class="pc-nav-links" id="pc-nav-links">
+            <a class="pc-nav-link" href="/lab" data-nav="lab">Lab</a>
+            <a class="pc-nav-link" href="/targets" data-nav="targets">Targets</a>
+            <a class="pc-nav-link" href="/ligands" data-nav="ligands">Ligands</a>
+            <a class="pc-nav-link" href="/leaderboard" data-nav="leaderboard">Leaderboard</a>
+            <a class="pc-nav-link" href="/report" data-nav="report">Report</a>
+            <a class="pc-nav-link" href="/docs" data-nav="docs">Docs</a>
+            <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+            <a class="pc-nav-link pc-nav-x" href="https://x.com/PonchemAI" target="_blank" rel="noopener noreferrer">X @PonchemAI</a>
+            <div class="pc-nav-footline">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
+          </div>
+          <div class="pc-wallet" data-wallet-root>
+            <button type="button" class="pc-wallet-button" data-wallet-button aria-haspopup="menu" aria-expanded="false">connect wallet</button>
+            <div class="pc-wallet-menu" data-wallet-menu role="menu" hidden></div>
+          </div>
+        </div>
+      </nav>
+      <!-- /shell:nav -->
+      <main class="pc-main" id="main">
+        <section class="pc-container pc-section--tight">
+          <div class="pc-page-head">
+            <h1 class="pc-h1">Targets</h1>
+            <p class="pc-lede">Cancer targets from the RCSB Protein Data Bank. Each entry keeps its PDB id, method, resolution and reference ligand. Pick one to see its pocket, its pool and its best binders.</p>
+          </div>
+          <div class="pc-toolbar">
+            <label class="pc-search">
+              <span class="pc-visually-hidden">Search targets</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM20 20l-4.5-4.5"/></svg>
+              <input class="pc-input" type="search" data-search placeholder="Search targets or PDB id" autocomplete="off" />
+            </label>
+            <div class="pc-pills" data-pills role="group" aria-label="Filter by cancer group"></div>
+            <label class="pc-field">
+              <span class="pc-visually-hidden">Sort</span>
+              <select class="pc-select" data-sort aria-label="Sort targets">
+                <option value="best">Best dG</option>
+                <option value="pool">Pool</option>
+                <option value="runs">Runs</option>
+                <option value="name">Name</option>
+              </select>
+            </label>
+          </div>
+          <div class="pc-row pc-row--between">
+            <div class="pc-count" data-count>Loading the catalog</div>
+            <div class="pc-pills" data-classes role="group" aria-label="Filter by target class"></div>
+          </div>
+          <p class="pc-alert pc-alert--warn" data-chain-note hidden></p>
+          <div class="pc-cards" data-grid></div>
+          <div data-empty></div>
+          <div class="pc-more"><button type="button" class="pc-btn pc-btn--outline" data-more hidden>Load more</button></div>
+        </section>
+      </main>
+      <!-- shell:footer -->
+      <footer class="pc-footer">
+        <div class="pc-footer-inner">
+          <div class="pc-footer-top">
+            <div class="pc-footer-brand">
+              <a class="pc-footer-logo" href="/" aria-label="Ponchem home">
+                <img class="pc-logo-mark" src="/img/brand/mark.png" width="32" height="32" alt="" />
+                <span>Ponchem</span>
+              </a>
+              <p class="pc-footer-tagline">On-chain computer-aided drug design. An honorable project of ponsfamily.com.</p>
+              <div class="pc-footer-token">
+                <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+                <button type="button" class="pc-ca" data-shell="ca" disabled aria-label="Copy CA, available at launch" title="CA posts here at launch">Copy CA</button>
+              </div>
+            </div>
+            <div class="pc-footer-cols">
+              <nav class="pc-footer-col" aria-label="Lab">
+                <div class="pc-eyebrow">Lab</div>
+                <a href="/lab">Lab</a>
+                <a href="/targets">Targets</a>
+                <a href="/ligands">Ligands</a>
+                <a href="/leaderboard">Leaderboard</a>
+                <a href="/report">Report</a>
+                <a href="/dashboard">Dashboard</a>
+              </nav>
+              <nav class="pc-footer-col" aria-label="Data">
+                <div class="pc-eyebrow">Data</div>
+                <a href="https://www.rcsb.org" target="_blank" rel="noopener noreferrer" data-out>RCSB Protein Data Bank</a>
+                <a href="https://robinhoodchain.blockscout.com" target="_blank" rel="noopener noreferrer" data-out>Robinhood Chain explorer</a>
+                <a href="/docs#api">API</a>
+              </nav>
+              <nav class="pc-footer-col" aria-label="Community">
+                <div class="pc-eyebrow">Community</div>
+                <a href="https://x.com/PonchemAI" target="_blank" rel="noopener noreferrer" data-shell="x" data-out>X @PonchemAI</a>
+                <a href="https://ponsfamily.com" target="_blank" rel="noopener noreferrer" data-out>ponsfamily.com</a>
+                <a href="/docs">Docs</a>
+              </nav>
+            </div>
+          </div>
+          <div class="pc-footer-bottom">
+            <div class="pc-footer-line">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
+            <div class="pc-footer-credit">Structures from the RCSB Protein Data Bank</div>
+          </div>
+        </div>
+      </footer>
+      <!-- /shell:footer -->
+    <script type="module" src="/js/pages/targets.js"></script>
+  </body>
+</html>

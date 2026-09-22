@@ -1,0 +1,20 @@
+# Anchored patterns only. On Vercel an unanchored pattern matches at every depth.
+# Deployed on purpose: /api /js /css /img /fonts /lib /data (minus /data/vectors), the root pages, icons, og.png,
+# robots.txt, sitemap.xml, site.webmanifest, vercel.json, package.json.
+/contracts
+/tools
+/reference
+/partials
+/notes
+/docs
+/data/vectors
+/.venv
+/.tmp
+/.data
+/.env*
+/node_modules
+/README.md
+/SPEC*.md
+/lib/*.test.*
+/.git
+/lib/README.md

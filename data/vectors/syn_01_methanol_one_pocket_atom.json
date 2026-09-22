@@ -1,0 +1,56 @@
+{
+ "name": "syn_01",
+ "kind": "synthetic",
+ "description": "Methanol heavy atoms C(0,0,0) O(143,0,0) against one C_H pocket atom at (-400,0,0). Pair C..P: r2=160000, r=400, d=400-380=20: g1=852144 g2=140858 rep=0 hyd=1000000 (C_P is not hydrophobic, so hyd applies only if both are; here the ligand C is C_P: hyd=0). See expect_* for the exact sums; nrot=0 so score_milli = tdiv(e_pico, 1e9).",
+ "pocket_hex": "0x53594e31000102580258025800000000000000000000000004040401fe70000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001000100010001",
+ "pocket_keccak": "0xbc5a29e6579cfea7e824e1cab909d93fe9d0a42fcfa3f667b47c5157291bc97c",
+ "pocket_atoms": 1,
+ "half": [
+  600,
+  600,
+  600
+ ],
+ "grid": [
+  4,
+  4,
+  4
+ ],
+ "topology_hex": "0x010201000000000001080001008f00000000000000030000000000000003",
+ "topology_keccak": "0x292f5d2e7aa9f15355042c4399ba633c8c525f7455b742fafd35f1e7c545ef5f",
+ "ligand_atoms": 2,
+ "nrot": 0,
+ "pose_hex": "0x000000000000008f00000000",
+ "pose_flat": [
+  0,
+  0,
+  0,
+  143,
+  0,
+  0
+ ],
+ "expect_code": 0,
+ "expect_error": "OK",
+ "expect_sum_g1": 852146,
+ "expect_sum_g2": 851046,
+ "expect_sum_rep": 0,
+ "expect_sum_hyd": 0,
+ "expect_sum_hb": 0,
+ "expect_e_pico": -34727794960,
+ "expect_score_milli": -34,
+ "expect_pairs_in_cutoff": 2,
+ "display": {
+  "dG_kcal": -0.034,
+  "pKd": 0.0249224837454095,
+  "Kd_M": 0.944229394647419,
+  "ligand_efficiency": 0.017,
+  "note": "display only: pKd = -dG/1.36423 (RT ln10 at 298.15 K), Kd = 10^-pKd, LE = -dG / heavy atoms"
+ },
+ "types": [
+  1,
+  8
+ ],
+ "type_names": [
+  "C_P",
+  "O_DA"
+ ]
+}

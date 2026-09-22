@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ponchem · On-chain drug design</title>
+    <meta name="description" content="Dock bioactive plant compounds into cancer targets from the Protein Data Bank. Robinhood Chain re-scores every pose and keeps the record." />
+    <link rel="canonical" href="https://ponchem.ai/" />
+    <meta property="og:title" content="Ponchem · On-chain drug design" />
+    <meta property="og:description" content="Dock bioactive plant compounds into cancer targets from the Protein Data Bank. Robinhood Chain re-scores every pose and keeps the record." />
+    <meta property="og:url" content="https://ponchem.ai/" />
+    <meta property="og:image" content="https://ponchem.ai/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- shell:head -->
+    <meta name="theme-color" content="#F5F3EC" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:site_name" content="Ponchem" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PonchemAI" />
+    <link rel="icon" href="/img/brand/favicon.ico" sizes="48x48 32x32 16x16" />
+    <link rel="icon" href="/img/brand/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/img/brand/favicon-16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/img/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <!-- /shell:head -->
+  </head>
+  <body>
+      <!-- shell:nav -->
+      <a class="pc-skip" href="#main">Skip to content</a>
+      <nav class="pc-nav" aria-label="Main">
+        <div class="pc-nav-inner">
+          <a class="pc-logo" href="/" aria-label="Ponchem home">
+            <img class="pc-logo-mark" src="/img/brand/mark.png" width="32" height="32" alt="" />
+            <span class="pc-wordmark">Ponchem</span>
+          </a>
+          <button type="button" class="pc-nav-toggle" data-nav-toggle aria-controls="pc-nav-links" aria-expanded="false" aria-label="Open menu">
+            <svg class="pc-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
+          </button>
+          <div class="pc-nav-links" id="pc-nav-links">
+            <a class="pc-nav-link" href="/lab" data-nav="lab">Lab</a>
+            <a class="pc-nav-link" href="/targets" data-nav="targets">Targets</a>
+            <a class="pc-nav-link" href="/ligands" data-nav="ligands">Ligands</a>
+            <a class="pc-nav-link" href="/leaderboard" data-nav="leaderboard">Leaderboard</a>
+            <a class="pc-nav-link" href="/report" data-nav="report">Report</a>
+            <a class="pc-nav-link" href="/docs" data-nav="docs">Docs</a>
+            <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+            <a class="pc-nav-link pc-nav-x" href="https://x.com/PonchemAI" target="_blank" rel="noopener noreferrer">X @PonchemAI</a>
+            <div class="pc-nav-footline">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
+          </div>
+          <div class="pc-wallet" data-wallet-root>
+            <button type="button" class="pc-wallet-button" data-wallet-button aria-haspopup="menu" aria-expanded="false">connect wallet</button>
+            <div class="pc-wallet-menu" data-wallet-menu role="menu" hidden></div>
+          </div>
+        </div>
+      </nav>
+      <!-- /shell:nav -->
+      <main class="pc-main" id="main">
+        <section class="pc-hero grid-paper" aria-labelledby="hero-title">
+          <div class="pc-container pc-hero-grid">
+            <div class="pc-hero-copy">
+              <div class="pc-eyebrow">Pons Lab CADD · Robinhood Chain</div>
+              <h1 class="pc-hero-title" id="hero-title">Computer-aided drug design, scored on chain.</h1>
+              <p class="pc-lede">Pick a cancer target from the Protein Data Bank. Pick a bioactive plant compound. Dock it in your browser. Robinhood Chain re-checks the pose, re-scores it and keeps the record. The best binders feed a live cancer research report.</p>
+              <div class="pc-hero-ctas">
+                <a class="pc-btn pc-btn--primary pc-btn--lg pc-btn--hero" href="/lab">Open the lab</a>
+                <a class="pc-btn pc-btn--outline pc-btn--lg pc-btn--hero" href="/docs">How it works</a>
+              </div>
+              <p class="pc-hero-caption" data-hero-caption>In the viewer: a structure from the Protein Data Bank</p>
+            </div>
+            <div class="pc-viewer-card" data-hero-card>
+              <div class="pc-viewer pc-viewer--transparent" data-hero-viewer aria-label="3D view of the structure named in the strip below"></div>
+              <div class="pc-viewer-strip">
+                <span class="pc-id" data-hero-id>PDB</span>
+                <span class="pc-viewer-title" data-hero-title>Loading structure from the Protein Data Bank</span>
+                <button type="button" class="pc-btn pc-btn--ghost pc-btn--sm" data-hero-next>Next structure</button>
+                <a class="pc-btn pc-btn--ghost pc-btn--sm pc-btn--icon" data-hero-rcsb href="https://www.rcsb.org" target="_blank" rel="noopener noreferrer" aria-label="View on RCSB">
+                  <svg class="pc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pc-band--white" aria-label="Lab statistics">
+          <div class="pc-container">
+            <div class="pc-stats pc-stats--5" data-stats>
+              <div class="pc-stat"><div class="pc-stat-num" data-stat="targets"><span class="pc-skel" aria-hidden="true"></span></div><div class="pc-stat-label">Targets</div></div>
+              <div class="pc-stat"><div class="pc-stat-num" data-stat="ligands"><span class="pc-skel" aria-hidden="true"></span></div><div class="pc-stat-label">Ligands</div></div>
+              <div class="pc-stat"><div class="pc-stat-num" data-stat="runs"><span class="pc-skel" aria-hidden="true"></span></div><div class="pc-stat-label" data-stat-label="runs">Docking tests</div></div>
+              <div class="pc-stat"><div class="pc-stat-num" data-stat="reviews"><span class="pc-skel" aria-hidden="true"></span></div><div class="pc-stat-label" data-stat-label="reviews">Reviews</div></div>
+              <div class="pc-stat"><div class="pc-stat-num" data-stat="pools"><span class="pc-skel" aria-hidden="true"></span><span class="pc-stat-unit">ETH</span></div><div class="pc-stat-label" data-stat-label="pools">In prize pools</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pc-section" aria-labelledby="why-title">
+          <div class="pc-container">
+            <div class="pc-section-head pc-reveal">
+              <div>
+                <div class="pc-eyebrow">Why Ponchem</div>
+                <h2 class="pc-h2" id="why-title">Three things you can trust</h2>
+              </div>
+            </div>
+            <div class="pc-props">
+              <article class="pc-card pc-card--pad pc-prop pc-reveal">
+                <div class="pc-prop-icon pc-prop-icon--receptor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 4.2A9 9 0 1 0 19.8 8.5M15.5 4.2 19.8 8.5"/></svg></div>
+                <h3 class="pc-h3">Real structures</h3>
+                <p>Every target is an experimental structure from the RCSB Protein Data Bank, with its PDB id, method, resolution and reference ligand shown on the card. Nothing is drawn by hand.</p>
+              </article>
+              <article class="pc-card pc-card--pad pc-prop pc-reveal">
+                <div class="pc-prop-icon pc-prop-icon--ligand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9L12 3Zm7.8 4.5L22 5"/></svg></div>
+                <h3 class="pc-h3">A scorer you can audit</h3>
+                <p>The score is an integer implementation of a Vina-style empirical function. It runs inside the contract. After you record a run, the number on the site is the chain's number.</p>
+              </article>
+              <article class="pc-card pc-card--pad pc-prop pc-reveal">
+                <div class="pc-prop-icon pc-prop-icon--chain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></svg></div>
+                <h3 class="pc-h3">Every docking test is paid, scored and reviewed</h3>
+                <p>A docking test costs 100 $PONCHEM or 0.0001 ETH, paid to the lab treasury. The contract proves the geometry, scores the pose and keeps the record. Anyone can review a test on chain, with stars and a note.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="pc-section pc-band--paper2" aria-labelledby="how-title">
+          <div class="pc-container">
+            <div class="pc-section-head pc-reveal">
+              <div>
+                <div class="pc-eyebrow">How it works</div>
+                <h2 class="pc-h2" id="how-title">Four steps, one record</h2>
+              </div>
+            </div>
+            <ol class="pc-steps pc-reveal">
+              <li class="pc-step"><span class="pc-step-num">01</span><h4 class="pc-h4">Choose</h4><p>Pick a target and a plant compound, or screen one against many.</p></li>
+              <li class="pc-step"><span class="pc-step-num">02</span><h4 class="pc-h4">Dock</h4><p>A seeded pose search runs in your browser. Ten seconds to ninety, your choice.</p></li>
+              <li class="pc-step"><span class="pc-step-num">03</span><h4 class="pc-h4">Test</h4><p>Connect a wallet and pay the test, 100 $PONCHEM or 0.0001 ETH. The contract checks the geometry, re-scores the pose and stores it.</p></li>
+              <li class="pc-step"><span class="pc-step-num">04</span><h4 class="pc-h4">Review and settle</h4><p>Other wallets review the test. When the epoch ends, anyone can settle: the best score takes the sponsored pool. The report updates.</p></li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="pc-section" aria-labelledby="science-title">
+          <div class="pc-container pc-science">
+            <div class="pc-science-prose pc-reveal">
+              <div class="pc-eyebrow">The science</div>
+              <h2 class="pc-h2" id="science-title">What the number means</h2>
+              <p>Binding free energy, written dG, is the energy released when a compound settles into a pocket. More negative is better. Ponchem estimates it with an empirical scoring function of the AutoDock Vina family: five terms over heavy atom pairs, weighted with the values Trott and Olson fitted on about 1,300 PDBbind complexes in 2010. Our engine is an independent implementation of that function, written in integers so a contract can run it. It is not AutoDock Vina.</p>
+              <p>From dG we estimate potency: pKd, and Kd from dG = RT ln Kd at 298.15 K. We also show ligand efficiency, the energy per heavy atom, because a small molecule with a fair score is often a better lead than a large one with a great score.</p>
+              <p>These are computational estimates. They rank candidates for further study. They do not say a compound works in a cell, an animal or a person.</p>
+            </div>
+            <div class="pc-stack pc-stack--4 pc-reveal">
+              <div class="pc-card pc-card--paper2 pc-card--pad pc-stack">
+                <div class="pc-eyebrow">Score bands</div>
+                <div class="pc-bands">
+                  <div class="pc-bands-row"><span class="pc-badge pc-badge--strong">strong</span><span>dG at or below -9 kcal/mol</span></div>
+                  <div class="pc-bands-row"><span class="pc-badge pc-badge--moderate">moderate</span><span>between -9 and -6</span></div>
+                  <div class="pc-bands-row"><span class="pc-badge pc-badge--weak">weak</span><span>above -6</span></div>
+                  <div class="pc-bands-row"><span class="pc-badge pc-badge--none">no binding</span><span>zero or positive</span></div>
+                </div>
+                <p class="pc-caption">Display bands only. The chain records the exact value in milli kcal/mol.</p>
+              </div>
+              <div class="pc-card pc-card--paper2 pc-card--pad pc-stack">
+                <div class="pc-eyebrow">Five terms</div>
+                <table class="pc-terms" data-terms>
+                  <tbody>
+                    <tr><td>gauss 1</td><td data-weight="0">-0.0356</td></tr>
+                    <tr><td>gauss 2</td><td data-weight="1">-0.00516</td></tr>
+                    <tr><td>repulsion</td><td data-weight="2">0.840</td></tr>
+                    <tr><td>hydrophobic</td><td data-weight="3">-0.0351</td></tr>
+                    <tr><td>hydrogen bond</td><td data-weight="4">-0.587</td></tr>
+                  </tbody>
+                </table>
+                <p class="pc-caption">Divided by 1 + 0.0585 x rotatable bonds.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pc-section pc-band--dark" aria-labelledby="chain-title">
+          <div class="pc-container pc-onchain">
+            <div class="pc-stack pc-stack--4 pc-reveal">
+              <div class="pc-eyebrow">On chain</div>
+              <h2 class="pc-h2" id="chain-title">What the contract checks before it believes a pose</h2>
+              <p>Then it recomputes the score with the same integer function and stores the run. Events carry the whole pose, so this site rebuilds everything from logs. No database of ours sits between you and the record.</p>
+              <div><a class="pc-btn pc-btn--outline" href="https://github.com/shelbybrothers/ponchem/blob/main/contracts/src/PonchemLab.sol" target="_blank" rel="noopener noreferrer">Read the contract source</a></div>
+            </div>
+            <ul class="pc-checks pc-reveal">
+              <li class="pc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>The pose contains exactly the ligand's heavy atoms, in topology order.</span></li>
+              <li class="pc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Every bonded pair sits at its ideal distance, within tolerance. Every 1-3 pair too.</span></li>
+              <li class="pc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Atoms three or more bonds apart stay above the clash floor.</span></li>
+              <li class="pc-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Every atom lies inside the target's box, whose pocket bytes are hashed and registered.</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="pc-section" aria-labelledby="featured-title">
+          <div class="pc-container">
+            <div class="pc-section-head pc-reveal">
+              <div>
+                <div class="pc-eyebrow">Featured targets</div>
+                <h2 class="pc-h2" id="featured-title">Targets people are docking this week</h2>
+              </div>
+              <a class="pc-btn pc-btn--ghost" href="/targets">All targets</a>
+            </div>
+            <div class="pc-cards pc-cards--scroll" data-featured>
+              <div class="pc-card pc-card--pad"><span class="pc-skel" style="width:60%"></span></div>
+              <div class="pc-card pc-card--pad"><span class="pc-skel" style="width:60%"></span></div>
+              <div class="pc-card pc-card--pad"><span class="pc-skel" style="width:60%"></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pc-section pc-band--white" aria-labelledby="token-title">
+          <div class="pc-container">
+            <div class="pc-card pc-card--pad pc-token pc-reveal">
+              <div class="pc-eyebrow pc-eyebrow--ligand">$PONCHEM</div>
+              <h2 class="pc-h2" id="token-title">The lab token launches on ponsfamily.com</h2>
+              <p>Ponchem is an honorable project of ponsfamily.com, and $PONCHEM launches there. Until then the buy link is inert and no contract address is published here. When the token is live this card shows the buy link and Copy CA.</p>
+              <p>Every docking test costs 100 $PONCHEM or 0.0001 ETH, paid to the lab treasury. The payer chooses. While $PONCHEM is not launched only the ETH option works, and the token option in the lab reads <span class="pc-mono">after the $PONCHEM launch</span>.</p>
+              <p class="pc-small" data-price-line hidden></p>
+              <div class="pc-row">
+                <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+                <button type="button" class="pc-ca" data-shell="ca" disabled aria-label="Copy CA, available at launch" title="CA posts here at launch">Copy CA</button>
+                <span class="pc-caption" data-ca-note>CA posts here at launch</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pc-section grid-paper" aria-labelledby="cta-title">
+          <div class="pc-container pc-cta pc-reveal">
+            <h2 class="pc-h2" id="cta-title">Dock something today.</h2>
+            <p>Every recorded run adds to a cancer research report anyone can read and check.</p>
+            <div class="pc-row">
+              <a class="pc-btn pc-btn--primary pc-btn--lg" href="/lab">Open the lab</a>
+              <a class="pc-btn pc-btn--outline pc-btn--lg" href="/targets">Sponsor a target</a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- shell:footer -->
+      <footer class="pc-footer">
+        <div class="pc-footer-inner">
+          <div class="pc-footer-top">
+            <div class="pc-footer-brand">
+              <a class="pc-footer-logo" href="/" aria-label="Ponchem home">
+                <img class="pc-logo-mark" src="/img/brand/mark.png" width="32" height="32" alt="" />
+                <span>Ponchem</span>
+              </a>
+              <p class="pc-footer-tagline">On-chain computer-aided drug design. An honorable project of ponsfamily.com.</p>
+              <div class="pc-footer-token">
+                <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+                <button type="button" class="pc-ca" data-shell="ca" disabled aria-label="Copy CA, available at launch" title="CA posts here at launch">Copy CA</button>
+              </div>
+            </div>
+            <div class="pc-footer-cols">
+              <nav class="pc-footer-col" aria-label="Lab">
+                <div class="pc-eyebrow">Lab</div>
+                <a href="/lab">Lab</a>
+                <a href="/targets">Targets</a>
+                <a href="/ligands">Ligands</a>
+                <a href="/leaderboard">Leaderboard</a>
+                <a href="/report">Report</a>
+                <a href="/dashboard">Dashboard</a>
+              </nav>
+              <nav class="pc-footer-col" aria-label="Data">
+                <div class="pc-eyebrow">Data</div>
+                <a href="https://www.rcsb.org" target="_blank" rel="noopener noreferrer" data-out>RCSB Protein Data Bank</a>
+                <a href="https://robinhoodchain.blockscout.com" target="_blank" rel="noopener noreferrer" data-out>Robinhood Chain explorer</a>
+                <a href="/docs#api">API</a>
+              </nav>
+              <nav class="pc-footer-col" aria-label="Community">
+                <div class="pc-eyebrow">Community</div>
+                <a href="https://x.com/PonchemAI" target="_blank" rel="noopener noreferrer" data-shell="x" data-out>X @PonchemAI</a>
+                <a href="https://ponsfamily.com" target="_blank" rel="noopener noreferrer" data-out>ponsfamily.com</a>
+                <a href="/docs">Docs</a>
+              </nav>
+            </div>
+          </div>
+          <div class="pc-footer-bottom">
+            <div class="pc-footer-line">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
+            <div class="pc-footer-credit">Structures from the RCSB Protein Data Bank</div>
+          </div>
+        </div>
+      </footer>
+      <!-- /shell:footer -->
+    <script type="module" src="/js/pages/home.js"></script>
+  </body>
+</html>

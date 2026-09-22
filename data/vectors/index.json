@@ -1,0 +1,142 @@
+{
+ "format": "ponchem-vectors-v1",
+ "description": "Each file is one case. Bytes are 0x-hex. expect_code 0 means the pose passes the geometry proof and expect_* carry the score; otherwise expect_error names the first failing check in the order ATOM_COUNT, BOX, BOND, PAIR13, CLASH.",
+ "codes": {
+  "0": "OK",
+  "1": "ATOM_COUNT",
+  "2": "BOX",
+  "3": "BOND",
+  "4": "PAIR13",
+  "5": "CLASH"
+ },
+ "files": [
+  {
+   "file": "tables.json",
+   "kind": "tables",
+   "name": "tables",
+   "expect_code": null,
+   "expect_score_milli": null
+  },
+  {
+   "file": "terms.json",
+   "kind": "terms",
+   "name": "terms",
+   "expect_code": null,
+   "expect_score_milli": null
+  },
+  {
+   "file": "syn_01_methanol_one_pocket_atom.json",
+   "kind": "synthetic",
+   "name": "syn_01",
+   "expect_code": 0,
+   "expect_score_milli": -34
+  },
+  {
+   "file": "syn_02_ethanolamine_four_pocket_atoms.json",
+   "kind": "synthetic",
+   "name": "syn_02",
+   "expect_code": 0,
+   "expect_score_milli": -335
+  },
+  {
+   "file": "syn_03_propane_hydrophobic_wall.json",
+   "kind": "synthetic",
+   "name": "syn_03",
+   "expect_code": 0,
+   "expect_score_milli": -552
+  },
+  {
+   "file": "syn_04_pyridine_donor_and_stack.json",
+   "kind": "synthetic",
+   "name": "syn_04",
+   "expect_code": 0,
+   "expect_score_milli": -787
+  },
+  {
+   "file": "syn_05_propanediol_anti.json",
+   "kind": "synthetic",
+   "name": "syn_05",
+   "expect_code": 0,
+   "expect_score_milli": 7157
+  },
+  {
+   "file": "rej_01_box.json",
+   "kind": "reject",
+   "name": "rej_01_box",
+   "expect_code": 2,
+   "expect_score_milli": null
+  },
+  {
+   "file": "rej_02_bond.json",
+   "kind": "reject",
+   "name": "rej_02_bond",
+   "expect_code": 3,
+   "expect_score_milli": null
+  },
+  {
+   "file": "rej_03_pair13.json",
+   "kind": "reject",
+   "name": "rej_03_pair13",
+   "expect_code": 4,
+   "expect_score_milli": null
+  },
+  {
+   "file": "rej_04_clash.json",
+   "kind": "reject",
+   "name": "rej_04_clash",
+   "expect_code": 5,
+   "expect_score_milli": null
+  },
+  {
+   "file": "rej_05_atom_count.json",
+   "kind": "reject",
+   "name": "rej_05_atom_count",
+   "expect_code": 1,
+   "expect_score_milli": null
+  },
+  {
+   "file": "real_01_1M17_AQ4_crystal_fit.json",
+   "kind": "real",
+   "name": "real_01_1M17_AQ4_crystal_fit",
+   "expect_code": 0,
+   "expect_score_milli": -5483
+  },
+  {
+   "file": "real_02_1M17_AQ4_refined.json",
+   "kind": "real",
+   "name": "real_02_1M17_AQ4_refined",
+   "expect_code": 0,
+   "expect_score_milli": -6446
+  },
+  {
+   "file": "rej_06_1M17_AQ4_crystal_geometry.json",
+   "kind": "reject",
+   "name": "rej_06_1M17_AQ4_crystal_geometry",
+   "expect_code": 3,
+   "expect_score_milli": null
+  },
+  {
+   "file": "real_03_1M17_QUE_docked.json",
+   "kind": "real",
+   "name": "real_03_1M17_QUE_docked",
+   "expect_code": 0,
+   "expect_score_milli": -9289
+  },
+  {
+   "file": "real_04_1M17_TA1_docked.json",
+   "kind": "real",
+   "name": "real_04_1M17_TA1_docked",
+   "expect_code": 0,
+   "expect_score_milli": -2837
+  }
+ ],
+ "timings_s": {
+  "fit_AQ4_s": 0.560725212097168,
+  "score_AQ4_fit_s": 0.02249908447265625,
+  "refine_AQ4_s": 0.606529951095581,
+  "dock_QUE_s": 28.08872389793396,
+  "score_QUE_s": 0.01949620246887207,
+  "dock_TA1_s": 81.10232400894165,
+  "score_TA1_s": 0.02884387969970703
+ }
+}

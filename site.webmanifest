@@ -1,0 +1,33 @@
+{
+  "name": "Ponchem",
+  "short_name": "Ponchem",
+  "description": "An on-chain computer-aided drug design lab. Plant compounds docked into cancer targets from the RCSB Protein Data Bank, scored on Robinhood Chain.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F3EC",
+  "theme_color": "#F5F3EC",
+  "icons": [
+    {
+      "src": "/img/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/brand/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/img/brand/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

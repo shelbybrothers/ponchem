@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ponchem · Docs</title>
+    <meta name="description" content="How the lab works, how the Vina-style score is computed, what the contract checks, what is and is not claimed, the API and a glossary." />
+    <link rel="canonical" href="https://ponchem.ai/docs" />
+    <meta property="og:title" content="Ponchem · Docs" />
+    <meta property="og:description" content="How the lab works, how the Vina-style score is computed, what the contract checks, what is and is not claimed, the API and a glossary." />
+    <meta property="og:url" content="https://ponchem.ai/docs" />
+    <meta property="og:image" content="https://ponchem.ai/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- shell:head -->
+    <meta name="theme-color" content="#F5F3EC" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:site_name" content="Ponchem" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PonchemAI" />
+    <link rel="icon" href="/img/brand/favicon.ico" sizes="48x48 32x32 16x16" />
+    <link rel="icon" href="/img/brand/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/img/brand/favicon-16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/img/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <!-- /shell:head -->
+  </head>
+  <body>
+      <!-- shell:nav -->
+      <a class="pc-skip" href="#main">Skip to content</a>
+      <nav class="pc-nav" aria-label="Main">
+        <div class="pc-nav-inner">
+          <a class="pc-logo" href="/" aria-label="Ponchem home">
+            <img class="pc-logo-mark" src="/img/brand/mark.png" width="32" height="32" alt="" />
+            <span class="pc-wordmark">Ponchem</span>
+          </a>
+          <button type="button" class="pc-nav-toggle" data-nav-toggle aria-controls="pc-nav-links" aria-expanded="false" aria-label="Open menu">
+            <svg class="pc-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
+          </button>
+          <div class="pc-nav-links" id="pc-nav-links">
+            <a class="pc-nav-link" href="/lab" data-nav="lab">Lab</a>
+            <a class="pc-nav-link" href="/targets" data-nav="targets">Targets</a>
+            <a class="pc-nav-link" href="/ligands" data-nav="ligands">Ligands</a>
+            <a class="pc-nav-link" href="/leaderboard" data-nav="leaderboard">Leaderboard</a>
+            <a class="pc-nav-link" href="/report" data-nav="report">Report</a>
+            <a class="pc-nav-link" href="/docs" data-nav="docs">Docs</a>
+            <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+            <a class="pc-nav-link pc-nav-x" href="https://x.com/PonchemAI" target="_blank" rel="noopener noreferrer">X @PonchemAI</a>
+            <div class="pc-nav-footline">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
+          </div>
+          <div class="pc-wallet" data-wallet-root>
+            <button type="button" class="pc-wallet-button" data-wallet-button aria-haspopup="menu" aria-expanded="false">connect wallet</button>
+            <div class="pc-wallet-menu" data-wallet-menu role="menu" hidden></div>
+          </div>
+        </div>
+      </nav>
+      <!-- /shell:nav -->
+      <main class="pc-main" id="main">
+        <section class="pc-container pc-docs" data-docs>
+          <nav class="pc-toc" aria-label="Docs contents" data-toc>
+            <div class="pc-eyebrow" style="margin-bottom: var(--s-3)">Contents</div>
+            <a href="#how-it-works">How it works</a>
+            <a href="#payment">Payment</a>
+            <a href="#scoring">Scoring explained</a>
+            <a href="#verification">What the chain checks</a>
+            <a href="#methods">Docking methods</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#levels">Levels and badges</a>
+            <a href="#ai-analysis">AI analysis</a>
+            <a href="#post-on-x">Post on X</a>
+            <a href="#claims">What is and is not claimed</a>
+            <a href="#wallet">Wallet and network</a>
+            <a href="#api">API</a>
+            <a href="#glossary">Glossary</a>
+          </nav>
+          <div class="pc-prose">
+            <div class="pc-page-head">
+              <h1 class="pc-h1">Docs</h1>
+              <p class="pc-lede">How the lab works, how a docking test is paid, how the score is computed, what the contract checks, the docking methods, reviews, levels, the AI analysis, what is and is not claimed, the API and a glossary.</p>
+              <label class="pc-field pc-toc-select">
+                <span class="pc-label">Jump to</span>
+                <select class="pc-select" data-jump aria-label="Jump to a section">
+                  <option value="#how-it-works">How it works</option>
+                  <option value="#payment">Payment</option>
+                  <option value="#scoring">Scoring explained</option>
+                  <option value="#verification">What the chain checks</option>
+                  <option value="#methods">Docking methods</option>
+                  <option value="#reviews">Reviews</option>
+                  <option value="#levels">Levels and badges</option>
+                  <option value="#ai-analysis">AI analysis</option>
+                  <option value="#post-on-x">Post on X</option>
+                  <option value="#claims">What is and is not claimed</option>
+                  <option value="#wallet">Wallet and network</option>
+                  <option value="#api">API</option>
+                  <option value="#glossary">Glossary</option>
+                </select>
+              </label>
+            </div>
+
+            <h2 class="pc-h2" id="how-it-works">How it works</h2>
+            <p>Ponchem is a computer-aided drug design lab that keeps its record on Robinhood Chain. The library holds about one hundred cancer targets and about one hundred bioactive plant compounds. Each target is an experimental structure from the RCSB Protein Data Bank. Its binding pocket is defined at build time from the reference ligand in the crystal: a box padded by 2 A on each side, at least 6 A of half size, and every receptor heavy atom within reach of that box. The pocket bytes and the box are hashed and the hash is registered on chain.</p>
+            <p>Each ligand is a heavy atom topology derived from its chemical component or PubChem record: atoms, bonds, ideal bond lengths, 1-3 distances and rotatable bonds. Hydrogens are not represented. That topology is registered on chain too.</p>
+            <p>When you dock, a seeded stochastic pose search runs in a Web Worker in your browser. It moves, turns and twists the ligand inside the box and keeps the best poses. The search follows a docking method: a preset such as Quick, Standard or Deep, or your own JSON. The same seed and method give the same pose on any machine. The final pose is always evaluated by the integer scorer, the same function the contract runs. The browser step prepares a pose; the chain step is the docking test.</p>
+            <p>A docking test sends the pose to the contract with its payment, 100 $PONCHEM or 0.0001 ETH, paid to the lab treasury. The contract checks the geometry, recomputes the score and emits an event with the whole pose and the method. From then on the site shows the chain's number, and every test has its own report page at /run?id=N where anyone can review it.</p>
+
+            <h2 class="pc-h2" id="payment">Payment</h2>
+            <p>Every docking test costs <strong>100 $PONCHEM</strong> or <strong>0.0001 ETH</strong>, plus gas. The payer chooses in the lab. Both go to the lab treasury, not to a prize pool. The contract takes the ETH with the transaction, or pulls the $PONCHEM from the connected wallet after an approval.</p>
+            <p>While $PONCHEM is not launched the token option is off: the lab shows it as <span class="pc-mono">after the $PONCHEM launch</span> and only the ETH option works. The owner can change the two prices and switch either option on or off; the lab always reads the current values from the contract.</p>
+            <p>Prize pools are funded by sponsors only. Anyone can fund a target's pool, and at the end of a seven day epoch anyone can settle: the wallet with the best score recorded on that target during the epoch receives the pool minus the lab fee. With no test in the epoch the pool rolls over.</p>
+            <p data-prices>The prices are read from the contract and shown in the lab before you pay.</p>
+
+            <h2 class="pc-h2" id="scoring">Scoring explained</h2>
+            <p>The score is an empirical estimate of binding free energy in kcal/mol. It sums five terms over every ligand atom and receptor atom pair within 8 A, using the surface distance d, which is the centre distance minus both atom radii.</p>
+            <ul>
+              <li>gauss 1: a narrow bell around d = 0, rewards close contact.</li>
+              <li>gauss 2: a wide bell around d = 3 A, rewards being near the surface.</li>
+              <li>repulsion: d squared when d is negative, punishes overlap.</li>
+              <li>hydrophobic: 1 when two hydrophobic atoms touch, fading to 0 at 1.5 A.</li>
+              <li>hydrogen bond: 1 when a donor and an acceptor are close, fading to 0 at d = 0.</li>
+            </ul>
+            <p>The weights are the ones Trott and Olson fitted on about 1,300 PDBbind complexes (AutoDock Vina, J Comput Chem 2010). The sum is divided by 1 + 0.0585 times the number of rotatable bonds, which costs flexible molecules a little. Ponchem's engine is an independent implementation of this family of functions, which we call Vina-style. It shares the functional form and the published weights. It is not the AutoDock Vina program, and it makes no claim to reproduce its numbers on any given complex.</p>
+            <div class="pc-card pc-card--paper2 pc-card--pad" style="margin: var(--s-4) 0">
+              <div class="pc-eyebrow" style="margin-bottom: var(--s-3)">Five terms</div>
+              <table class="pc-terms" data-terms>
+                <tbody>
+                  <tr><td>gauss 1</td><td data-weight="0">-0.0356</td></tr>
+                  <tr><td>gauss 2</td><td data-weight="1">-0.00516</td></tr>
+                  <tr><td>repulsion</td><td data-weight="2">0.840</td></tr>
+                  <tr><td>hydrophobic</td><td data-weight="3">-0.0351</td></tr>
+                  <tr><td>hydrogen bond</td><td data-weight="4">-0.587</td></tr>
+                </tbody>
+              </table>
+              <p class="pc-caption" style="margin-top: var(--s-3)">Weights in kcal/mol per unit term. Divided by 1 + 0.0585 x rotatable bonds.</p>
+            </div>
+            <p>On chain everything is fixed point: coordinates in hundredths of an angstrom, distances from an integer square root table, the bell terms from lookup tables, energies in micro kcal/mol and reported in milli kcal/mol. The JavaScript scorer and the Python reference are bit exact copies of the contract's arithmetic, proven by a shared test vector file.</p>
+            <p>Potency: pKd = -dG / (RT ln 10) at 298.15 K, and Kd = 10 to the power of -pKd. Ligand efficiency is -dG divided by the heavy atom count. All three are derived from the same estimate and carry its uncertainty.</p>
+            <h3 class="pc-h3">Score bands</h3>
+            <p>The colour of a dG number on the site follows four display bands: strong at or below -9 kcal/mol, moderate between -9 and -6, weak above -6, no binding at zero or positive. Display bands only. The chain records the exact value in milli kcal/mol.</p>
+            <h3 class="pc-h3">Atom types</h3>
+            <p>Sixteen heavy atom types in the X-Score and Vina tradition. A carbon next to a heteroatom is polar carbon, otherwise hydrophobic carbon. A nitrogen is a donor when it carries hydrogen and an acceptor when it has an available lone pair. Every oxygen accepts, and a hydroxyl oxygen donates too. Halogens are hydrophobic. Metal ions in the pocket are donors.</p>
+
+            <h2 class="pc-h2" id="verification">What the chain checks</h2>
+            <p>A pose is a list of heavy atom positions in hundredths of an angstrom, relative to the box centre. The contract accepts it only if:</p>
+            <ul>
+              <li>it has exactly the ligand's heavy atoms in topology order;</li>
+              <li>every bonded pair is at its ideal distance within the tolerance in the engine spec;</li>
+              <li>every 1-3 pair is at its ideal distance within tolerance;</li>
+              <li>every pair separated by three or more bonds is at least the clash floor apart;</li>
+              <li>every atom is inside the target's box.</li>
+            </ul>
+            <p>A pose can only score well by fitting the pocket, because the receptor atoms it is scored against are the registered pocket bytes. Mirror images are not distinguished by these checks; that is a known limit and is stated here. The contract then recomputes the score with the integer function and stores the run with the pose in the event.</p>
+            <p>Tolerance for bonded and 1-3 pairs is 0.06 A plus two percent of the ideal distance. The clash floor is 2.20 A for every pair three or more bonds apart. The box is the reference ligand's bounding box padded by 2 A on every side, with a half size of at least 6 A.</p>
+            <p>Every test report page re-runs the same integer function in your browser on the pose stored in the event and shows <span class="pc-mono">Chain and browser agree</span>, or the two numbers when they differ.</p>
+
+            <h2 class="pc-h2" id="methods">Docking methods</h2>
+            <p>The scoring function is fixed: it is the test. The search that prepares a pose is configurable through a method, a JSON object the engine validates against the schema below. Unknown keys are rejected with the key named; values outside their bounds are rejected with the bound named. Every missing field takes its default, and a run echoes the resolved method, so a pose is reproducible from the method plus the seed. The lab records the compact JSON with the test, and the test page shows it with a <span class="pc-mono">Use this method</span> link.</p>
+            <div class="pc-table-frame" data-method-schema>
+              <table class="pc-table pc-table--compact">
+                <caption class="pc-visually-hidden">Method schema</caption>
+                <thead><tr><th scope="col">Field</th><th scope="col">Values</th><th scope="col">Default</th><th scope="col">What it does</th></tr></thead>
+                <tbody>
+                  <tr><td class="pc-td-mono">name</td><td>text</td><td class="pc-td-mono">Standard</td><td>The label shown in the lab and on the test page.</td></tr>
+                  <tr><td class="pc-td-mono">version</td><td class="pc-td-mono">1</td><td class="pc-td-mono">1</td><td>The schema version.</td></tr>
+                  <tr><td class="pc-td-mono">budget</td><td class="pc-td-mono">{ ms: 5000 to 120000 } or { steps: N }</td><td class="pc-td-mono">{ ms: 30000 }</td><td>How long the search runs, in milliseconds or in steps. Steps is the reproducible form.</td></tr>
+                  <tr><td class="pc-td-mono">chains</td><td class="pc-td-mono">1 to 32</td><td>from the budget</td><td>Restarts: independent Monte Carlo chains that share the budget.</td></tr>
+                  <tr><td class="pc-td-mono">temperature</td><td class="pc-td-mono">0.1 to 5</td><td class="pc-td-mono">1.2</td><td>Metropolis kT in kcal/mol. Higher accepts more uphill moves.</td></tr>
+                  <tr><td class="pc-td-mono">moves.translate</td><td class="pc-td-mono">0.05 to 5</td><td class="pc-td-mono">1.0</td><td>Largest translation per move, in angstrom.</td></tr>
+                  <tr><td class="pc-td-mono">moves.rotate</td><td class="pc-td-mono">1 to 180</td><td class="pc-td-mono">20</td><td>Largest rigid rotation per move, in degrees.</td></tr>
+                  <tr><td class="pc-td-mono">moves.torsion</td><td class="pc-td-mono">1 to 180</td><td class="pc-td-mono">60</td><td>Largest torsion turn per move, in degrees.</td></tr>
+                  <tr><td class="pc-td-mono">local.steps</td><td class="pc-td-mono">0 to 300</td><td class="pc-td-mono">30</td><td>Local optimisation steps after each move.</td></tr>
+                  <tr><td class="pc-td-mono">placement</td><td class="pc-td-mono">box or center</td><td class="pc-td-mono">box</td><td>Where a chain starts: anywhere in the box, or near its centre.</td></tr>
+                  <tr><td class="pc-td-mono">flexible</td><td class="pc-td-mono">true or false</td><td class="pc-td-mono">true</td><td>False keeps the ligand rigid, torsions frozen at the ideal conformer.</td></tr>
+                  <tr><td class="pc-td-mono">candidates</td><td class="pc-td-mono">1 to 16</td><td class="pc-td-mono">4</td><td>Poses kept for the integer polish at the end.</td></tr>
+                  <tr><td class="pc-td-mono">lattice</td><td class="pc-td-mono">true or false</td><td class="pc-td-mono">true</td><td>Integer lattice moves in the polish, on the chain's own scorer.</td></tr>
+                  <tr><td class="pc-td-mono">seed</td><td class="pc-td-mono">0 to 4294967295</td><td>filled by the lab</td><td>The seed of every random choice. Same seed, same pose.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 class="pc-h3">Presets</h3>
+            <p>Seven presets ship with the engine. Each is a complete method; pick one in the lab, then edit the JSON if you want.</p>
+            <div class="pc-table-frame" data-method-presets>
+              <table class="pc-table pc-table--compact">
+                <caption class="pc-visually-hidden">Method presets</caption>
+                <thead><tr><th scope="col">Preset</th><th scope="col">What changes</th></tr></thead>
+                <tbody>
+                  <tr><td>Quick</td><td>About 10 seconds of search.</td></tr>
+                  <tr><td>Standard</td><td>About 30 seconds. The defaults above.</td></tr>
+                  <tr><td>Deep</td><td>About 90 seconds.</td></tr>
+                  <tr><td>Rigid ligand</td><td>Torsions frozen at the ideal conformer.</td></tr>
+                  <tr><td>Wide search</td><td>More chains, larger moves, shorter local optimisation.</td></tr>
+                  <tr><td>Fine local</td><td>Fewer chains, small moves, long local optimisation.</td></tr>
+                  <tr><td>Reproducible</td><td>A step budget instead of milliseconds, so a run replays exactly anywhere.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <pre class="pc-code"><code>{ "name": "Standard", "version": 1,
+  "budget": { "ms": 30000 },
+  "chains": 8, "temperature": 1.2,
+  "moves": { "translate": 1.0, "rotate": 20, "torsion": 60 },
+  "local": { "steps": 30 },
+  "placement": "box", "flexible": true,
+  "candidates": 4, "lattice": true,
+  "seed": 7 }</code></pre>
+
+            <h2 class="pc-h2" id="reviews">Reviews</h2>
+            <p>Every docking test has a report page, and any wallet other than its author can review it there: one to five stars and a note of at most 280 characters, plain text, stored on chain with the reviewer's address. A review costs gas only. A second review by the same wallet on the same test replaces the first. The test page shows the average, the count and the list, newest first; the leaderboard lists the most reviewed tests; the dashboard lists the reviews you received and wrote.</p>
+            <p>Notes are shown exactly as written, as text. Nothing in a note runs on this site.</p>
+
+            <h2 class="pc-h2" id="levels">Levels and badges</h2>
+            <p>XP is computed in your browser from chain data, so anyone can recompute it. The rules:</p>
+            <div class="pc-table-frame" data-xp-rules>
+              <table class="pc-table pc-table--compact">
+                <caption class="pc-visually-hidden">XP rules</caption>
+                <thead><tr><th scope="col" class="pc-td-num">XP</th><th scope="col">For</th></tr></thead>
+                <tbody>
+                  <tr><td class="pc-td-num">10</td><td>per docking test</td></tr>
+                  <tr><td class="pc-td-num">5</td><td>per distinct target tested (the first time)</td></tr>
+                  <tr><td class="pc-td-num">15</td><td>per test that becomes the best on its target when it is recorded</td></tr>
+                  <tr><td class="pc-td-num">3</td><td>per review written</td></tr>
+                  <tr><td class="pc-td-num">5</td><td>per review received with 4 or 5 stars</td></tr>
+                  <tr><td class="pc-td-num">25</td><td>per epoch won</td></tr>
+                  <tr><td class="pc-td-num">5</td><td>per target sponsored (the first time)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pc-table-frame" data-levels>
+              <table class="pc-table pc-table--compact">
+                <caption class="pc-visually-hidden">Levels</caption>
+                <thead><tr><th scope="col">Level</th><th scope="col" class="pc-td-num">From</th></tr></thead>
+                <tbody>
+                  <tr><td>Observer</td><td class="pc-td-num">0</td></tr>
+                  <tr><td>Assistant</td><td class="pc-td-num">50</td></tr>
+                  <tr><td>Researcher</td><td class="pc-td-num">150</td></tr>
+                  <tr><td>Senior Researcher</td><td class="pc-td-num">400</td></tr>
+                  <tr><td>Principal Investigator</td><td class="pc-td-num">900</td></tr>
+                  <tr><td>Lab Head</td><td class="pc-td-num">2000</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 class="pc-h3">Badges</h3>
+            <div class="pc-badges pc-badges--docs" data-badges-docs></div>
+            <dl class="pc-dl" data-badge-rules>
+              <div><dt>First test</dt><dd>One docking test recorded.</dd></div>
+              <div><dt>Ten tests</dt><dd>Ten docking tests recorded.</dd></div>
+              <div><dt>Fifty tests</dt><dd>Fifty docking tests recorded.</dd></div>
+              <div><dt>Ten targets</dt><dd>Tests on ten distinct targets.</dd></div>
+              <div><dt>Strong binder</dt><dd>A test at or below -9 kcal/mol.</dd></div>
+              <div><dt>Best on a target</dt><dd>A test that holds the best score on its target.</dd></div>
+              <div><dt>Epoch winner</dt><dd>An epoch settled in your favour.</dd></div>
+              <div><dt>Sponsor</dt><dd>A prize pool funded.</dd></div>
+              <div><dt>Reviewer</dt><dd>Five reviews written.</dd></div>
+              <div><dt>Well reviewed</dt><dd>An own test with three or more reviews averaging 4 or better.</dd></div>
+            </dl>
+
+            <h2 class="pc-h2" id="ai-analysis">AI analysis</h2>
+            <p>Every test report page offers an analysis by a language model: Claude Fable 5.1, GPT, Kimi or Jev AI, whichever keys are configured on the server. A provider without a key shows as <span class="pc-mono">not connected</span> and cannot be picked. Nothing is ever shown in place of a real answer.</p>
+            <p>What is sent to the model: the target and its PDB id, the ligand, the chain's score and the derived numbers, the five terms and the geometry proof, the method, the target's other tests and the epoch best. The model is asked to interpret the score in plain words, name the limits of a rigid receptor Vina-style estimate, suggest computational and wet-lab next steps, and label any literature it recalls as unverified. The text is the model's and is not verified by anyone. Keys never reach the browser: the request goes to this site's server, which holds the keys and talks to the provider. Ten analyses per minute per server instance.</p>
+            <p>The author of a test may attach an analysis on chain (up to 2048 bytes; a later one replaces it). An attached analysis is shown to everyone on the test page, with its provider and model, and its first 500 characters go into the X post and the Markdown report. An analysis that is not attached is shown only to the person who generated it, in that session.</p>
+
+            <h2 class="pc-h2" id="post-on-x">Post on X</h2>
+            <p>The test page and the dashboard offer <span class="pc-mono">Post on X</span>: a link to X's post composer with a prepared text and the test's URL. The text names the test number, the ligand, the target and its PDB id, the binding free energy and the pKd, and says the test was scored on Robinhood Chain. When an analysis is attached, its first 500 characters follow, labelled with the model. Nothing is posted until you press Post in X. No emoji, no dashes, no address.</p>
+
+            <h2 class="pc-h2" id="claims">What is and is not claimed</h2>
+            <p>Claimed: the structures are real experimental entries from the RCSB Protein Data Bank; the pose search runs in your browser; the score is an integer Vina-style estimate the contract recomputes; the record is on Robinhood Chain and this site rebuilds from it; the sponsored prize pools pay the best score of each epoch; reviews and attached analyses are on chain as written.</p>
+            <p>Not claimed: that a strong score means a compound is active in cells, animals or people; that any compound here treats or cures a cancer; any wet-lab, clinical or regulatory result; that the engine reproduces AutoDock Vina; that a score is more than a lead for further study. AI modeling here means computer-aided drug design with a learned empirical scoring function. No model on this site claims to have found a drug.</p>
+
+            <h2 class="pc-h2" id="wallet">Wallet and network</h2>
+            <p>Ponchem runs on Robinhood Chain, chain id 4663, gas paid in ETH. Connect with any injected wallet. If the wallet is on another network the site asks it to switch, and if the wallet does not know the chain, add it with these parameters: name Robinhood Chain, chain id 4663, currency ETH, RPC <span class="pc-mono" data-rpc-url>https://rpc.mainnet.chain.robinhood.com</span>, explorer <span class="pc-mono" data-explorer-url>https://robinhoodchain.blockscout.com</span>. A docking test costs 100 $PONCHEM or 0.0001 ETH plus gas, shown in the lab before you pay. Reviewing a test costs gas only. Claiming a prize and sponsoring a pool cost gas only, plus the amount you send.</p>
+            <div class="pc-card pc-card--paper2 pc-card--pad" style="margin: var(--s-4) 0">
+              <dl class="pc-ladder">
+                <div class="pc-ladder-row"><dt>Network name</dt><dd>Robinhood Chain</dd></div>
+                <div class="pc-ladder-row"><dt>Chain id</dt><dd class="pc-mono">4663</dd></div>
+                <div class="pc-ladder-row"><dt>Currency</dt><dd class="pc-mono">ETH</dd></div>
+                <div class="pc-ladder-row"><dt>RPC</dt><dd class="pc-mono" data-rpc-url>https://rpc.mainnet.chain.robinhood.com</dd></div>
+                <div class="pc-ladder-row"><dt>Explorer</dt><dd class="pc-mono" data-explorer-url>https://robinhoodchain.blockscout.com</dd></div>
+              </dl>
+            </div>
+            <p data-fees>The test prices, the lab fee and the epoch length are read from the contract and shown in the lab and on every target page.</p>
+
+            <h2 class="pc-h2" id="api">API</h2>
+            <p>The site exposes read-only JSON endpoints under /api for the runs index and the report, and a same-origin JSON-RPC proxy for chain reads. Endpoints and fields are listed below. The catalog files under /data are static and may be fetched directly.</p>
+            <div class="pc-endpoints">
+              <div class="pc-endpoint">
+                <code>GET /api/status</code>
+                <p class="pc-small">The lab status as JSON: live, epoch, epochStart, epochEnd, epochLength, runFee (wei), runPrice ($PONCHEM base units), feeBps, token, runCount, targetCount, ligandCount, poolTotal (wei).</p>
+              </div>
+              <div class="pc-endpoint">
+                <code>GET /api/runs?target=&amp;ligand=&amp;wallet=&amp;limit=&amp;offset=</code>
+                <p class="pc-small">The runs index rebuilt from chain events, newest first, cached for about ten seconds. JSON with runs, total and head. Each run carries id, wallet, targetId, ligandId, scoreMilli, epoch, time, block, tx and the pose.</p>
+              </div>
+              <div class="pc-endpoint">
+                <code>GET /api/analyze</code> <code>POST /api/analyze</code>
+                <p class="pc-small">GET lists the analysis providers with connected true or false, never a key. POST with { runId, provider } returns { provider, model, text, generatedAt }: the model's real answer for that test, cached per test and provider, ten per minute per instance.</p>
+              </div>
+              <div class="pc-endpoint">
+                <code>GET /api/report.md</code>
+                <p class="pc-small">The cancer research report as Markdown, the same data as the report page.</p>
+              </div>
+              <div class="pc-endpoint">
+                <code>POST /api/rpc</code>
+                <p class="pc-small">A JSON-RPC proxy to Robinhood Chain for read methods only (eth_call, eth_getLogs, eth_blockNumber and the like). Batches of up to five calls. Write methods are refused; wallets send their own transactions.</p>
+              </div>
+              <div class="pc-endpoint">
+                <code>GET /data/catalog/targets.json</code> <code>GET /data/catalog/ligands.json</code>
+                <p class="pc-small">The curated catalogs: every target with its PDB id, method, resolution, chain, reference ligand, cancer groups and DOI; every ligand with its plant, class, formula, weight, heavy atoms, rotatable bonds and provenance.</p>
+              </div>
+              <div class="pc-endpoint">
+                <code>GET /data/registry.json</code> <code>GET /data/pockets/&lt;PDB&gt;.bin</code> <code>GET /data/topologies/&lt;KEY&gt;.bin</code> <code>GET /data/ligands/&lt;KEY&gt;.sdf</code>
+                <p class="pc-small">The registry with chain ids, pocket and topology hashes, plus the bytes exactly as registered on chain and the heavy atom SDF of each ligand in topology order.</p>
+              </div>
+            </div>
+            <pre class="pc-code"><code>curl -s https://ponchem.ai/api/status
+curl -s "https://ponchem.ai/api/runs?limit=5"
+curl -s https://ponchem.ai/api/report.md
+curl -s https://ponchem.ai/api/rpc -H "content-type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"eth_blockNumber","params":[]}'</code></pre>
+
+            <h2 class="pc-h2" id="glossary">Glossary</h2>
+            <dl class="pc-dl">
+              <div><dt>Binding free energy (dG)</dt><dd>The energy change when a ligand binds a receptor, in kcal/mol. Negative means binding is favourable. More negative means stronger.</dd></div>
+              <div><dt>Gibbs energy</dt><dd>The thermodynamic quantity dG stands for. At constant temperature and pressure, a process is favourable when its Gibbs energy change is negative.</dd></div>
+              <div><dt>Kd</dt><dd>Dissociation constant. The concentration at which half the receptor sites are occupied. Smaller means tighter binding. Estimated here from dG = RT ln Kd at 298.15 K.</dd></div>
+              <div><dt>pKd</dt><dd>Minus the base ten logarithm of Kd in molar units. Bigger means tighter. A pKd of 6 is one micromolar; 9 is one nanomolar.</dd></div>
+              <div><dt>Ligand efficiency</dt><dd>Binding free energy per heavy atom, as a positive number. It favours small molecules that bind well for their size.</dd></div>
+              <div><dt>Pose</dt><dd>One placement of the ligand: the position of every heavy atom in the pocket.</dd></div>
+              <div><dt>Pocket</dt><dd>The receptor atoms around the reference ligand's box, taken from the crystal structure. Registered on chain as bytes with a hash.</dd></div>
+              <div><dt>Box</dt><dd>The region the ligand may occupy, centred on the reference ligand and padded. Every atom of a recorded pose must be inside it.</dd></div>
+              <div><dt>Heavy atom</dt><dd>Any atom that is not hydrogen. The engine only represents heavy atoms.</dd></div>
+              <div><dt>Rotatable bond</dt><dd>A single bond the search can twist. More of them means more flexibility and a small penalty in the score.</dd></div>
+              <div><dt>Epoch</dt><dd>A seven day window per target, counted from a genesis timestamp. The best score recorded in the window wins its pool when someone settles.</dd></div>
+              <div><dt>Docking test</dt><dd>The chain step: a pose found in the browser is submitted, the contract proves its geometry, scores it and records it. Costs 100 $PONCHEM or 0.0001 ETH, paid to the lab treasury.</dd></div>
+              <div><dt>Method</dt><dd>The JSON that configures the pose search: budget, chains, temperature, move sizes, local steps, placement, flexibility, candidates, lattice polish and seed. Recorded with the test.</dd></div>
+              <div><dt>Prize pool</dt><dd>The ETH sponsors have put on one target. Paid to the best wallet of the epoch minus the lab fee, or rolled over if no test was recorded.</dd></div>
+              <div><dt>Test price</dt><dd>What a docking test costs: 100 $PONCHEM or 0.0001 ETH, paid to the lab treasury, plus gas.</dd></div>
+              <div><dt>Review</dt><dd>One to five stars and a note of at most 280 characters, written on chain by a wallet other than the test's author. A second review replaces the first.</dd></div>
+              <div><dt>XP</dt><dd>Points computed in the browser from chain data by the rules under Levels and badges. They set a wallet's level.</dd></div>
+              <div><dt>Lab fee</dt><dd>The share of a settled prize kept by the lab treasury, set in basis points.</dd></div>
+              <div><dt>Vina-style</dt><dd>Of the AutoDock Vina family of empirical scoring functions: the same five terms and published weights, in an independent implementation.</dd></div>
+              <div><dt>Seed</dt><dd>The number that fixes the random choices of a search. Same seed, same pose.</dd></div>
+              <div><dt>Reference ligand</dt><dd>The compound that was in the crystal structure. It defines the box and appears as a blue ghost in the viewer.</dd></div>
+            </dl>
+          </div>
+        </section>
+      </main>
+      <!-- shell:footer -->
+      <footer class="pc-footer">
+        <div class="pc-footer-inner">
+          <div class="pc-footer-top">
+            <div class="pc-footer-brand">
+              <a class="pc-footer-logo" href="/" aria-label="Ponchem home">
+                <img class="pc-logo-mark" src="/img/brand/mark.png" width="32" height="32" alt="" />
+                <span>Ponchem</span>
+              </a>
+              <p class="pc-footer-tagline">On-chain computer-aided drug design. An honorable project of ponsfamily.com.</p>
+              <div class="pc-footer-token">
+                <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+                <button type="button" class="pc-ca" data-shell="ca" disabled aria-label="Copy CA, available at launch" title="CA posts here at launch">Copy CA</button>
+              </div>
+            </div>
+            <div class="pc-footer-cols">
+              <nav class="pc-footer-col" aria-label="Lab">
+                <div class="pc-eyebrow">Lab</div>
+                <a href="/lab">Lab</a>
+                <a href="/targets">Targets</a>
+                <a href="/ligands">Ligands</a>
+                <a href="/leaderboard">Leaderboard</a>
+                <a href="/report">Report</a>
+                <a href="/dashboard">Dashboard</a>
+              </nav>
+              <nav class="pc-footer-col" aria-label="Data">
+                <div class="pc-eyebrow">Data</div>
+                <a href="https://www.rcsb.org" target="_blank" rel="noopener noreferrer" data-out>RCSB Protein Data Bank</a>
+                <a href="https://robinhoodchain.blockscout.com" target="_blank" rel="noopener noreferrer" data-out>Robinhood Chain explorer</a>
+                <a href="/docs#api">API</a>
+              </nav>
+              <nav class="pc-footer-col" aria-label="Community">
+                <div class="pc-eyebrow">Community</div>
+                <a href="https://x.com/PonchemAI" target="_blank" rel="noopener noreferrer" data-shell="x" data-out>X @PonchemAI</a>
+                <a href="https://ponsfamily.com" target="_blank" rel="noopener noreferrer" data-out>ponsfamily.com</a>
+                <a href="/docs">Docs</a>
+              </nav>
+            </div>
+          </div>
+          <div class="pc-footer-bottom">
+            <div class="pc-footer-line">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
+            <div class="pc-footer-credit">Structures from the RCSB Protein Data Bank</div>
+          </div>
+        </div>
+      </footer>
+      <!-- /shell:footer -->
+    <script type="module" src="/js/pages/docs.js"></script>
+  </body>
+</html>

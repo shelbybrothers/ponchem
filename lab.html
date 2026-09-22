@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ponchem · Lab</title>
+    <meta name="description" content="Pick a cancer target and a plant compound, run a seeded docking search in your browser, and record the pose on Robinhood Chain." />
+    <link rel="canonical" href="https://ponchem.ai/lab" />
+    <meta property="og:title" content="Ponchem · Lab" />
+    <meta property="og:description" content="Pick a cancer target and a plant compound, run a seeded docking search in your browser, and record the pose on Robinhood Chain." />
+    <meta property="og:url" content="https://ponchem.ai/lab" />
+    <meta property="og:image" content="https://ponchem.ai/og.png" />
+    <!-- shell:head -->
+    <meta name="theme-color" content="#F5F3EC" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:site_name" content="Ponchem" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@PonchemAI" />
+    <link rel="icon" href="/img/brand/favicon.ico" sizes="48x48 32x32 16x16" />
+    <link rel="icon" href="/img/brand/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/img/brand/favicon-16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/img/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+    <!-- /shell:head -->
+    <link rel="stylesheet" href="/css/lab.css" />
+    <script src="/lib/3Dmol-min.js" defer></script>
+  </head>
+  <body class="lab-body">
+    <!-- shell:nav -->
+      <a class="pc-skip" href="#main">Skip to content</a>
+      <nav class="pc-nav" aria-label="Main">
+        <div class="pc-nav-inner">
+          <a class="pc-logo" href="/" aria-label="Ponchem home">
+            <img class="pc-logo-mark" src="/img/brand/mark.png" width="32" height="32" alt="" />
+            <span class="pc-wordmark">Ponchem</span>
+          </a>
+          <button type="button" class="pc-nav-toggle" data-nav-toggle aria-controls="pc-nav-links" aria-expanded="false" aria-label="Open menu">
+            <svg class="pc-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
+          </button>
+          <div class="pc-nav-links" id="pc-nav-links">
+            <a class="pc-nav-link" href="/lab" data-nav="lab">Lab</a>
+            <a class="pc-nav-link" href="/targets" data-nav="targets">Targets</a>
+            <a class="pc-nav-link" href="/ligands" data-nav="ligands">Ligands</a>
+            <a class="pc-nav-link" href="/leaderboard" data-nav="leaderboard">Leaderboard</a>
+            <a class="pc-nav-link" href="/report" data-nav="report">Report</a>
+            <a class="pc-nav-link" href="/docs" data-nav="docs">Docs</a>
+            <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+            <a class="pc-nav-link pc-nav-x" href="https://x.com/PonchemAI" target="_blank" rel="noopener noreferrer">X @PonchemAI</a>
+            <div class="pc-nav-footline">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
+          </div>
+          <div class="pc-wallet" data-wallet-root>
+            <button type="button" class="pc-wallet-button" data-wallet-button aria-haspopup="menu" aria-expanded="false">connect wallet</button>
+            <div class="pc-wallet-menu" data-wallet-menu role="menu" hidden></div>
+          </div>
+        </div>
+      </nav>
+    <!-- /shell:nav -->
+    <main id="main" class="pc-main lab-main" data-lab data-state="loading" data-mode="pair">
+      <h1 class="lab-visually-hidden">Lab</h1>
+
+      <div class="lab-band" data-lab-network hidden>
+        <svg class="lab-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4L2.5 20h19L12 4Z" /><path d="M12 10v4" /><path d="M12 17.2v.1" /></svg>
+        <span>Your wallet is on another network. Ponchem records runs on Robinhood Chain.</span>
+        <button type="button" class="lab-btn lab-btn-warn lab-btn-sm" data-lab-network-switch>Switch network</button>
+      </div>
+
+      <div class="lab-pairbar" data-lab-pairbar role="group" aria-label="Choose the target and the ligand">
+        <button type="button" class="lab-pairchip lab-pairchip-target" data-chip="target" data-empty="1"><span class="lab-chip-text">Choose target</span></button>
+        <button type="button" class="lab-pairchip lab-pairchip-ligand" data-chip="ligand" data-empty="1"><span class="lab-chip-text">Choose ligand</span></button>
+      </div>
+
+      <div class="lab-grid">
+        <aside class="lab-rail lab-rail-left" data-lab-rail aria-label="Pickers">
+          <div data-picker-host="target"></div>
+          <div data-picker-host="ligand"></div>
+          <div class="lab-modes" data-lab-modes>
+            <div class="lab-seg" role="group" aria-label="Screen mode">
+              <button type="button" class="lab-seg-btn" data-mode="pair" aria-pressed="true">Pair</button>
+              <button type="button" class="lab-seg-btn" data-mode="target-many" aria-pressed="false">Target vs many</button>
+              <button type="button" class="lab-seg-btn" data-mode="ligand-many" aria-pressed="false">Ligand vs many</button>
+            </div>
+          </div>
+        </aside>
+
+        <section class="lab-center" aria-label="Viewer and run controls">
+          <div class="lab-viewer-card" data-lab-viewer-card data-viewer="loading">
+            <div class="lab-viewer-toolbar" role="toolbar" aria-label="Viewer">
+              <button type="button" class="lab-btn lab-btn-icon" data-tool="reset" aria-label="Reset view" title="Reset view"><svg class="lab-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7" /><path d="M4 4v5h5" /></svg></button>
+              <button type="button" class="lab-btn lab-btn-icon" data-tool="reference" aria-label="Reference ligand" title="Reference ligand" aria-pressed="true"><svg class="lab-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9L12 3Z" /><path d="M12 3v18" /><path d="M4.2 7.5L19.8 16.5" /></svg></button>
+              <button type="button" class="lab-btn lab-btn-icon lab-tool-more" data-tool="box" aria-label="Box" title="Box" aria-pressed="true"><svg class="lab-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8Z" /><path d="M4 8l8 4 8-4" /><path d="M12 12v8" /></svg></button>
+              <button type="button" class="lab-btn lab-btn-icon lab-tool-more" data-tool="pocket" aria-label="Pocket" title="Pocket" aria-pressed="true"><svg class="lab-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A7 7 0 1 0 19 13" /><path d="M12 9.5l3 1.7v3.6l-3 1.7-3-1.7v-3.6l3-1.7Z" /></svg></button>
+              <button type="button" class="lab-btn lab-btn-icon lab-tool-more" data-tool="surface" aria-label="Surface" title="Surface" aria-pressed="false"><svg class="lab-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15c3-6 6-6 8 0s5 6 8 0" /><path d="M4 9c3-6 6-6 8 0s5 6 8 0" /></svg></button>
+              <button type="button" class="lab-btn lab-btn-icon" data-tool="fullscreen" aria-label="Fullscreen" title="Fullscreen"><svg class="lab-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5" /><path d="M20 9V4h-5" /><path d="M4 15v5h5" /><path d="M20 15v5h-5" /></svg></button>
+            </div>
+            <div class="lab-viewer-host" data-viewer-host></div>
+            <div class="lab-viewer-fallback" data-viewer-fallback hidden>
+              <img src="/img/brand/mark-mono.svg" alt="" width="320" height="240" loading="lazy" decoding="async" />
+            </div>
+            <p class="lab-viewer-status lab-mono" data-viewer-status aria-live="polite">Loading structure from the Protein Data Bank</p>
+            <div class="lab-viewer-legend" aria-hidden="true">
+              <span class="lab-legend-item"><span class="lab-legend-swatch lab-legend-receptor"></span>receptor</span>
+              <span class="lab-legend-item"><span class="lab-legend-swatch lab-legend-ligand"></span>ligand</span>
+              <span class="lab-legend-item"><span class="lab-legend-swatch lab-legend-reference"></span>reference</span>
+            </div>
+            <div class="lab-viewer-chips" data-viewer-chips>
+              <span class="lab-chip lab-chip-receptor lab-mono" data-chip-target hidden></span>
+              <span class="lab-chip lab-chip-ligand lab-mono" data-chip-ligand hidden></span>
+            </div>
+          </div>
+          <div class="lab-viewer-strip">
+            <span class="lab-viewer-caption lab-mono" data-viewer-caption></span>
+            <a class="lab-link" data-viewer-rcsb href="https://www.rcsb.org" target="_blank" rel="noopener noreferrer" hidden>View on RCSB<svg class="lab-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7" /><path d="M9 7h8v8" /></svg></a>
+          </div>
+
+          <div class="lab-card lab-run-card" data-lab-run>
+            <div class="lab-run-head">
+              <span class="lab-eyebrow">DOCK</span>
+              <p class="lab-caption">Find a pose in your browser, then run the docking test on chain.</p>
+            </div>
+            <div class="lab-seg lab-depth" role="group" aria-label="Depth">
+              <button type="button" class="lab-seg-btn" data-depth-key="quick" aria-pressed="false"><span class="lab-seg-label">Quick</span><span class="lab-seg-note">about 10 s</span></button>
+              <button type="button" class="lab-seg-btn" data-depth-key="standard" aria-pressed="true"><span class="lab-seg-label">Standard</span><span class="lab-seg-note">about 30 s</span></button>
+              <button type="button" class="lab-seg-btn" data-depth-key="deep" aria-pressed="false"><span class="lab-seg-label">Deep</span><span class="lab-seg-note">about 90 s</span></button>
+            </div>
+            <div class="lab-seed-row">
+              <label class="lab-label" for="lab-seed">Seed</label>
+              <div class="lab-seed-field">
+                <input id="lab-seed" class="lab-input lab-mono" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" spellcheck="false" data-seed value="0" />
+                <button type="button" class="lab-btn lab-btn-outline lab-seed-random" data-seed-random aria-label="Randomise" title="Randomise"><svg class="lab-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h4l8 10h4" /><path d="M17 4l3 3-3 3" /><path d="M4 17h4l2-2.5" /><path d="M13.5 9.5L16 7h4" /><path d="M17 14l3 3-3 3" /></svg><span class="lab-seed-random-text">Randomise</span></button>
+              </div>
+              <p class="lab-caption lab-seed-note">Same seed, same pose, on any machine.</p>
+            </div>
+            <button type="button" class="lab-method-chip" data-method-open aria-expanded="false" aria-controls="lab-method-card">
+              <span class="lab-method-chip-key">Method</span>
+              <span class="lab-method-chip-name" data-method-name>Standard</span>
+              <svg class="lab-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
+            <button type="button" class="lab-btn lab-btn-primary lab-btn-lg lab-run" data-run disabled>Find a pose</button>
+            <p class="lab-caption lab-run-note" data-run-note hidden></p>
+            <div class="lab-progress" data-progress hidden>
+              <div class="lab-progress-track" data-progress-bar role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Pose search"><div class="lab-progress-fill" data-progress-fill></div></div>
+              <p class="lab-caption lab-mono" data-progress-caption></p>
+              <p class="lab-caption lab-mono lab-progress-meta"><span data-progress-stage></span><span data-progress-queue></span></p>
+            </div>
+          </div>
+
+          <div class="lab-card lab-method-card" id="lab-method-card" data-lab-method hidden>
+            <div class="lab-method-head">
+              <div>
+                <span class="lab-eyebrow">METHOD</span>
+                <h2 class="lab-method-title">Docking method</h2>
+              </div>
+              <button type="button" class="lab-btn lab-btn-ghost lab-btn-sm" data-method-close>Hide</button>
+            </div>
+            <div data-method-host></div>
+          </div>
+        </section>
+
+        <aside class="lab-rail lab-rail-right" aria-label="Result">
+          <div data-lab-results-host></div>
+        </aside>
+      </div>
+    </main>
+
+    <div class="lab-dock" data-lab-dock data-show="run" hidden>
+      <div class="lab-dock-run"><button type="button" class="lab-btn lab-btn-primary lab-btn-lg" data-dock-run disabled>Find a pose</button></div>
+      <div class="lab-dock-record" data-dock-record></div>
+    </div>
+    <div data-lab-sheet-host></div>
+    <!-- shell:footer -->
+      <footer class="pc-footer">
+        <div class="pc-footer-inner">
+          <div class="pc-footer-top">
+            <div class="pc-footer-brand">
+              <a class="pc-footer-logo" href="/" aria-label="Ponchem home">
+                <img class="pc-logo-mark" src="/img/brand/mark.png" width="32" height="32" alt="" />
+                <span>Ponchem</span>
+              </a>
+              <p class="pc-footer-tagline">On-chain computer-aided drug design. An honorable project of ponsfamily.com.</p>
+              <div class="pc-footer-token">
+                <a class="pc-buy" data-shell="buy" role="link" aria-disabled="true" aria-label="Buy $PONCHEM, launching soon">Buy $PONCHEM <span class="pc-soon" aria-hidden="true">· soon</span></a>
+                <button type="button" class="pc-ca" data-shell="ca" disabled aria-label="Copy CA, available at launch" title="CA posts here at launch">Copy CA</button>
+              </div>
+            </div>
+            <div class="pc-footer-cols">
+              <nav class="pc-footer-col" aria-label="Lab">
+                <div class="pc-eyebrow">Lab</div>
+                <a href="/lab">Lab</a>
+                <a href="/targets">Targets</a>
+                <a href="/ligands">Ligands</a>
+                <a href="/leaderboard">Leaderboard</a>
+                <a href="/report">Report</a>
+                <a href="/dashboard">Dashboard</a>
+              </nav>
+              <nav class="pc-footer-col" aria-label="Data">
+                <div class="pc-eyebrow">Data</div>
+                <a href="https://www.rcsb.org" target="_blank" rel="noopener noreferrer" data-out>RCSB Protein Data Bank</a>
+                <a href="https://robinhoodchain.blockscout.com" target="_blank" rel="noopener noreferrer" data-out>Robinhood Chain explorer</a>
+                <a href="/docs#api">API</a>
+              </nav>
+              <nav class="pc-footer-col" aria-label="Community">
+                <div class="pc-eyebrow">Community</div>
+                <a href="https://x.com/PonchemAI" target="_blank" rel="noopener noreferrer" data-shell="x" data-out>X @PonchemAI</a>
+                <a href="https://ponsfamily.com" target="_blank" rel="noopener noreferrer" data-out>ponsfamily.com</a>
+                <a href="/docs">Docs</a>
+              </nav>
+            </div>
+          </div>
+          <div class="pc-footer-bottom">
+            <div class="pc-footer-line">2026 Pons Lab CADD (Computer-aided Drug Design)</div>
+            <div class="pc-footer-credit">Structures from the RCSB Protein Data Bank</div>
+          </div>
+        </div>
+      </footer>
+    <!-- /shell:footer -->
+    <script type="module" src="/js/pages/lab.js"></script>
+  </body>
+</html>
